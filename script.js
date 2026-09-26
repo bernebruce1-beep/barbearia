@@ -136,6 +136,8 @@ async function iniciarSite() {
 
         configurarMenu();
 
+        configurarGaleria();
+
         mostrarErroBarbeiro(
             "Supabase não carregado"
         );
@@ -145,6 +147,8 @@ async function iniciarSite() {
 
 
     configurarMenu();
+
+    configurarGaleria();
 
     configurarDataMinima();
 
@@ -1607,6 +1611,61 @@ function configurarMenu() {
             "click",
             () => definirAberto(false)
         )
+    );
+
+}
+
+
+// ============================================================
+// GALERIA
+// ============================================================
+
+function configurarGaleria() {
+
+    const dialog =
+        document.getElementById("galleryDialog");
+
+    if (!dialog || dialog.dataset.pronto)
+        return;
+
+    dialog.dataset.pronto = "1";
+
+
+    const imagem =
+        dialog.querySelector("img");
+
+
+    document
+        .querySelectorAll(".gallery-item")
+        .forEach(
+            item => item.addEventListener(
+                "click",
+                () => {
+
+                    const foto =
+                        item.querySelector("img");
+
+                    imagem.src = item.dataset.src;
+                    imagem.alt = foto.alt;
+
+                    dialog.showModal();
+
+                }
+            )
+        );
+
+
+    // Fecha no botão ou clicando fora da foto.
+
+    dialog.addEventListener(
+        "click",
+        event => {
+
+            if (event.target !== imagem) {
+                dialog.close();
+            }
+
+        }
     );
 
 }
