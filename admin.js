@@ -6,69 +6,181 @@ const supabaseClient = window.supabase.createClient(
     SUPABASE_KEY
 );
 
-console.log("ADMIN OK");
+let agendamentos = [];
+
+
+// ============================================================
+// LOGIN
+// ============================================================
+
+async function iniciarAdmin() {
+    const { data } = await supabaseClient.auth.getSession();
+
+    mostrarTela(Boolean(data.session));
+
+    if (data.session) {
+        carregarTudo();
+    }
+}
+
+function mostrarTela(logado) {
+    document.getElementById("telaLogin").hidden = logado;
+    document.getElementById("telaPainel").hidden = !logado;
+    document.getElementById("topoAcoes").hidden = !logado;
+}
+
+document.getElementById("loginForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const resultado = await supabaseClient.auth.signInWithPassword({
+        email: document.getElementById("loginEmail").value.trim(),
+        password: document.getElementById("loginSenha").value
+    });
+
+    if (resultado.error) {
+        mostrarToast("E-mail ou senha inválidos.");
+        return;
+    }
+
+    document.getElementById("loginSenha").value = "";
+    mostrarTela(true);
+    carregarTudo();
+});
+
+async function sair() {
+    await supabaseClient.auth.signOut();
+    mostrarTela(false);
+}
+
+
+// ============================================================
+// UTILITÁRIOS
+// ============================================================
+
+function escaparHTML(valor) {
+    return String(valor ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+function formatarData(data) {
+    const partes = String(data || "").split("-");
+    return partes.length === 3
+        ? `${partes[2]}/${partes[1]}/${partes[0]}`
+        : (data || "-");
+}
+
+function mostrarToast(mensagem) {
+    const toast = document.getElementById("toast");
+
+    toast.textContent = mensagem;
+    toast.classList.add("mostrar");
+
+    clearTimeout(mostrarToast.timer);
+    mostrarToast.timer = setTimeout(function() {
+        toast.classList.remove("mostrar");
+    }, 3000);
+}
+
+function carregarTudo() {
+    carregarAgendamentos();
+    carregarBloqueios();
+    carregarBarbeiros();
+    carregarServicos();
+}
+
+
+// ============================================================
+// AGENDAMENTOS
+// ============================================================
+
 async function carregarAgendamentos() {
-    const resultado = await supabaseClient.rpc(
-        "admin_list_agendamentos"
-    );
+    const resultado = await supabaseClient.rpc("admin_list_agendamentos");
 
     if (resultado.error) {
         console.error("ERRO AGENDAMENTOS:", resultado.error);
+        mostrarToast("Erro ao carregar agendamentos.");
         return;
     }
 
-    const agendamentos = resultado.data || [];
+    agendamentos = resultado.data || [];
 
-    const tabela = document.querySelectorAll("table")[0]
-        .querySelector("tbody");
+    document.getElementById("totalAgendamentos").textContent =
+        agendamentos.length;
 
-    if (!tabela) {
-        console.error("Não encontrei o tbody da tabela.");
-        return;
-    }
+    document.getElementById("totalConfirmados").textContent =
+        agendamentos.filter(item => item.status !== "cancelado").length;
 
-    if (agendamentos.length === 0) {
+    document.getElementById("totalCancelados").textContent =
+        agendamentos.filter(item => item.status === "cancelado").length;
+
+    renderizarAgendamentos();
+}
+
+function renderizarAgendamentos() {
+    const tabela = document.getElementById("listaAgendamentos");
+    const filtro = document.getElementById("filtroData").value;
+
+    const lista = filtro
+        ? agendamentos.filter(item => item.data_agendamento === filtro)
+        : agendamentos;
+
+    if (lista.length === 0) {
         tabela.innerHTML =
             "<tr><td colspan='8'>Nenhum agendamento encontrado.</td></tr>";
         return;
     }
 
-    tabela.innerHTML = agendamentos.map(function(item) {
+    tabela.innerHTML = lista.map(function(item) {
+        const cancelado = item.status === "cancelado";
 
-        let acao;
-
-        if (item.status === "cancelado") {
-            acao = "Cancelado";
-        } else {
-            acao = `
-                <button onclick="cancelarAgendamento(${item.id})">
-                    ❌ Cancelar
-                </button>
-            `;
-        }
+        const acao = cancelado
+            ? "—"
+            : `<button class="btn-cancelar" onclick="cancelarAgendamento(${Number(item.id)})">❌ Cancelar</button>`;
 
         return `
             <tr>
-                <td>${item.nome_cliente || "-"}</td>
-                <td>${item.telefone || "-"}</td>
-                <td>${item.servico_nome || "-"}</td>
-                <td>${item.barbeiro_nome || "-"}</td>
-                <td>${item.data_agendamento || "-"}</td>
-                <td>${item.horario || "-"}</td>
-                <td>${item.status || "-"}</td>
+                <td>${escaparHTML(item.nome_cliente || "-")}</td>
+                <td>${escaparHTML(item.telefone || "-")}</td>
+                <td>${escaparHTML(item.servico_nome || "-")}</td>
+                <td>${escaparHTML(item.barbeiro_nome || "-")}</td>
+                <td>${escaparHTML(formatarData(item.data_agendamento))}</td>
+                <td>${escaparHTML(String(item.horario || "-").substring(0, 5))}</td>
+                <td><span class="status status-${cancelado ? "cancelado" : "confirmado"}">${escaparHTML(item.status || "-")}</span></td>
                 <td>${acao}</td>
             </tr>
         `;
-
     }).join("");
-
-    console.log(
-        "Agendamentos carregados:",
-        agendamentos.length
-    );
 }
 
-carregarAgendamentos();
+async function cancelarAgendamento(id) {
+    if (!confirm("Tem certeza que deseja cancelar este agendamento?")) {
+        return;
+    }
+
+    const resultado = await supabaseClient.rpc(
+        "admin_cancelar_agendamento",
+        { p_id: id }
+    );
+
+    if (resultado.error) {
+        console.error("ERRO AO CANCELAR:", resultado.error);
+        mostrarToast("Erro ao cancelar.");
+        return;
+    }
+
+    mostrarToast("Agendamento cancelado!");
+    carregarAgendamentos();
+}
+
+
+// ============================================================
+// BARBEIROS E SERVIÇOS
+// ============================================================
+
 async function carregarBarbeiros() {
     const resultado = await supabaseClient
         .from("barbeiros")
@@ -84,35 +196,20 @@ async function carregarBarbeiros() {
 
     const barbeiros = resultado.data || [];
 
-    const lista = document.getElementById("listaBarbeiros");
+    document.getElementById("listaBarbeiros").innerHTML = barbeiros.map(function(item) {
+        return `
+            <div>
+                <strong>${escaparHTML(item.nome)}</strong>
+                <span>${escaparHTML(item.especialidade || "")}</span>
+            </div>
+        `;
+    }).join("");
 
-    if (lista) {
-        lista.innerHTML = barbeiros.map(function(item) {
-            return `
-                <div>
-                    <strong>${item.nome}</strong>
-                    <span>${item.especialidade || ""}</span>
-                </div>
-            `;
-        }).join("");
-    }
-
-    const seletor = document.getElementById("bloqueioBarbeiro");
-
-    if (seletor) {
-        seletor.innerHTML = barbeiros.map(function(item) {
-            return `
-                <option value="${item.id}">
-                    ${item.nome}
-                </option>
-            `;
-        }).join("");
-    }
-
-    console.log("Barbeiro carregado:", barbeiros);
+    document.getElementById("bloqueioBarbeiro").innerHTML = barbeiros.map(function(item) {
+        return `<option value="${Number(item.id)}">${escaparHTML(item.nome)}</option>`;
+    }).join("");
 }
 
-carregarBarbeiros();
 async function carregarServicos() {
     const resultado = await supabaseClient
         .from("servicos")
@@ -125,46 +222,34 @@ async function carregarServicos() {
         return;
     }
 
-    const lista = document.getElementById("listaServicos");
-
-    if (!lista) {
-        console.error("Não encontrei listaServicos.");
-        return;
-    }
-
-    lista.innerHTML = resultado.data.map(function(item) {
+    document.getElementById("listaServicos").innerHTML = (resultado.data || []).map(function(item) {
         return `
             <div>
-                <strong>${item.nome}</strong>
+                <strong>${escaparHTML(item.nome)}</strong>
                 <span>R$ ${Number(item.preco).toFixed(2).replace(".", ",")}</span>
             </div>
         `;
     }).join("");
-
-    console.log("Serviços carregados:", resultado.data);
 }
 
-carregarServicos();
+
+// ============================================================
+// BLOQUEIOS
+// ============================================================
+
 async function carregarBloqueios() {
-    const resultado = await supabaseClient.rpc(
-        "admin_listar_bloqueios"
-    );
+    const resultado = await supabaseClient.rpc("admin_listar_bloqueios");
 
     if (resultado.error) {
         console.error("ERRO BLOQUEIOS:", resultado.error);
+        mostrarToast("Erro ao carregar bloqueios.");
         return;
     }
 
     const bloqueios = resultado.data || [];
-console.table(bloqueios);
+    const tabela = document.getElementById("listaBloqueios");
 
-    const tabela = document.querySelectorAll("table")[1]
-        .querySelector("tbody");
-
-    if (!tabela) {
-        console.error("Não encontrei o tbody dos bloqueios.");
-        return;
-    }
+    document.getElementById("totalBloqueios").textContent = bloqueios.length;
 
     if (bloqueios.length === 0) {
         tabela.innerHTML =
@@ -175,136 +260,20 @@ console.table(bloqueios);
     tabela.innerHTML = bloqueios.map(function(item) {
         return `
             <tr>
-                <td>${item.barbeiro_nome || "-"}</td>
-                <td>${item.data_bloqueio || "-"}</td>
-                <td>${item.horario || "-"}</td>
-                <td>${item.motivo || "-"}</td>
+                <td>${escaparHTML(item.barbeiro_nome || "-")}</td>
+                <td>${escaparHTML(formatarData(item.data_bloqueio))}</td>
+                <td>${escaparHTML(String(item.horario || "-").substring(0, 5))}</td>
+                <td>${escaparHTML(item.motivo || "-")}</td>
                 <td>
-                    <button onclick="desbloquearHorario(${item.id})">
+                    <button class="btn-desbloquear" onclick="desbloquearHorario(${Number(item.id)})">
                         🔓 Desbloquear
                     </button>
                 </td>
             </tr>
         `;
     }).join("");
-
-    console.log(
-        "Bloqueios carregados:",
-        bloqueios.length
-    );
 }
 
-carregarBloqueios();
-async function carregarBloqueios() {
-    const resultado = await supabaseClient.rpc(
-        "admin_listar_bloqueios"
-    );
-
-    if (resultado.error) {
-        console.error("ERRO BLOQUEIOS:", resultado.error);
-        return;
-    }
-
-    const bloqueios = resultado.data || [];
-
-    const tabela = document.querySelectorAll("table")[1]
-        ?.querySelector("tbody");
-
-    if (!tabela) {
-        console.error("Não encontrei o tbody dos bloqueios.");
-        return;
-    }
-
-    if (bloqueios.length === 0) {
-        tabela.innerHTML =
-            "<tr><td colspan='5'>Nenhum horário bloqueado.</td></tr>";
-        return;
-    }
-
-    tabela.innerHTML = bloqueios.map(function(item) {
-        return `
-            <tr>
-                <td>${item.barbeiro_nome || "-"}</td>
-                <td>${item.data_bloqueio || "-"}</td>
-                <td>${item.horario || "-"}</td>
-                <td>${item.motivo || "-"}</td>
-                <td>
-                    <button onclick="desbloquearHorario(${item.id})">
-                        🔓 Desbloquear
-                    </button>
-                </td>
-            </tr>
-        `;
-    }).join("");
-
-    console.log(
-        "Bloqueios carregados:",
-        bloqueios.length
-    );
-}
-
-carregarBloqueios();
-
-async function cancelarAgendamento(id) {
-    const confirmar = confirm(
-        "Tem certeza que deseja cancelar este agendamento?"
-    );
-
-    if (!confirmar) {
-        return;
-    }
-
-    const resultado = await supabaseClient.rpc(
-        "admin_cancelar_agendamento",
-        {
-            p_id: id
-        }
-    );
-
-    if (resultado.error) {
-        console.error(
-            "ERRO AO CANCELAR:",
-            resultado.error
-        );
-
-        alert("Erro ao cancelar o agendamento.");
-        return;
-    }
-
-    alert("Agendamento cancelado!");
-
-    carregarAgendamentos();
-}
-async function cancelarAgendamento(id) {
-    const confirmar = confirm("Tem certeza que deseja cancelar este agendamento?");
-
-    if (!confirmar) {
-        return;
-    }
-
-    const resultado = await supabaseClient.rpc(
-        "admin_cancelar_agendamento",
-        { p_id: id }
-    );
-
-    if (resultado.error) {
-        console.error("ERRO AO CANCELAR:", resultado.error);
-        alert("Erro ao cancelar.");
-        return;
-    }
-
-    alert("Agendamento cancelado!");
-    carregarAgendamentos();
-}
-document.querySelectorAll("button").forEach(function(botao, index) {
-    console.log(
-        "BOTÃO " + index,
-        "texto:",
-        botao.innerText,
-        "ID:",
-        botao.id
-    );
-});
 async function bloquearHorario() {
     const barbeiro = document.getElementById("bloqueioBarbeiro").value;
     const data = document.getElementById("bloqueioData").value;
@@ -312,7 +281,7 @@ async function bloquearHorario() {
     const motivo = document.getElementById("bloqueioMotivo").value;
 
     if (!barbeiro || !data || !horario) {
-        alert("Preencha barbeiro, data e horário.");
+        mostrarToast("Preencha barbeiro, data e horário.");
         return;
     }
 
@@ -328,43 +297,34 @@ async function bloquearHorario() {
 
     if (resultado.error) {
         console.error("ERRO AO BLOQUEAR:", resultado.error);
-        alert("Erro ao bloquear: " + resultado.error.message);
+        mostrarToast("Erro ao bloquear: " + resultado.error.message);
         return;
     }
 
-    alert("Horário bloqueado com sucesso!");
-
+    mostrarToast("Horário bloqueado com sucesso!");
     document.getElementById("bloqueioMotivo").value = "";
-
     carregarBloqueios();
 }
-async function desbloquearHorario(id) {
-    const confirmar = confirm(
-        "Deseja desbloquear este horário?"
-    );
 
-    if (!confirmar) {
+async function desbloquearHorario(id) {
+    if (!confirm("Deseja desbloquear este horário?")) {
         return;
     }
 
     const resultado = await supabaseClient.rpc(
         "admin_desbloquear_horario",
-        {
-            p_id: id
-        }
+        { p_id: id }
     );
 
     if (resultado.error) {
-        console.error(
-            "ERRO AO DESBLOQUEAR:",
-            resultado.error
-        );
-
-        alert("Erro ao desbloquear.");
+        console.error("ERRO AO DESBLOQUEAR:", resultado.error);
+        mostrarToast("Erro ao desbloquear.");
         return;
     }
 
-    alert("Horário desbloqueado!");
-
+    mostrarToast("Horário desbloqueado!");
     carregarBloqueios();
 }
+
+
+iniciarAdmin();

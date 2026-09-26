@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="robots" content="noindex, nofollow">
+
     <title>Painel Administrativo</title>
 
     <link rel="stylesheet" href="admin.css">
@@ -19,14 +21,50 @@
             <p>Controle da barbearia</p>
         </div>
 
-        <button class="btn-atualizar" onclick="carregarTudo()">
-            🔄 Atualizar
-        </button>
+        <div class="topo-acoes" id="topoAcoes" hidden>
+
+            <button class="btn-atualizar" onclick="carregarTudo()">
+                🔄 Atualizar
+            </button>
+
+            <button class="btn-sair" onclick="sair()">
+                Sair
+            </button>
+
+        </div>
 
     </header>
 
 
-    <main class="container">
+    <!-- LOGIN -->
+
+    <main class="container" id="telaLogin" hidden>
+
+        <form class="painel login" id="loginForm">
+
+            <h2>🔒 Entrar</h2>
+            <p>Acesso restrito ao administrador.</p>
+
+            <div class="campo">
+                <label for="loginEmail">E-mail</label>
+                <input type="email" id="loginEmail" autocomplete="username" required>
+            </div>
+
+            <div class="campo">
+                <label for="loginSenha">Senha</label>
+                <input type="password" id="loginSenha" autocomplete="current-password" required>
+            </div>
+
+            <button type="submit" class="btn-principal">
+                Entrar
+            </button>
+
+        </form>
+
+    </main>
+
+
+    <main class="container" id="telaPainel" hidden>
 
         <!-- RESUMO -->
 

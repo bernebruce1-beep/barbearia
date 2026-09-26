@@ -376,3 +376,36 @@ tr:hover td {
         flex-direction: column;
     }
 }
+
+/* LOGIN */
+
+[hidden] {
+    display: none !important;
+}
+
+.topo-acoes {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-sair {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #292d35;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login {
+    max-width: 420px;
+    margin: 60px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.login p {
+    color: #9da3ae;
+}

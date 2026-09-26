@@ -134,6 +134,8 @@ async function iniciarSite() {
 
     if (!supabaseClient) {
 
+        configurarMenu();
+
         mostrarErroBarbeiro(
             "Supabase não carregado"
         );
@@ -141,6 +143,8 @@ async function iniciarSite() {
         return;
     }
 
+
+    configurarMenu();
 
     configurarDataMinima();
 
@@ -329,6 +333,15 @@ async function carregarBarbeiro() {
 
         barbeiroSelect.disabled =
             false;
+
+
+        const barberName =
+            document.getElementById("barberName");
+
+        if (barberName) {
+            barberName.textContent =
+                barbeiroAtual.nome.toUpperCase();
+        }
 
 
         console.log(
@@ -953,10 +966,31 @@ function renderizarHorarios(
         0;
 
 
+    // Se a data é hoje, horários que já passaram
+    // não podem ser escolhidos.
+
+    const agora =
+        new Date();
+
+    const ehHoje =
+        dataInput?.value === dataInput?.min;
+
+    const minutosAgora =
+        agora.getHours() * 60 + agora.getMinutes();
+
+
     HORARIOS_DISPONIVEIS.forEach(
         horario => {
 
+            const [hora, minuto] =
+                horario.split(":").map(Number);
+
+            const passou =
+                ehHoje &&
+                hora * 60 + minuto <= minutosAgora;
+
             const ocupado =
+                passou ||
                 ocupados.has(
                     horario
                 );
@@ -977,9 +1011,11 @@ function renderizarHorarios(
 
 
             button.textContent =
-                ocupado
-                    ? "Ocupado"
-                    : horario;
+                passou
+                    ? "Encerrado"
+                    : ocupado
+                        ? "Ocupado"
+                        : horario;
 
 
             if (ocupado) {
@@ -1141,6 +1177,23 @@ async function enviarAgendamento(
 
         mostrarMensagem(
             "Digite seu WhatsApp.",
+            "erro"
+        );
+
+        return;
+    }
+
+
+    const digitosTelefone =
+        telefone.replace(/\D/g, "");
+
+    if (
+        digitosTelefone.length < 10 ||
+        digitosTelefone.length > 11
+    ) {
+
+        mostrarMensagem(
+            "Digite um WhatsApp válido com DDD.",
             "erro"
         );
 
@@ -1317,12 +1370,37 @@ async function enviarAgendamento(
         );
 
 
-        enviarWhatsApp(
-            nome,
-            telefone,
-            data,
-            horario,
-            servicosSelecionados
+        // O link é mostrado na mensagem porque
+        // window.open depois de um await costuma
+        // ser bloqueado pelo navegador.
+
+        const linkWhatsApp =
+            document.createElement("a");
+
+        linkWhatsApp.href =
+            montarLinkWhatsApp(
+                nome,
+                telefone,
+                data,
+                horario,
+                servicosSelecionados
+            );
+
+        linkWhatsApp.target =
+            "_blank";
+
+        linkWhatsApp.rel =
+            "noopener noreferrer";
+
+        linkWhatsApp.className =
+            "booking-whatsapp-link";
+
+        linkWhatsApp.textContent =
+            "Enviar confirmação no WhatsApp ↗";
+
+        bookingMessage.append(
+            document.createElement("br"),
+            linkWhatsApp
         );
 
 
@@ -1399,7 +1477,7 @@ async function enviarAgendamento(
 // WHATSAPP
 // ============================================================
 
-function enviarWhatsApp(
+function montarLinkWhatsApp(
     nome,
     telefone,
     data,
@@ -1466,17 +1544,60 @@ ${lista}
 Agendamento realizado pelo site.`;
 
 
-    const url =
-        `https://wa.me/${numero}?text=${
-            encodeURIComponent(
-                mensagem
-            )
-        }`;
+    return `https://wa.me/${numero}?text=${
+        encodeURIComponent(
+            mensagem
+        )
+    }`;
+
+}
 
 
-    window.open(
-        url,
-        "_blank"
+// ============================================================
+// MENU MOBILE
+// ============================================================
+
+function configurarMenu() {
+
+    const toggle =
+        document.getElementById("menuToggle");
+
+    const nav =
+        document.getElementById("navPrincipal");
+
+    if (!toggle || !nav || toggle.dataset.pronto)
+        return;
+
+    toggle.dataset.pronto = "1";
+
+
+    function definirAberto(aberto) {
+
+        nav.classList.toggle("nav-open", aberto);
+
+        toggle.classList.toggle("active", aberto);
+
+        toggle.setAttribute(
+            "aria-expanded",
+            String(aberto)
+        );
+
+    }
+
+
+    toggle.addEventListener(
+        "click",
+        () => definirAberto(
+            !nav.classList.contains("nav-open")
+        )
+    );
+
+
+    nav.querySelectorAll("a").forEach(
+        link => link.addEventListener(
+            "click",
+            () => definirAberto(false)
+        )
     );
 
 }
@@ -1678,26 +1799,3 @@ function escaparHTML(
 console.log(
     "📌 script.js carregado."
 );
-const duracaoServicos = {
-  cabelo: 40,
-  barba: 20,
-  sobrancelha: 10
-};
-
-function calcularDuracao(servicosSelecionados) {
-  return servicosSelecionados.reduce((total, servico) => {
-    return total + duracaoServicos[servico];
-  }, 0);
-}
-
-const selecionados = ["cabelo", "barba"];
-const duracaoTotal = calcularDuracao(selecionados);
-
-console.log(duracaoTotal); // 60 minutos
-const horarioInicio = new Date("2026-09-25T10:00:00");
-
-const horarioFim = new Date(
-  horarioInicio.getTime() + duracaoTotal * 60 * 1000
-);
-
-console.log(horarioFim);

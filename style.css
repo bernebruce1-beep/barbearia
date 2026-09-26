@@ -2256,3 +2256,154 @@ img {
         font-size: 43px;
     }
 }
+
+/* ===== FOTO DA SEÇÃO EXPERIÊNCIA (antes inline no index.html) ===== */
+.experience-visual .visual-box {
+    position: relative !important;
+    width: 100% !important;
+    height: 440px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #090909 !important;
+    box-sizing: border-box !important;
+}
+.experience-visual .visual-box::before,
+.experience-visual .visual-box::after {
+    display: none !important;
+    content: none !important;
+}
+.experience-visual .visual-box img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+@media (max-width: 900px) {
+    .experience-visual .visual-box {
+        height: 420px !important;
+    }
+}
+@media (max-width: 520px) {
+    .experience-visual .visual-box {
+        height: 350px !important;
+    }
+}
+/* FOTO LIMPA - somente a imagem */
+.experience-section .experience-container {
+    grid-template-columns: minmax(0, 1fr) 500px !important;
+    gap: 70px !important;
+    align-items: center !important;
+}
+
+.experience-section .experience-visual {
+    width: 500px !important;
+    height: 500px !important;
+    max-width: 500px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+    display: block !important;
+    background: transparent !important;
+}
+
+.experience-section .experience-visual::before,
+.experience-section .experience-visual::after {
+    display: none !important;
+    content: none !important;
+}
+
+.experience-section .experience-visual .visual-box {
+    width: 500px !important;
+    height: 500px !important;
+    max-width: 500px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    background: transparent !important;
+    overflow: hidden !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+}
+
+.experience-section .experience-visual .visual-box::before,
+.experience-section .experience-visual .visual-box::after {
+    display: none !important;
+    content: none !important;
+}
+
+.experience-section .experience-visual .visual-box img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 500px !important;
+    height: 500px !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+@media (max-width: 950px) {
+    .experience-section .experience-container {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+
+    .experience-section .experience-visual,
+    .experience-section .experience-visual .visual-box {
+        width: min(500px, 100%) !important;
+        max-width: 500px !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1 !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .experience-section .experience-visual .visual-box img {
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+
+/* ===== MENU MOBILE ABERTO ===== */
+
+.menu-toggle {
+    cursor: pointer;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+
+/* ===== LINK DO WHATSAPP APÓS AGENDAR ===== */
+
+.booking-whatsapp-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: var(--gold);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.experience-visual picture {
+    display: contents;
+}
