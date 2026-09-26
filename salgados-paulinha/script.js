@@ -19,6 +19,8 @@ const PRODUTOS = [
     foto:'empadinhas douradas em forminhas, uma aberta mostrando o recheio' },
   { cat:'assados', nome:'Pastel de forno', desc:'Massa podre caseira com recheio de palmito ou frango.', un:7, cento:75,
     foto:'pastéis de forno pincelados com gema, brilhantes, sobre pano xadrez' },
+  { cat:'especiais', nome:'Empadão de frango', desc:'Tamanho família, massa amanteigada que desmancha e recheio cremoso. Serve até 10 pessoas.', un:0, cento:null, tag:'Feito sob encomenda',
+    img:'fotos/empadao.webp', foto:'empadão de frango inteiro, dourado e brilhante, na caixa' },
   { cat:'especiais', nome:'Coxinha de costela', desc:'Costela desfiada no bafo com requeijão. Só às sextas!', un:9, cento:null, tag:'Especial',
     foto:'coxinha grande aberta com costela desfiada suculenta' },
   { cat:'especiais', nome:'Bolinho de bacalhau', desc:'Receita portuguesa da família, crocante e leve.', un:9.5, cento:75,
@@ -59,15 +61,17 @@ menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.c
 const cards = document.getElementById('cards');
 cards.innerHTML = PRODUTOS.map(p => `
   <article class="card" data-cat="${p.cat}">
-    <div class="ph" role="img" aria-label="Foto: ${p.foto}">
+    ${p.img
+      ? `<div class="card__foto">${p.tag ? `<span class="tag">${p.tag}</span>` : ''}<img src="${p.img}" alt="${p.foto}" loading="lazy" width="900" height="765"></div>`
+      : `<div class="ph" role="img" aria-label="Foto: ${p.foto}">
       ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
       <span>📸 FOTO: ${p.foto}</span>
-    </div>
+    </div>`}
     <div class="card__corpo">
       <h3>${p.nome}</h3>
       <p>${p.desc}</p>
       <div class="card__rodape">
-        <span class="preco">${brl(p.un)} <small>/un</small></span>
+        <span class="preco">${p.un ? `${brl(p.un)} <small>/un</small>` : '<small>Consulte</small>'}</span>
         <a class="btn btn--wpp btn--sm" target="_blank" rel="noopener"
            href="${wppLink(`Oi Paulinha! Quero pedir ${p.nome} 😋`)}">Pedir</a>
       </div>
@@ -85,7 +89,7 @@ document.getElementById('abas').addEventListener('click', e => {
 const lista = document.getElementById('calcLista');
 const qtds = PRODUTOS.map(() => 0);
 const modo = () => document.querySelector('input[name="tam"]:checked').value;
-const disponiveis = () => PRODUTOS.map((p, i) => ({ ...p, i })).filter(p => modo() === 'un' || p.cento);
+const disponiveis = () => PRODUTOS.map((p, i) => ({ ...p, i })).filter(p => modo() === 'un' ? p.un : p.cento);
 
 function renderLista() {
   let html = '', ultima = '';

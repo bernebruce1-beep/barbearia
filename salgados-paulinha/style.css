@@ -76,6 +76,9 @@ h2{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:.6rem}
 .card{background:#fff;border-radius:var(--raio);overflow:hidden;box-shadow:var(--sombra);display:flex;flex-direction:column;transition:transform .25s}
 .card:hover{transform:translateY(-4px)}
 .card .ph{aspect-ratio:4/3;border-radius:0}
+.card__foto{position:relative;aspect-ratio:4/3;overflow:hidden}
+.card__foto img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.card:hover .card__foto img{transform:scale(1.05)}
 .card .ph span{font-size:.75rem}
 .card__corpo{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
 .card h3{font-size:1.15rem}
