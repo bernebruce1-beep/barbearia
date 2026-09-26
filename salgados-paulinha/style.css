@@ -6,7 +6,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{font-family:'Nunito',system-ui,sans-serif;color:var(--texto);background:var(--creme);line-height:1.6;-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 h1,h2,h3{color:var(--marrom);line-height:1.2;font-weight:800}
 h2{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:.6rem}
@@ -59,6 +59,10 @@ h2{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:.6rem}
 .hero__botoes{display:flex;flex-wrap:wrap;gap:12px}
 .hero__provas{display:flex;flex-wrap:wrap;gap:18px;list-style:none;margin-top:1.6rem;font-size:.95rem}
 .hero__foto{position:relative}
+.hero__img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--raio);box-shadow:var(--sombra)}
+.festas__foto{margin-top:36px;border-radius:var(--raio);overflow:hidden;box-shadow:var(--sombra);position:relative}
+.festas__foto img{width:100%;height:360px;object-fit:cover}
+.festas__foto figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 20px 16px;color:#fff;font-weight:800;font-size:1.1rem;background:linear-gradient(transparent,rgba(46,26,12,.85))}
 .hero__badge{position:absolute;bottom:-18px;left:-18px;background:var(--vermelho);color:#fff;font-family:'Pacifico',cursive;width:112px;height:112px;border-radius:50%;display:grid;place-items:center;text-align:center;line-height:1.2;transform:rotate(-10deg);box-shadow:var(--sombra);animation:pulse 3s ease-in-out infinite}
 @keyframes pulse{50%{transform:rotate(-10deg) scale(1.06)}}
 
@@ -77,7 +81,7 @@ h2{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:.6rem}
 .card:hover{transform:translateY(-4px)}
 .card .ph{aspect-ratio:4/3;border-radius:0}
 .card__foto{position:relative;aspect-ratio:4/3;overflow:hidden}
-.card__foto img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.card__foto img{width:100%;height:100%!important;object-fit:cover;transition:transform .4s}
 .card:hover .card__foto img{transform:scale(1.05)}
 .card .ph span{font-size:.75rem}
 .card__corpo{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
@@ -174,7 +178,8 @@ h2{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:.6rem}
 @media (max-width:900px){
   .hero__grid,.sobre__grid,.contato__grid,.calc__grid{grid-template-columns:1fr}
   .hero__foto{order:-1;max-width:460px;margin:0 auto;width:100%}
-  .ph--hero{aspect-ratio:4/3}
+  .ph--hero,.hero__img{aspect-ratio:4/3}
+  .festas__foto img{height:260px}
   .hero__badge{width:88px;height:88px;font-size:.85rem;left:auto;right:-6px;bottom:-14px}
   .kits{grid-template-columns:1fr;max-width:420px;margin:0 auto}
   .kit--destaque{transform:none}
