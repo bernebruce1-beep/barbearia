@@ -792,39 +792,32 @@ function configurarDataMinima() {
 // HORÁRIOS
 // ============================================================
 
-const HORARIOS_DISPONIVEIS = [
+// Terça a sábado: 09:00–12:00 e 14:00–18:00
+// (o último horário de cada turno termina no fechamento).
 
-    "08:00",
-    "08:30",
+const HORARIOS_DISPONIVEIS = [
 
     "09:00",
     "09:30",
-
     "10:00",
     "10:30",
-
     "11:00",
     "11:30",
-
-    "13:00",
-    "13:30",
-
     "14:00",
     "14:30",
-
     "15:00",
     "15:30",
-
     "16:00",
     "16:30",
-
     "17:00",
-    "17:30",
-
-    "18:00",
-    "18:30"
+    "17:30"
 
 ];
+
+
+// 0 = domingo, 1 = segunda
+
+const DIAS_FECHADOS = [0, 1];
 
 
 // ============================================================
@@ -855,6 +848,22 @@ async function carregarHorarios() {
         horariosContainer.innerHTML = `
             <p>
                 Escolha uma data.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    const diaSemana =
+        new Date(`${data}T12:00:00`).getDay();
+
+    if (DIAS_FECHADOS.includes(diaSemana)) {
+
+        horariosContainer.innerHTML = `
+            <p>
+                Fechado aos domingos e segundas.
+                Atendemos de terça a sábado.
             </p>
         `;
 

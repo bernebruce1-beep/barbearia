@@ -2407,3 +2407,37 @@ img {
 .experience-visual picture {
     display: contents;
 }
+
+
+/* ===== HORÁRIO DE FUNCIONAMENTO ===== */
+
+.contact-hours {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0 auto 32px;
+    padding: 22px 34px;
+    border: 1px solid rgba(201,164,92,.3);
+}
+
+.contact-hours span {
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.contact-hours strong {
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.contact-hours p {
+    color: #bbb;
+    font-size: 15px;
+}
+
+.contact-hours small {
+    color: #666;
+    font-size: 12px;
+}
