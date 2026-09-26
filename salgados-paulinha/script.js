@@ -1,5 +1,5 @@
 // ======= CONFIGURAÇÃO — edite aqui =======
-const WHATSAPP = '5500000000000'; // [NÚMERO] com DDI+DDD, só dígitos. Ex: 5511987654321
+const WHATSAPP = '5512996317709';
 
 // Preços: "un" = unidade tamanho normal | "cento" = cento de mini (null = não vendido como mini)
 const PRODUTOS = [
