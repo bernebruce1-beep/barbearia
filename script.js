@@ -910,12 +910,11 @@ function configurarDataMinima() {
 // HORÁRIOS
 // ============================================================
 
-// Terça a sábado: 09:00–12:00 e 14:00–18:00
+// Terça a sexta: 09:30–12:00 e 14:00–18:00
 // (o último horário de cada turno termina no fechamento).
 
 const HORARIOS_DISPONIVEIS = [
 
-    "09:00",
     "09:30",
     "10:00",
     "10:30",
@@ -933,9 +932,9 @@ const HORARIOS_DISPONIVEIS = [
 ];
 
 
-// 0 = domingo, 1 = segunda
+// 0 = domingo, 1 = segunda, 6 = sábado
 
-const DIAS_FECHADOS = [0, 1];
+const DIAS_FECHADOS = [0, 1, 6];
 
 
 // ============================================================
@@ -983,8 +982,8 @@ async function carregarHorarios() {
 
         horariosContainer.innerHTML = `
             <p>
-                Fechado aos domingos e segundas.
-                Atendemos de terça a sábado.
+                Agendamento só de terça a sexta.
+                Escolha outro dia.
             </p>
         `;
 
