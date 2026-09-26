@@ -55,6 +55,11 @@ let servicosSelecionados = [];
 
 let horarioSelecionado = null;
 
+// Horários ocupados da data escolhida (para recalcular
+// sem buscar de novo quando os serviços mudam).
+
+let ultimosOcupados = null;
+
 
 // ============================================================
 // ELEMENTOS
@@ -155,6 +160,8 @@ async function iniciarSite() {
     configurarTelefone();
 
     configurarFormulario();
+
+    preencherCliente();
 
 
     // Carrega serviços e barbeiro
@@ -488,27 +495,6 @@ async function carregarServicos() {
         );
 
 
-        // ====================================================
-        // ADICIONA A PROMOÇÃO
-        // ====================================================
-
-        servicos.push({
-
-            id: "promocao",
-
-            nome:
-                "Corte + outro serviço",
-
-            descricao:
-                "Faça seu corte e ganhe a sobrancelha grátis.",
-
-            preco: 0,
-
-            duracao: 0,
-
-            promocao: true
-
-        });
 
 
         renderizarServicos();
@@ -558,10 +544,6 @@ function renderizarServicos() {
                 );
 
 
-            const promocao =
-                servico.promocao === true;
-
-
             label.innerHTML = `
 
                 <input
@@ -591,18 +573,11 @@ function renderizarServicos() {
 
                 </span>
 
-                <span class="service-option-price">
+                <span class="service-option-price">${formatarPreco(preco)} 
 
-                    ${
-                        promocao
-                            ? "GRÁTIS"
-                            : `R$ ${preco
-                                .toFixed(2)
-                                .replace(
-                                    ".",
-                                    ","
-                                )}`
-                    }
+                    <small class="service-option-time">
+                        ${duracaoServico(servico)} min
+                    </small>
 
                 </span>
 
@@ -687,27 +662,74 @@ function atualizarServicosSelecionados() {
 // TOTAL
 // ============================================================
 
+function ehCorte(servico) {
+    return /corte/i.test(servico?.nome || "");
+}
+
+function ehSobrancelha(servico) {
+    return /sobrancelha/i.test(servico?.nome || "");
+}
+
+
+// Promoção: corte + outro serviço (ex.: barba)
+// = sobrancelha grátis.
+
+function ganhouPromocao(lista) {
+    return lista.some(ehCorte) &&
+        lista.filter(servico => !ehSobrancelha(servico)).length >= 2;
+}
+
+function promocaoAtiva() {
+    return ganhouPromocao(servicosSelecionados) &&
+        servicosSelecionados.some(ehSobrancelha);
+}
+
+function precoServico(servico) {
+
+    if (ehSobrancelha(servico) && promocaoAtiva()) {
+        return 0;
+    }
+
+    return Number(servico.preco || 0);
+
+}
+
+function duracaoServico(servico) {
+    return Number(servico.duracao) > 0
+        ? Number(servico.duracao)
+        : 30;
+}
+
+function calcularDuracao() {
+    return servicosSelecionados.reduce(
+        (total, servico) => total + duracaoServico(servico),
+        0
+    );
+}
+
+function formatarPreco(valor) {
+    return `R$ ${Number(valor)
+        .toFixed(2)
+        .replace(".", ",")}`;
+}
+
+function formatarDuracao(minutos) {
+
+    const horas = Math.floor(minutos / 60);
+    const resto = minutos % 60;
+
+    if (!horas) return `${resto} min`;
+
+    return resto
+        ? `${horas}h${String(resto).padStart(2, "0")}`
+        : `${horas}h`;
+
+}
+
 function calcularTotal() {
 
     return servicosSelecionados.reduce(
-        (
-            total,
-            servico
-        ) => {
-
-            if (
-                servico.promocao
-            ) {
-                return total;
-            }
-
-
-            return total +
-                Number(
-                    servico.preco || 0
-                );
-
-        },
+        (total, servico) => total + precoServico(servico),
         0
     );
 
@@ -716,20 +738,20 @@ function calcularTotal() {
 
 function atualizarTotal() {
 
-    const total =
-        calcularTotal();
-
-
     if (totalValor) {
-
         totalValor.textContent =
-            `R$ ${total
-                .toFixed(2)
-                .replace(
-                    ".",
-                    ","
-                )}`;
+            formatarPreco(calcularTotal());
+    }
 
+
+    const totalDuracao =
+        document.getElementById("totalDuracao");
+
+    if (totalDuracao) {
+        totalDuracao.textContent =
+            servicosSelecionados.length
+                ? `· ${formatarDuracao(calcularDuracao())}`
+                : "";
     }
 
 
@@ -740,6 +762,59 @@ function atualizarTotal() {
             servicosSelecionados.length > 0
         );
 
+    }
+
+
+    // Preço da sobrancelha vira GRÁTIS na promoção.
+
+    servicosContainer
+        ?.querySelectorAll(".service-option")
+        .forEach(label => {
+
+            const servico = servicos.find(
+                item => String(item.id) === label.dataset.id
+            );
+
+            const preco =
+                label.querySelector(".service-option-price");
+
+            if (!servico || !preco || !preco.firstChild) return;
+
+            const gratis =
+                ehSobrancelha(servico) && promocaoAtiva();
+
+            preco.firstChild.textContent = gratis
+                ? "GRÁTIS "
+                : `${formatarPreco(servico.preco)} `;
+
+            preco.classList.toggle("gratis", gratis);
+
+        });
+
+
+    const promoHint =
+        document.getElementById("promoHint");
+
+    if (promoHint) {
+
+        const temCorte =
+            servicosSelecionados.some(ehCorte);
+
+        promoHint.hidden = !temCorte;
+
+        promoHint.textContent = promocaoAtiva()
+            ? "🎁 Promoção aplicada: sua sobrancelha sai grátis!"
+            : ganhouPromocao(servicosSelecionados)
+                ? "🎁 Você ganhou a sobrancelha grátis! É só marcar ela acima."
+                : "🎁 Escolha mais um serviço com o corte (ex.: barba) e ganhe a sobrancelha grátis!";
+
+    }
+
+
+    // A duração muda quais horários cabem.
+
+    if (ultimosOcupados) {
+        renderizarHorarios(ultimosOcupados);
     }
 
 }
@@ -835,6 +910,9 @@ async function carregarHorarios() {
 
 
     horarioSelecionado =
+        null;
+
+    ultimosOcupados =
         null;
 
 
@@ -947,6 +1025,9 @@ async function carregarHorarios() {
             );
 
 
+        ultimosOcupados =
+            horariosOcupados;
+
         renderizarHorarios(
             horariosOcupados
         );
@@ -973,6 +1054,15 @@ function renderizarHorarios(
 ) {
 
     horariosContainer.innerHTML = "";
+
+
+    // Mantém o horário escolhido só se ele ainda couber.
+
+    const selecionadoAntes =
+        horarioSelecionado;
+
+    horarioSelecionado =
+        null;
 
 
     let disponiveis =
@@ -1002,11 +1092,44 @@ function renderizarHorarios(
                 ehHoje &&
                 hora * 60 + minuto <= minutosAgora;
 
+            // O atendimento precisa caber inteiro:
+            // todos os blocos de 30 min livres e
+            // antes do fim do turno.
+
+            const inicio =
+                hora * 60 + minuto;
+
+            const blocos =
+                Math.max(1, Math.ceil(calcularDuracao() / 30));
+
+            const indice =
+                HORARIOS_DISPONIVEIS.indexOf(horario);
+
+            let cabe = true;
+
+            for (let b = 0; b < blocos; b++) {
+
+                const proximo =
+                    HORARIOS_DISPONIVEIS[indice + b];
+
+                if (!proximo) { cabe = false; break; }
+
+                const [h2, m2] =
+                    proximo.split(":").map(Number);
+
+                if (
+                    h2 * 60 + m2 !== inicio + b * 30 ||
+                    ocupados.has(proximo)
+                ) {
+                    cabe = false;
+                    break;
+                }
+
+            }
+
             const ocupado =
                 passou ||
-                ocupados.has(
-                    horario
-                );
+                !cabe;
 
 
             const button =
@@ -1026,9 +1149,19 @@ function renderizarHorarios(
             button.textContent =
                 passou
                     ? "Encerrado"
-                    : ocupado
+                    : ocupados.has(horario)
                         ? "Ocupado"
                         : horario;
+
+
+            if (ocupado && !passou && !ocupados.has(horario)) {
+
+                button.classList.add("nao-cabe");
+
+                button.title =
+                    "Não há tempo para os serviços escolhidos neste horário";
+
+            }
 
 
             if (ocupado) {
@@ -1066,6 +1199,18 @@ function renderizarHorarios(
 
         }
     );
+
+
+    const aindaLivre =
+        Array.from(
+            horariosContainer.querySelectorAll(".horario-btn:not(:disabled)")
+        ).find(btn => btn.textContent === selecionadoAntes);
+
+    if (aindaLivre) {
+        selecionarHorario(selecionadoAntes, aindaLivre);
+    } else if (horarioInput) {
+        horarioInput.value = "";
+    }
 
 
     if (
@@ -1377,58 +1522,39 @@ async function enviarAgendamento(
         );
 
 
-        mostrarMensagem(
-            "Agendamento realizado com sucesso! 🎉",
-            "sucesso"
-        );
+        salvarCliente(nome, telefone);
 
 
-        // O link é mostrado na mensagem porque
-        // window.open depois de um await costuma
-        // ser bloqueado pelo navegador.
-
-        const linkWhatsApp =
-            document.createElement("a");
-
-        linkWhatsApp.href =
-            montarLinkWhatsApp(
+        mostrarConfirmacao({
+            nome,
+            data,
+            horario,
+            servicos: servicosSelecionados.slice(),
+            total: calcularTotal(),
+            duracao: calcularDuracao(),
+            linkWhatsApp: montarLinkWhatsApp(
                 nome,
                 telefone,
                 data,
                 horario,
                 servicosSelecionados
-            );
-
-        linkWhatsApp.target =
-            "_blank";
-
-        linkWhatsApp.rel =
-            "noopener noreferrer";
-
-        linkWhatsApp.className =
-            "booking-whatsapp-link";
-
-        linkWhatsApp.textContent =
-            "Enviar confirmação no WhatsApp ↗";
-
-        bookingMessage.append(
-            document.createElement("br"),
-            linkWhatsApp
-        );
+            )
+        });
 
 
         bookingForm.reset();
+
+        preencherCliente();
 
 
         servicosSelecionados =
             [];
 
-
         horarioSelecionado =
             null;
 
-
-        atualizarTotal();
+        ultimosOcupados =
+            null;
 
 
         document
@@ -1441,6 +1567,9 @@ async function enviarAgendamento(
                         "selecionado"
                     )
             );
+
+
+        atualizarTotal();
 
 
         if (horarioInput) {
@@ -1487,6 +1616,217 @@ async function enviarAgendamento(
 
 
 // ============================================================
+// LEMBRAR CLIENTE
+// ============================================================
+
+const CHAVE_CLIENTE =
+    "gnomoz_cliente";
+
+function salvarCliente(nome, telefone) {
+
+    try {
+        localStorage.setItem(
+            CHAVE_CLIENTE,
+            JSON.stringify({ nome, telefone })
+        );
+    } catch (erro) {
+        // Navegador sem armazenamento: só não lembra.
+    }
+
+}
+
+function preencherCliente() {
+
+    try {
+
+        const salvo = JSON.parse(
+            localStorage.getItem(CHAVE_CLIENTE) || "null"
+        );
+
+        if (!salvo) return;
+
+        if (nomeInput && !nomeInput.value) {
+            nomeInput.value = salvo.nome || "";
+        }
+
+        if (telefoneInput && !telefoneInput.value) {
+            telefoneInput.value = salvo.telefone || "";
+        }
+
+    } catch (erro) {
+        // Ignora dado inválido.
+    }
+
+}
+
+
+// ============================================================
+// CONFIRMAÇÃO
+// ============================================================
+
+function mostrarConfirmacao(info) {
+
+    const nomesDias = [
+        "Domingo", "Segunda", "Terça", "Quarta",
+        "Quinta", "Sexta", "Sábado"
+    ];
+
+    const diaSemana =
+        nomesDias[new Date(`${info.data}T12:00:00`).getDay()];
+
+    const lista = info.servicos
+        .map(servico => {
+
+            const preco = precoServicoNaLista(servico, info.servicos);
+
+            return `
+                <li>
+                    <span>${escaparHTML(servico.nome)}</span>
+                    <strong>${preco === 0 ? "GRÁTIS" : formatarPreco(preco)}</strong>
+                </li>
+            `;
+
+        })
+        .join("");
+
+
+    limparMensagem();
+
+    bookingMessage.className =
+        "booking-message sucesso booking-confirmacao";
+
+    bookingMessage.innerHTML = `
+
+        <div class="confirmacao-icone">✓</div>
+
+        <h3>Agendado, ${escaparHTML(info.nome.split(" ")[0])}!</h3>
+
+        <p class="confirmacao-quando">
+            ${diaSemana}, ${formatarData(info.data)} às ${info.horario}
+            <small>Duração aproximada: ${formatarDuracao(info.duracao)}</small>
+        </p>
+
+        <ul class="confirmacao-lista">
+            ${lista}
+        </ul>
+
+        <div class="confirmacao-total">
+            <span>TOTAL</span>
+            <strong>${formatarPreco(info.total)}</strong>
+        </div>
+
+        <div class="confirmacao-acoes">
+
+            <a class="btn btn-primary" target="_blank" rel="noopener noreferrer" data-acao="whatsapp">
+                ENVIAR NO WHATSAPP <span>↗</span>
+            </a>
+
+            <button type="button" class="btn btn-secondary" data-acao="agenda">
+                ADICIONAR À AGENDA
+            </button>
+
+            <button type="button" class="confirmacao-novo" data-acao="novo">
+                Fazer outro agendamento
+            </button>
+
+        </div>
+
+    `;
+
+    bookingMessage.querySelector('[data-acao="whatsapp"]').href =
+        info.linkWhatsApp;
+
+    bookingMessage
+        .querySelector('[data-acao="agenda"]')
+        .addEventListener("click", () => baixarEventoAgenda(info));
+
+    bookingMessage
+        .querySelector('[data-acao="novo"]')
+        .addEventListener("click", () => {
+            bookingForm.classList.remove("confirmado");
+            limparMensagem();
+            bookingForm.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+
+
+    bookingMessage.style.display =
+        "block";
+
+    bookingForm.classList.add("confirmado");
+
+    bookingMessage.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+}
+
+
+// Na confirmação os serviços já foram limpos,
+// então a promoção é recalculada a partir da lista.
+
+function precoServicoNaLista(servico, lista) {
+
+    const promo =
+        ganhouPromocao(lista) && lista.some(ehSobrancelha);
+
+    return ehSobrancelha(servico) && promo
+        ? 0
+        : Number(servico.preco || 0);
+
+}
+
+
+function baixarEventoAgenda(info) {
+
+    const [ano, mes, dia] = info.data.split("-").map(Number);
+    const [hora, minuto] = info.horario.split(":").map(Number);
+
+    const inicio = new Date(ano, mes - 1, dia, hora, minuto);
+    const fim = new Date(inicio.getTime() + info.duracao * 60000);
+
+    const formatar = d =>
+        `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}` +
+        `T${String(d.getHours()).padStart(2, "0")}${String(d.getMinutes()).padStart(2, "0")}00`;
+
+    const servicosTexto =
+        info.servicos.map(servico => servico.nome).join(", ");
+
+    const ics = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Barbearia do GNOMO'Z//Agendamento//PT",
+        "BEGIN:VEVENT",
+        `UID:${Date.now()}@gnomoz`,
+        `DTSTAMP:${formatar(new Date())}`,
+        `DTSTART:${formatar(inicio)}`,
+        `DTEND:${formatar(fim)}`,
+        "SUMMARY:Barbearia do GNOMO'Z",
+        `DESCRIPTION:${servicosTexto}`,
+        "BEGIN:VALARM",
+        "TRIGGER:-PT1H",
+        "ACTION:DISPLAY",
+        "DESCRIPTION:Seu horário na Barbearia do GNOMO'Z",
+        "END:VALARM",
+        "END:VEVENT",
+        "END:VCALENDAR"
+    ].join("\r\n");
+
+    const url = URL.createObjectURL(
+        new Blob([ics], { type: "text/calendar" })
+    );
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "agendamento-gnomoz.ics";
+    link.click();
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+}
+
+
+// ============================================================
 // WHATSAPP
 // ============================================================
 
@@ -1508,7 +1848,7 @@ function montarLinkWhatsApp(
                 servico => {
 
                     if (
-                        servico.promocao
+                        precoServico(servico) === 0
                     ) {
 
                         return `• ${servico.nome} — GRÁTIS`;
@@ -1535,6 +1875,8 @@ function montarLinkWhatsApp(
     barbeiroAtual?.nome ||
     "Douglas"
 }
+
+⏱️ *Duração:* ${formatarDuracao(calcularDuracao())}
 
 📅 *Data:* ${
     formatarData(data)

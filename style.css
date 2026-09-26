@@ -2529,3 +2529,137 @@ img {
         gap: 8px;
     }
 }
+
+
+/* ===== AGENDAMENTO: DURAÇÃO, PROMOÇÃO E CONFIRMAÇÃO ===== */
+
+.booking-total em {
+    font-style: normal;
+    color: #999;
+    letter-spacing: 1px;
+}
+
+.service-option-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.service-option-price.gratis {
+    color: #69e69a !important;
+}
+
+.service-option-time {
+    color: #777;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.promo-hint {
+    margin-top: 10px;
+    padding: 12px 14px;
+    border: 1px dashed rgba(201,164,92,.4);
+    color: var(--gold-light);
+    font-size: 13px;
+}
+
+.horario-btn.nao-cabe {
+    text-decoration: line-through;
+}
+
+.booking-form.confirmado > .form-group,
+.booking-form.confirmado > .booking-button {
+    display: none;
+}
+
+.booking-confirmacao {
+    text-align: center;
+    padding: 36px 24px !important;
+}
+
+.confirmacao-icone {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 16px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #0b0b0b;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.booking-confirmacao h3 {
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.confirmacao-quando {
+    color: var(--gold-light);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.confirmacao-quando small {
+    display: block;
+    margin-top: 4px;
+    color: #888;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.confirmacao-lista {
+    list-style: none;
+    margin: 22px 0 0;
+    padding: 0;
+    text-align: left;
+}
+
+.confirmacao-lista li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    color: #ccc;
+}
+
+.confirmacao-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0 22px;
+}
+
+.confirmacao-total span {
+    color: #777;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.confirmacao-total strong {
+    color: var(--gold);
+    font-size: 22px;
+}
+
+.confirmacao-acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.confirmacao-acoes .btn {
+    width: 100%;
+    justify-content: center;
+}
+
+.confirmacao-novo {
+    margin-top: 6px;
+    background: none;
+    border: 0;
+    color: #888;
+    text-decoration: underline;
+    cursor: pointer;
+}
