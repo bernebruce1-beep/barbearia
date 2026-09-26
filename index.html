@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Barbearia do GNOMO'Z — cortes, barba e acabamento profissional. Agende seu horário online."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b0b0b"
+    >
+
+    <title>Barbearia do GNOMO'Z | Seu estilo. Seu momento.</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+<style id="gnomo-only-photo">
+.experience-visual .visual-box {
+    position: relative !important;
+    width: 100% !important;
+    height: 440px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #090909 !important;
+    box-sizing: border-box !important;
+}
+.experience-visual .visual-box::before,
+.experience-visual .visual-box::after {
+    display: none !important;
+    content: none !important;
+}
+.experience-visual .visual-box img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+@media (max-width: 900px) {
+    .experience-visual .visual-box {
+        height: 420px !important;
+    }
+}
+@media (max-width: 520px) {
+    .experience-visual .visual-box {
+        height: 350px !important;
+    }
+}
+</style>
+
+
+<style id="gnomo-foto-final">
+/* FOTO LIMPA - somente a imagem */
+.experience-section .experience-container {
+    grid-template-columns: minmax(0, 1fr) 500px !important;
+    gap: 70px !important;
+    align-items: center !important;
+}
+
+.experience-section .experience-visual {
+    width: 500px !important;
+    height: 500px !important;
+    max-width: 500px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+    display: block !important;
+    background: transparent !important;
+}
+
+.experience-section .experience-visual::before,
+.experience-section .experience-visual::after {
+    display: none !important;
+    content: none !important;
+}
+
+.experience-section .experience-visual .visual-box {
+    width: 500px !important;
+    height: 500px !important;
+    max-width: 500px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    background: transparent !important;
+    overflow: hidden !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+}
+
+.experience-section .experience-visual .visual-box::before,
+.experience-section .experience-visual .visual-box::after {
+    display: none !important;
+    content: none !important;
+}
+
+.experience-section .experience-visual .visual-box img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 500px !important;
+    height: 500px !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+@media (max-width: 950px) {
+    .experience-section .experience-container {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+
+    .experience-section .experience-visual,
+    .experience-section .experience-visual .visual-box {
+        width: min(500px, 100%) !important;
+        max-width: 500px !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1 !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .experience-section .experience-visual .visual-box img {
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="container nav-container">
+
+            <a
+                href="#inicio"
+                class="logo"
+                aria-label="Barbearia do GNOMO'Z - Início"
+            >
+
+                <span class="logo-mark">G</span>
+
+                <span class="logo-text">
+                    GNOMO'Z
+                    <small>BARBEARIA</small>
+                </span>
+
+            </a>
+
+
+            <nav
+                class="nav"
+                aria-label="Navegação principal"
+            >
+
+                <a href="#inicio">
+                    Início
+                </a>
+
+                <a href="#servicos">
+                    Serviços
+                </a>
+
+                <a href="#barbeiro">
+                    Profissional
+                </a>
+
+                <a href="#agendar">
+                    Agendar
+                </a>
+
+                <a href="#contato">
+                    Contato
+                </a>
+
+            </nav>
+
+
+            <a
+                href="#agendar"
+                class="header-button"
+            >
+                AGENDAR
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- HERO -->
+
+    <main>
+
+        <section
+            id="inicio"
+            class="hero"
+        >
+
+            <div class="hero-overlay"></div>
+
+
+            <div class="container hero-container">
+
+
+                <div class="hero-content">
+
+
+                    <div class="hero-badge">
+
+                        <span></span>
+
+                        BARBEARIA DO GNOMO'Z
+
+                    </div>
+
+
+                    <h1>
+
+                        SEU ESTILO.
+                        <br>
+
+                        <span>SEU MOMENTO.</span>
+
+                    </h1>
+
+
+                    <p class="hero-description">
+
+                        Cortes modernos, barba impecável
+                        e acabamento profissional.
+                        Seu visual merece o melhor.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="#agendar"
+                            class="btn btn-primary"
+                        >
+
+                            AGENDAR HORÁRIO
+
+                            <span>→</span>
+
+                        </a>
+
+
+                        <a
+                            href="#servicos"
+                            class="btn btn-secondary"
+                        >
+
+                            VER SERVIÇOS
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-info">
+
+                        <div>
+
+                            <strong>
+                                01
+                            </strong>
+
+                            <span>
+                                Profissional
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                200+
+                            </strong>
+
+                            <span>
+                                Serviços
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                100%
+                            </strong>
+
+                            <span>
+                                Dedicação
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-side">
+
+                    <div class="hero-card">
+
+                        <span class="hero-card-icon">
+                            ✂
+                        </span>
+
+                        <p>
+                            CORTE
+                        </p>
+
+                        <strong>
+                            PROFISSIONAL
+                        </strong>
+
+                    </div>
+
+
+                    <div class="hero-card">
+
+                        <span class="hero-card-icon">
+                            ◈
+                        </span>
+
+                        <p>
+                            ESTILO
+                        </p>
+
+                        <strong>
+                            PERSONALIZADO
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-scroll">
+
+                <span></span>
+
+                ROLE PARA BAIXO
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SERVIÇOS -->
+
+        <section
+            id="servicos"
+            class="section services-section"
+        >
+
+            <div class="container">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            O QUE FAZEMOS
+                        </span>
+
+                        <h2>
+                            ESCOLHA SEU
+                            <span>ESTILO.</span>
+                        </h2>
+
+                    </div>
+
+
+                    <p>
+
+                        Serviços feitos nos mínimos
+                        detalhes para você sair
+                        satisfeito.
+
+                    </p>
+
+                </div>
+
+
+                <div class="services-grid">
+
+
+                    <article class="service-card">
+
+                        <div class="service-number">
+                            01
+                        </div>
+
+                        <div class="service-icon">
+                            ✂
+                        </div>
+
+                        <h3>
+                            CORTE DEGRADÊ
+                        </h3>
+
+                        <p>
+                            Degradê preciso, moderno
+                            e personalizado para o
+                            formato do seu rosto.
+                        </p>
+
+                        <div class="service-bottom">
+
+                            <strong>
+                                R$ 35,00
+                            </strong>
+
+                            <span>
+                                CORTE
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-number">
+                            02
+                        </div>
+
+                        <div class="service-icon">
+                            ✂
+                        </div>
+
+                        <h3>
+                            CORTE SOCIAL
+                        </h3>
+
+                        <p>
+                            Um clássico que nunca sai
+                            de moda, com acabamento
+                            limpo e elegante.
+                        </p>
+
+                        <div class="service-bottom">
+
+                            <strong>
+                                R$ 30,00
+                            </strong>
+
+                            <span>
+                                CORTE
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-number">
+                            03
+                        </div>
+
+                        <div class="service-icon">
+                            ◉
+                        </div>
+
+                        <h3>
+                            BARBA
+                        </h3>
+
+                        <p>
+                            Alinhamento, definição e
+                            acabamento para uma barba
+                            impecável.
+                        </p>
+
+                        <div class="service-bottom">
+
+                            <strong>
+                                R$ 20,00
+                            </strong>
+
+                            <span>
+                                BARBA
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-number">
+                            04
+                        </div>
+
+                        <div class="service-icon">
+                            ✦
+                        </div>
+
+                        <h3>
+                            SOBRANCELHA
+                        </h3>
+
+                        <p>
+                            Design e alinhamento para
+                            completar seu visual.
+                        </p>
+
+                        <div class="service-bottom">
+
+                            <strong>
+                                R$ 10,00
+                            </strong>
+
+                            <span>
+                                ESTILO
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-number">
+                            05
+                        </div>
+
+                        <div class="service-icon">
+                            ✂
+                        </div>
+
+                        <h3>
+                            CORTE 1 PENTE
+                        </h3>
+
+                        <p>
+                            Corte uniforme, prático e
+                            com acabamento profissional.
+                        </p>
+
+                        <div class="service-bottom">
+
+                            <strong>
+                                R$ 25,00
+                            </strong>
+
+                            <span>
+                                CORTE
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card featured">
+
+                        <div class="service-badge">
+                            OFERTA
+                        </div>
+
+                        <div class="service-number">
+                            06
+                        </div>
+
+                        <div class="service-icon">
+                            ★
+                        </div>
+
+                        <h3>
+                            CORTE + OUTRO SERVIÇO
+                        </h3>
+
+                        <p>
+                            Faça seu corte e ganhe
+                            a sobrancelha grátis.
+                        </p>
+
+                        <div class="service-bottom">
+
+                            <strong class="free">
+                                SOBRANCELHA GRÁTIS
+                            </strong>
+
+                            <span>
+                                COMBO
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DIFERENCIAL -->
+
+        <section class="experience-section">
+
+            <div class="container experience-container">
+
+
+                <div class="experience-content">
+
+                    <span class="section-label">
+                        EXPERIÊNCIA GNOMO'Z
+                    </span>
+
+                    <h2>
+                        MAIS QUE UM
+                        <span>CORTE.</span>
+                    </h2>
+
+                    <p>
+
+                        Aqui cada detalhe importa.
+                        Do primeiro contato ao
+                        acabamento final, nosso objetivo
+                        é fazer você sair da cadeira
+                        se sentindo ainda melhor.
+
+                    </p>
+
+
+                    <div class="experience-list">
+
+                        <div>
+
+                            <span>✓</span>
+
+                            <p>
+                                Atendimento personalizado
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>✓</span>
+
+                            <p>
+                                Acabamento profissional
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>✓</span>
+
+                            <p>
+                                Ambiente descontraído
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="experience-visual">
+
+                    <div class="visual-box">
+                        <img
+                            src="gnomo-style.png"
+                            alt="GNOMO'Z Barbershop"
+                        >
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- BARBEIRO -->
+
+        <section
+            id="barbeiro"
+            class="section barber-section"
+        >
+
+            <div class="container">
+
+
+                <div class="section-heading centered">
+
+                    <span class="section-label">
+                        PROFISSIONAL
+                    </span>
+
+                    <h2>
+                        CONHEÇA O
+                        <span>BARBEIRO.</span>
+                    </h2>
+
+                    <p>
+                        Experiência e dedicação
+                        em cada atendimento.
+                    </p>
+
+                </div>
+
+
+                <div class="barber-card">
+
+
+                    <div class="barber-photo">
+
+                        <div class="photo-placeholder">
+
+                            <span>
+                                ✂
+                            </span>
+
+                            <small>
+                                GNOMO'Z
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="barber-info">
+
+                        <span class="barber-label">
+                            BARBEIRO PROFISSIONAL
+                        </span>
+
+                        <h3>
+                            
+                        </h3>
+
+                        <p class="barber-title">
+                            Especialista em cortes,
+                            barba e acabamento.
+                        </p>
+
+                        <p>
+
+                            Atendimento focado em
+                            entender seu estilo e entregar
+                            um resultado preciso,
+                            moderno e bem acabado.
+
+                        </p>
+
+
+                        <div class="barber-tags">
+
+                            <span>
+                                CORTES
+                            </span>
+
+                            <span>
+                                BARBA
+                            </span>
+
+                            <span>
+                                ACABAMENTO
+                            </span>
+
+                        </div>
+
+
+                        <a
+                            href="#agendar"
+                            class="btn btn-primary"
+                        >
+
+                            
+
+                            <span>→</span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- AGENDAMENTO -->
+
+        <section
+            id="agendar"
+            class="booking-section"
+        >
+
+            <div class="container">
+
+
+                <div class="booking-header">
+
+                    <span class="section-label">
+                        RESERVE SEU HORÁRIO
+                    </span>
+
+                    <h2>
+                        AGENDE SEU
+                        <span>MOMENTO.</span>
+                    </h2>
+
+                    <p>
+                        Escolha seus serviços, a data
+                        e o horário que preferir.
+                    </p>
+
+                </div>
+
+
+                <div class="booking-wrapper">
+
+
+                    <div class="booking-intro">
+
+                        <div class="booking-logo">
+                            G
+                        </div>
+
+                        <h3>
+                            SEU PRÓXIMO
+                            <br>
+                            VISUAL COMEÇA AQUI.
+                        </h3>
+
+                        <p>
+                            Preencha os dados ao lado
+                            para reservar seu atendimento.
+                        </p>
+
+
+                        <div class="booking-steps">
+
+                            <div>
+
+                                <span>01</span>
+
+                                <p>
+                                    Escolha o serviço
+                                </p>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>02</span>
+
+                                <p>
+                                    Escolha a data
+                                </p>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>03</span>
+
+                                <p>
+                                    Escolha o horário
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <form
+                        id="bookingForm"
+                        class="booking-form"
+                    >
+
+
+                        <!-- SERVIÇOS -->
+
+                        <div class="form-group">
+
+                            <label>
+                                01. SERVIÇOS
+                            </label>
+
+                            <p class="form-help">
+                                Você pode selecionar mais de um.
+                            </p>
+
+
+                            <div
+                                id="servicosContainer"
+                                class="services-select"
+                            >
+
+                                <p>
+                                    Carregando serviços...
+                                </p>
+
+                            </div>
+
+
+                            <div
+                                id="totalContainer"
+                                class="booking-total"
+                            >
+
+                                <span>
+                                    TOTAL
+                                </span>
+
+                                <strong id="totalValor">
+                                    R$ 0,00
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- BARBEIRO -->
+
+                        <div class="form-group">
+
+                            <label for="barbeiro">
+                                02. BARBEIRO
+                            </label>
+
+                            <select
+                                id="barbeiro"
+                                name="barbeiro"
+                                required
+                            >
+
+                                <option value="1">
+                                    Douglas
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- DATA -->
+
+                        <div class="form-group">
+
+                            <label for="data">
+                                03. DATA
+                            </label>
+
+                            <input
+                                type="date"
+                                id="data"
+                                name="data"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- HORÁRIO -->
+
+                        <div class="form-group">
+
+                            <label>
+                                04. HORÁRIO
+                            </label>
+
+                            <div
+                                id="horarios"
+                                class="horarios"
+                            >
+
+                                <p>
+                                    Escolha uma data.
+                                </p>
+
+                            </div>
+
+                            <input
+                                type="hidden"
+                                id="horario"
+                                name="horario"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- NOME -->
+
+                        <div class="form-group">
+
+                            <label for="nome">
+                                05. SEU NOME
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nome"
+                                name="nome"
+                                placeholder="Digite seu nome"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- WHATSAPP -->
+
+                        <div class="form-group">
+
+                            <label for="telefone">
+                                06. WHATSAPP
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="telefone"
+                                name="telefone"
+                                placeholder="(12) 99999-9999"
+                                autocomplete="tel"
+                                required
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary booking-button"
+                        >
+
+                            CONFIRMAR AGENDAMENTO
+
+                            <span>→</span>
+
+                        </button>
+
+
+                        <div
+                            id="bookingMessage"
+                            class="booking-message"
+                        ></div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CONTATO -->
+
+        <section
+            id="contato"
+            class="contact-section"
+        >
+
+            <div class="container">
+
+
+                <div class="contact-content">
+
+                    <span class="section-label">
+                        FALE CONOSCO
+                    </span>
+
+                    <h2>
+                        VAMOS DEIXAR SEU
+                        <span>VISUAL EM DIA?</span>
+                    </h2>
+
+                    <p>
+                        Ficou com alguma dúvida?
+                        Chame a gente pelo WhatsApp.
+                    </p>
+
+
+                    <a
+                        href="https://wa.me/5512997194383"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary"
+                    >
+
+                        FALAR NO WHATSAPP
+
+                        <span>↗</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="container footer-container">
+
+
+            <div class="footer-brand">
+
+                <div class="footer-logo">
+                    G
+                </div>
+
+                <div>
+
+                    <strong>
+                        GNOMO'Z
+                    </strong>
+
+                    <span>
+                        BARBEARIA
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <p>
+                © 2026 Barbearia do GNOMO'Z.
+                Todos os direitos reservados.
+            </p>
+
+
+            <a href="#inicio">
+                VOLTAR AO TOPO ↑
+            </a>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Painel Administrativo</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <header class="topo">
+
+        <div>
+            <h1>✂️ Painel Administrativo</h1>
+            <p>Controle da barbearia</p>
+        </div>
+
+        <button class="btn-atualizar" onclick="carregarTudo()">
+            🔄 Atualizar
+        </button>
+
+    </header>
+
+
+    <main class="container">
+
+        <!-- RESUMO -->
+
+        <section class="resumo">
+
+            <div class="card-resumo">
+                <span>📅</span>
+                <div>
+                    <strong id="totalAgendamentos">0</strong>
+                    <small>Agendamentos</small>
+                </div>
+            </div>
+
+            <div class="card-resumo">
+                <span>✅</span>
+                <div>
+                    <strong id="totalConfirmados">0</strong>
+                    <small>Confirmados</small>
+                </div>
+            </div>
+
+            <div class="card-resumo">
+                <span>❌</span>
+                <div>
+                    <strong id="totalCancelados">0</strong>
+                    <small>Cancelados</small>
+                </div>
+            </div>
+
+            <div class="card-resumo">
+                <span>🚫</span>
+                <div>
+                    <strong id="totalBloqueios">0</strong>
+                    <small>Horários bloqueados</small>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- AGENDAMENTOS -->
+
+        <section class="painel">
+
+            <div class="titulo-painel">
+
+                <div>
+                    <h2>📅 Agendamentos</h2>
+                    <p>Todos os agendamentos realizados</p>
+                </div>
+
+                <input
+                    type="date"
+                    id="filtroData"
+                    onchange="renderizarAgendamentos()"
+                >
+
+            </div>
+
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Telefone</th>
+                            <th>Serviço</th>
+                            <th>Barbeiro</th>
+                            <th>Data</th>
+                            <th>Horário</th>
+                            <th>Status</th>
+                            <th>Ação</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="listaAgendamentos">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- BLOQUEAR HORÁRIO -->
+
+        <section class="painel">
+
+            <div class="titulo-painel">
+
+                <div>
+                    <h2>🚫 Bloquear horário</h2>
+                    <p>Impeça clientes de agendarem determinado horário</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="campo">
+
+                    <label>Barbeiro</label>
+
+                    <select id="bloqueioBarbeiro">
+                        <option value="">Selecione</option>
+                    </select>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Data</label>
+
+                    <input
+                        type="date"
+                        id="bloqueioData"
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Horário</label>
+
+                    <select id="bloqueioHorario">
+
+                        <option value="">Selecione</option>
+
+                        <option value="08:00">08:00</option>
+                        <option value="08:30">08:30</option>
+                        <option value="09:00">09:00</option>
+                        <option value="09:30">09:30</option>
+                        <option value="10:00">10:00</option>
+                        <option value="10:30">10:30</option>
+                        <option value="11:00">11:00</option>
+                        <option value="11:30">11:30</option>
+
+                        <option value="13:00">13:00</option>
+                        <option value="13:30">13:30</option>
+                        <option value="14:00">14:00</option>
+                        <option value="14:30">14:30</option>
+                        <option value="15:00">15:00</option>
+                        <option value="15:30">15:30</option>
+                        <option value="16:00">16:00</option>
+                        <option value="16:30">16:30</option>
+                        <option value="17:00">17:00</option>
+                        <option value="17:30">17:30</option>
+                        <option value="18:00">18:00</option>
+                        <option value="18:30">18:30</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Motivo</label>
+
+                    <input
+                        type="text"
+                        id="bloqueioMotivo"
+                        placeholder="Ex: Folga, compromisso..."
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn-principal"
+                onclick="bloquearHorario()"
+            >
+                🚫 Bloquear horário
+            </button>
+
+        </section>
+
+
+        <!-- HORÁRIOS BLOQUEADOS -->
+
+        <section class="painel">
+
+            <div class="titulo-painel">
+
+                <div>
+                    <h2>🔒 Horários bloqueados</h2>
+                    <p>Horários que não podem receber agendamentos</p>
+                </div>
+
+            </div>
+
+
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Barbeiro</th>
+                            <th>Data</th>
+                            <th>Horário</th>
+                            <th>Motivo</th>
+                            <th>Ação</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="listaBloqueios">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- BARBEIROS -->
+
+        <section class="painel">
+
+            <div class="titulo-painel">
+
+                <div>
+                    <h2>👨‍🦱 Barbeiros</h2>
+                    <p>Barbeiros cadastrados</p>
+                </div>
+
+            </div>
+
+            <div id="listaBarbeiros" class="cards-lista"></div>
+
+        </section>
+
+
+        <!-- SERVIÇOS -->
+
+        <section class="painel">
+
+            <div class="titulo-painel">
+
+                <div>
+                    <h2>✂️ Serviços</h2>
+                    <p>Serviços disponíveis</p>
+                </div>
+
+            </div>
+
+            <div id="listaServicos" class="cards-lista"></div>
+
+        </section>
+
+    </main>
+
+
+    <div id="toast" class="toast"></div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
