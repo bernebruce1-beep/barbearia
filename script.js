@@ -320,7 +320,7 @@ async function carregarBarbeiro() {
 
 
         option.textContent =
-            barbeiroAtual.nome;
+            capitalizar(barbeiroAtual.nome);
 
 
         option.selected =
@@ -485,8 +485,14 @@ async function carregarServicos() {
         }
 
 
+        // A promoção é aplicada sozinha, então um
+        // "serviço" de promoção cadastrado no banco
+        // não aparece para o cliente marcar.
+
         servicos =
-            data || [];
+            (data || []).filter(
+                servico => !ehServicoPromocao(servico)
+            );
 
 
         console.log(
@@ -594,6 +600,29 @@ function renderizarServicos() {
                 "change",
                 () => {
 
+                    // Só um corte por vez: marcar um
+                    // desmarca os outros.
+
+                    if (checkbox.checked && ehCorte(servico)) {
+
+                        servicosContainer
+                            .querySelectorAll(".service-option")
+                            .forEach(outro => {
+
+                                const outroServico = servicos.find(
+                                    item => String(item.id) === outro.dataset.id
+                                );
+
+                                if (outro !== label && ehCorte(outroServico)) {
+                                    outro.querySelector("input").checked = false;
+                                    outro.classList.remove("selecionado");
+                                }
+
+                            });
+
+                    }
+
+
                     label.classList.toggle(
                         "selecionado",
                         checkbox.checked
@@ -664,6 +693,16 @@ function atualizarServicosSelecionados() {
 
 function ehCorte(servico) {
     return /corte/i.test(servico?.nome || "");
+}
+
+function ehServicoPromocao(servico) {
+    return /outro servi[cç]o|gr[aá]tis/i.test(servico?.nome || "");
+}
+
+function capitalizar(texto) {
+    return String(texto || "")
+        .toLowerCase()
+        .replace(/(^|\s)\S/g, letra => letra.toUpperCase());
 }
 
 function ehSobrancelha(servico) {
@@ -1842,61 +1881,62 @@ function montarLinkWhatsApp(
         "5512997194383";
 
 
+    const nomesDias = [
+        "Domingo", "Segunda", "Terça", "Quarta",
+        "Quinta", "Sexta", "Sábado"
+    ];
+
+    const diaSemana =
+        nomesDias[new Date(`${data}T12:00:00`).getDay()];
+
+
+    const duracao =
+        calcularDuracao();
+
+    const [hora, minuto] =
+        horario.split(":").map(Number);
+
+    const fimMinutos =
+        hora * 60 + minuto + duracao;
+
+    const fim =
+        `${String(Math.floor(fimMinutos / 60)).padStart(2, "0")}:${String(fimMinutos % 60).padStart(2, "0")}`;
+
+
     const lista =
         servicos
-            .map(
-                servico => {
+            .map(servico => {
 
-                    if (
-                        precoServico(servico) === 0
-                    ) {
+                const preco =
+                    precoServico(servico);
 
-                        return `• ${servico.nome} — GRÁTIS`;
-
-                    }
-
-
-                    return `• ${servico.nome}`;
-
+                if (preco === 0) {
+                    return `▫️ ${servico.nome} — ~${formatarPreco(servico.preco)}~ *GRÁTIS* 🎁`;
                 }
-            )
-            .join(
-                "\n"
-            );
+
+                return `▫️ ${servico.nome} — ${formatarPreco(preco)}`;
+
+            })
+            .join("\n");
 
 
     const mensagem =
-`✂️ *NOVO AGENDAMENTO - BARBEARIA DO GNOMO'Z*
+`✂️ *NOVO AGENDAMENTO*
+_Barbearia do GNOMO'Z_
 
-👤 *Cliente:* ${nome}
-📱 *WhatsApp:* ${telefone}
+👤 *${nome}*
+📱 ${telefone}
 
-💈 *Barbeiro:* ${
-    barbeiroAtual?.nome ||
-    "Douglas"
-}
+📅 *${diaSemana}, ${formatarData(data)}*
+⏰ *${horario} às ${fim}* (${formatarDuracao(duracao)})
+💈 Barbeiro: *${capitalizar(barbeiroAtual?.nome || "Douglas")}*
 
-⏱️ *Duração:* ${formatarDuracao(calcularDuracao())}
-
-📅 *Data:* ${
-    formatarData(data)
-}
-
-⏰ *Horário:* ${horario}
-
-🛎️ *Serviços:*
+🛎️ *Serviços*
 ${lista}
 
-💰 *Total:* R$ ${
-    calcularTotal()
-        .toFixed(2)
-        .replace(
-            ".",
-            ","
-        )
-}
+💰 *Total: ${formatarPreco(calcularTotal())}*
 
-Agendamento realizado pelo site.`;
+_Agendado pelo site_ ✅`;
 
 
     return `https://wa.me/${numero}?text=${
