@@ -13,28 +13,14 @@ const PRODUTOS = [
     foto:'quibes dourados com rodela de limão e folhas de hortelã' },
   { cat:'fritos', nome:'Enroladinho de queijo e presunto', desc:'Massa macia enrolada com presunto e queijo derretido.', un:5.5, cento:75,
     foto:'enroladinhos de presunto e queijo abertos mostrando o queijo derretido' },
-  { cat:'assados', nome:'Esfiha de carne', desc:'Massa fofinha, carne temperada com tomate e cebola.', un:7, cento:75,
-    foto:'esfihas abertas de carne saindo do forno em assadeira' },
-  { cat:'assados', nome:'Empada de frango', desc:'Massa que desmancha na boca, recheio cremoso com azeitona.', un:7.5, cento:75,
-    foto:'empadinhas douradas em forminhas, uma aberta mostrando o recheio' },
-  { cat:'assados', nome:'Pastel de forno', desc:'Massa podre caseira com recheio de palmito ou frango.', un:7, cento:75,
-    foto:'pastéis de forno pincelados com gema, brilhantes, sobre pano xadrez' },
-  { cat:'especiais', nome:'Empadão de frango', desc:'Tamanho família, massa amanteigada que desmancha e recheio cremoso. Serve até 10 pessoas.', un:0, cento:null, tag:'Feito sob encomenda',
-    img:'fotos/empadao.webp', foto:'empadão de frango inteiro, dourado e brilhante, na caixa' },
-  { cat:'especiais', nome:'Coxinha de costela', desc:'Costela desfiada no bafo com requeijão. Só às sextas!', un:9, cento:null, tag:'Especial',
-    foto:'coxinha grande aberta com costela desfiada suculenta' },
-  { cat:'especiais', nome:'Bolinho de bacalhau', desc:'Receita portuguesa da família, crocante e leve.', un:9.5, cento:75,
-    foto:'bolinhos de bacalhau em formato oval com azeite e salsinha' },
-  { cat:'especiais', nome:'Coxinha de camarão', desc:'Camarão refogado com catupiry. Para quem se ama.', un:10, cento:null,
-    foto:'coxinha de camarão aberta com camarões inteiros no recheio' },
-  { cat:'bebidas', nome:'Refrigerante lata', desc:'Coca-Cola, Guaraná ou Fanta, 350 ml geladinho.', un:6, cento:null,
-    foto:'latas de refrigerante geladas com gotas, em balde de gelo' },
-  { cat:'bebidas', nome:'Suco natural 500 ml', desc:'Laranja, maracujá ou limão, feito na hora.', un:9, cento:null,
-    foto:'copos de suco de laranja e maracujá com canudo de papel' },
-  { cat:'bebidas', nome:'Café passado', desc:'Cafezinho coado na hora para acompanhar.', un:4, cento:null,
-    foto:'xícara de café fumegante ao lado de uma coxinha' },
+  { cat:'empadao', nome:'Empadão de frango com catupiry', desc:'Tamanho família, massa amanteigada que desmancha e frango cremoso com catupiry.', un:0, cento:null, tag:'Sob encomenda',
+    img:'fotos/empadao.webp', foto:'empadão de frango com catupiry inteiro, dourado e brilhante' },
+  { cat:'doces', nome:'Trufas', desc:'Chocolate cremoso por dentro e casquinha que derrete na boca. Pergunte os sabores do dia!', un:0, cento:null,
+    foto:'trufas de chocolate embrulhadas em papel colorido, uma mordida mostrando o recheio cremoso' },
+  { cat:'bebidas', nome:'Refrigerantes', desc:'Lata ou 2 litros, sempre geladinho para acompanhar os salgados.', un:0, cento:null,
+    foto:'refrigerantes gelados em lata e garrafa de 2 litros com gotinhas' },
 ];
-const CATS = { fritos:'Fritos', assados:'Assados', especiais:'Especiais', bebidas:'Bebidas' };
+const CATS = { fritos:'Fritos', empadao:'Empadão', doces:'Doces', bebidas:'Bebidas' };
 // =========================================
 
 const brl = v => v.toLocaleString('pt-BR', { style:'currency', currency:'BRL' });
