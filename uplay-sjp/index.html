@@ -35,7 +35,7 @@
   "parentOrganization": { "@type": "Organization", "name": "Uplay", "url": "https://www.uplayfit.com" },
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Rua Tenente Djalma Dutra, 915",
+    "streetAddress": "Rua Tenente Djalma Dutra, 915, loja 01",
     "addressLocality": "São José dos Pinhais",
     "addressRegion": "PR",
     "postalCode": "83005-360",
@@ -401,6 +401,15 @@ section[id]{ scroll-margin-top:64px; }
 }
 
 
+
+/* 7 dias grátis */
+.trial{ display:grid; gap:22px; margin-top:20px; padding:26px 22px; border:1px solid var(--line-dark); border-left:6px solid var(--yellow); align-items:center; }
+.trial h3{ font-size:clamp(2rem,5vw,3.2rem); margin-top:12px; }
+.trial h3 .num{ color:var(--yellow); }
+.trial p:not(.plan__label){ margin-top:12px; color:#D9D5CB; max-width:44ch; font-size:1.05rem; }
+.trial .btn{ justify-content:space-between; }
+@media (min-width:860px){ .trial{ grid-template-columns:1fr auto; gap:40px; padding:32px 36px; } }
+
 /* TotalPass */
 .tp{ display:grid; gap:28px; margin-top:20px; padding:22px; border:1px solid var(--line-dark); background:var(--black-2); align-items:center; }
 .tp__post{ aspect-ratio:4/5; width:100%; max-width:360px; }
@@ -700,20 +709,20 @@ section[id]{ scroll-margin-top:64px; }
         <p class="eyebrow reveal"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Estrutura</p>
         <h2 class="h2 reveal">Espaço de sobra<br>pra treinar.</h2>
       </div>
-      <p class="reveal">Musculação, peso livre, cardio, funcional e sala de coletivas, tudo no mesmo lugar, no Centro de São José dos Pinhais. Toque nas fotos para ampliar.</p>
+      <p class="reveal">Musculação, peso livre, cardio, funcional e sala de coletivas em dois andares, com ambiente climatizado, tudo no mesmo lugar, no Centro de São José dos Pinhais. Toque nas fotos para ampliar.</p>
     </div>
 
     <!-- Troque cada foto em /fotos mantendo o nome do arquivo -->
     <ul class="bento" id="bento">
       <li class="b1 reveal"><button type="button" data-caption="Salão"><figure class="ph" data-ph="foto-salao.jpg"><img src="fotos/foto-salao.jpg" alt="Vista do salão principal com a passarela de madeira e a faixa amarela" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Salão</span></button></li>
-      <li class="b2 reveal"><button type="button" data-caption="Peso livre"><figure class="ph" data-ph="foto-peso-livre.jpg"><img src="fotos/foto-peso-livre.jpg" alt="Fileiras de halteres na área de peso livre" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Peso livre</span></button></li>
+      <li class="b2 reveal"><button type="button" data-caption="Peso livre"><figure class="ph" data-ph="foto-peso-livre.jpg"><img src="fotos/foto-peso-livre.jpg" alt="Área de peso livre com halteres, anilhas e medicine balls sob o letreiro Uplay" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Peso livre</span></button></li>
       <li class="b3 reveal"><button type="button" data-caption="Cardio"><figure class="ph" data-ph="foto-cardio.jpg"><img src="fotos/foto-cardio.jpg" alt="Bikes de ar e remos na área de cardio" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Cardio</span></button></li>
       <li class="b4 reveal"><button type="button" data-caption="Sala de coletivas"><figure class="ph" data-ph="foto-aula-coletiva.jpg"><img src="fotos/foto-aula-coletiva.jpg" alt="Sala de aulas coletivas com piso de madeira e espelho" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Sala de coletivas</span></button></li>
-      <li class="b5 reveal"><button type="button" data-caption="Musculação"><figure class="ph" data-ph="foto-supinos.jpg"><img src="fotos/foto-supinos.jpg" alt="Bancos de supino em frente ao painel Evolua" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Musculação</span></button></li>
+      <li class="b5 reveal"><button type="button" data-caption="Musculação"><figure class="ph" data-ph="foto-musculacao-2.jpg"><img src="fotos/foto-musculacao-2.jpg" alt="Aparelhos de musculação em frente à parede amarela da área aeróbica" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Musculação</span></button></li>
       <li class="b6 reveal"><button type="button" data-caption="Mobilidade"><figure class="ph" data-ph="foto-mobilidade.jpg"><img src="fotos/foto-mobilidade.jpg" alt="Barras montadas e medicine balls" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Mobilidade</span></button></li>
       <li class="b7 reveal"><button type="button" data-caption="Funcional"><figure class="ph" data-ph="foto-funcional.jpg"><img src="fotos/foto-funcional.jpg" alt="Área funcional com bolas suíças, espaldar e TRX" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Funcional</span></button></li>
-      <li class="b8 reveal"><button type="button" data-caption="Vestiários"><figure class="ph" data-ph="foto-vestiario.jpg"><img src="fotos/foto-vestiario.jpg" alt="Vestiários" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Vestiários</span></button></li>
-      <li class="b9 reveal"><button type="button" data-caption="Fachada"><figure class="ph" data-ph="foto-fachada.jpg"><img src="fotos/foto-fachada.jpg" alt="Fachada da Uplay na Rua Tenente Djalma Dutra" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Fachada</span></button></li>
+      <li class="b8 reveal"><button type="button" data-caption="Mezanino"><figure class="ph" data-ph="foto-mezanino.jpg"><img src="fotos/foto-mezanino.jpg" alt="Vista do mezanino para o salão de aparelhos e a fachada de vidro" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Mezanino</span></button></li>
+      <li class="b9 reveal"><button type="button" data-caption="Recepção"><figure class="ph" data-ph="foto-recepcao.jpg"><img src="fotos/foto-recepcao.jpg" alt="Recepção com o letreiro Uplay na parede" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Recepção</span></button></li>
       <li class="b10 reveal"><button type="button" data-caption="Espaço Kids"><figure class="ph" data-ph="foto-espaco-kids.jpg"><img src="fotos/foto-espaco-kids.jpg" alt="Espaço kids" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Espaço Kids</span></button></li>
       <li class="b11 reveal"><button type="button" data-caption="Estacionamento"><figure class="ph" data-ph="foto-estacionamento.jpg"><img src="fotos/foto-estacionamento.jpg" alt="Estacionamento gratuito" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Estacionamento</span></button></li>
     </ul>
@@ -840,10 +849,24 @@ section[id]{ scroll-margin-top:64px; }
           <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Professor acompanhando seu treino</li>
           <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Aulas coletivas</li>
           <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Espaço Kids</li>
+          <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Ambiente climatizado</li>
           <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Estacionamento gratuito por 2 horas</li>
           <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg><span>Seg a Sex das <span class="num">5h30</span> às <span class="num">23h</span></span></li>
         </ul>
       </div>
+    </div>
+
+    <div class="trial reveal">
+      <div>
+        <p class="plan__label"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Ainda na dúvida?</p>
+        <h3>Treine <span class="num">7 dias</span> grátis</h3>
+        <p>Conheça a estrutura, os equipamentos e o ambiente climatizado no seu ritmo. Sem compromisso.</p>
+      </div>
+      <a class="btn btn--ghost" href="https://wa.me/5541988560845?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20agendar%20meus%207%20dias%20gr%C3%A1tis%20na%20Uplay%20SJP." target="_blank" rel="noopener">
+        <svg class="ico" aria-hidden="true"><use href="#wa"/></svg>
+        <span>Agendar meus 7 dias grátis</span>
+        <svg class="chev" aria-hidden="true"><use href="#chev"/></svg>
+      </a>
     </div>
 
     <div class="tp reveal">
@@ -949,7 +972,7 @@ section[id]{ scroll-margin-top:64px; }
         <iframe title="Mapa: Uplay São José dos Pinhais, Rua Tenente Djalma Dutra, 915" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
           src="https://www.google.com/maps?q=Rua+Tenente+Djalma+Dutra,+915,+Centro,+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR&output=embed"></iframe>
       </div>
-      <p class="addr reveal">Rua Tenente Djalma Dutra, 915 – Centro<small>São José dos Pinhais – PR · CEP 83005-360</small></p>
+      <p class="addr reveal">Rua Tenente Djalma Dutra, 915, loja 01 – Centro<small>São José dos Pinhais – PR · CEP 83005-360</small></p>
       <div class="park reveal">
         <svg viewBox="0 0 34 34" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="2" width="30" height="30" rx="2"/><path d="M12 25V9h6.5a4.5 4.5 0 0 1 0 9H12"/></svg>
         <div><b>Estacionamento gratuito</b><span>Por 2 horas. R. Voluntários da Pátria, 758, ao lado da farmácia. <a href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Volunt%C3%A1rios+da+P%C3%A1tria%2C+758%2C+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR" target="_blank" rel="noopener">Ver no mapa</a></span></div>
@@ -993,7 +1016,7 @@ section[id]{ scroll-margin-top:64px; }
       </div>
       <div>
         <h4>Endereço</h4>
-        <p>Rua Tenente Djalma Dutra, 915<br>Centro – São José dos Pinhais – PR<br>CEP 83005-360</p>
+        <p>Rua Tenente Djalma Dutra, 915, loja 01<br>Centro – São José dos Pinhais – PR<br>CEP 83005-360</p>
       </div>
       <div>
         <h4>Horários</h4>

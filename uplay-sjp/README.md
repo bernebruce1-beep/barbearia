@@ -10,18 +10,19 @@ Coloque as fotos em `fotos/` com exatamente estes nomes. Enquanto um arquivo nã
 |---|---|---|
 | `foto-musculacao.jpg` | Hero (cortada pela seta) | incluída |
 | `foto-salao.jpg` | Galeria (destaque) | incluída |
-| `foto-peso-livre.jpg` | Galeria | incluída |
+| `foto-peso-livre.jpg` | Galeria | incluída (site uplaysjp.com.br) |
 | `foto-cardio.jpg` | Galeria | incluída |
 | `foto-aula-coletiva.jpg` | Por que Uplay – 04 e galeria | incluída (sala vazia; troque por foto de aula quando tiver) |
-| `foto-supinos.jpg` | Galeria | incluída |
+| `foto-musculacao-2.jpg` | Galeria | incluída (site uplaysjp.com.br) |
+| `foto-recepcao.jpg` | Galeria | incluída (site uplaysjp.com.br) |
+| `foto-mezanino.jpg` | Galeria | incluída (site uplaysjp.com.br) |
 | `foto-mobilidade.jpg` | Galeria | incluída |
 | `foto-funcional.jpg` | Galeria | incluída |
 | `post-totalpass.jpg` | Bloco TotalPass no plano | incluída |
 | `foto-professor.jpg` | Por que Uplay – 01 (Prof. Gi Ferreira) | incluída |
 | `foto-estacionamento.jpg` | Por que Uplay – 02 e galeria | falta |
 | `foto-espaco-kids.jpg` | Por que Uplay – 03 e galeria | falta |
-| `foto-vestiario.jpg` | Galeria | falta |
-| `foto-fachada.jpg` | Galeria | falta |
+| `foto-fachada.jpg` | Prévia de link / futura galeria | falta |
 | `foto-depoimento-1.jpg` … `-3.jpg` | Depoimentos (quadradas) | falta |
 | `og-uplay-sjp.jpg` | Prévia ao compartilhar o link (1200×630) | falta |
 
