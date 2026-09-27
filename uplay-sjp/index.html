@@ -311,9 +311,8 @@ section[id]{ scroll-margin-top:64px; }
   .b1{ grid-column:1 / span 4; grid-row:1 / span 3; }
   .b2{ grid-column:5 / span 2; grid-row:1 / span 2; }
   .b3{ grid-column:5 / span 2; grid-row:3; }
-  .b4,.b5,.b6{ grid-column:span 2; grid-row:span 2; }
-  .b7{ grid-column:1 / span 3; grid-row:span 2; }
-  .b8{ grid-column:4 / span 3; grid-row:span 2; }
+  .b4,.b5,.b6,.b9,.b10,.b11{ grid-column:span 2; grid-row:span 2; }
+  .b7,.b8{ grid-column:span 3; grid-row:span 2; }
 }
 
 /* Lightbox */
@@ -654,6 +653,7 @@ section[id]{ scroll-margin-top:64px; }
           <span class="why__n"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>03</span>
           <h3>Espaço Kids</h3>
           <p>Traga os pequenos. Enquanto você treina, eles ficam em um espaço pensado para eles.</p>
+          <p class="why__note">Para crianças de 4 a 11 anos. O espaço não tem monitor: menores de 4 anos ficam com um responsável, e as crianças não circulam pelas áreas de treino.</p>
         </div>
         <figure class="why__photo ph reveal" data-ph="foto-espaco-kids.jpg">
           <img src="fotos/foto-espaco-kids.jpg" alt="Espaço kids da Uplay São José dos Pinhais" loading="lazy" onerror="this.remove()">
@@ -681,19 +681,22 @@ section[id]{ scroll-margin-top:64px; }
         <p class="eyebrow reveal"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Estrutura</p>
         <h2 class="h2 reveal">Espaço de sobra<br>pra treinar.</h2>
       </div>
-      <p class="reveal">Da musculação ao espaço kids, tudo no mesmo lugar, no Centro de São José dos Pinhais. Toque nas fotos para ampliar.</p>
+      <p class="reveal">Musculação, peso livre, cardio, funcional e sala de coletivas, tudo no mesmo lugar, no Centro de São José dos Pinhais. Toque nas fotos para ampliar.</p>
     </div>
 
     <!-- Troque cada foto em /fotos mantendo o nome do arquivo -->
     <ul class="bento" id="bento">
-      <li class="b1 reveal"><button type="button" data-caption="Musculação"><figure class="ph" data-ph="foto-musculacao.jpg"><img src="fotos/foto-musculacao.jpg" alt="Área de musculação" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Musculação</span></button></li>
-      <li class="b2 reveal"><button type="button" data-caption="Peso livre"><figure class="ph" data-ph="foto-peso-livre.jpg"><img src="fotos/foto-peso-livre.jpg" alt="Área de peso livre" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Peso livre</span></button></li>
-      <li class="b3 reveal"><button type="button" data-caption="Cardio"><figure class="ph" data-ph="foto-cardio.jpg"><img src="fotos/foto-cardio.jpg" alt="Esteiras e bicicletas da área de cardio" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Cardio</span></button></li>
-      <li class="b4 reveal"><button type="button" data-caption="Aulas coletivas"><figure class="ph" data-ph="foto-aula-coletiva.jpg"><img src="fotos/foto-aula-coletiva.jpg" alt="Sala de aulas coletivas" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Aulas coletivas</span></button></li>
-      <li class="b5 reveal"><button type="button" data-caption="Espaço Kids"><figure class="ph" data-ph="foto-espaco-kids.jpg"><img src="fotos/foto-espaco-kids.jpg" alt="Espaço kids" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Espaço Kids</span></button></li>
-      <li class="b6 reveal"><button type="button" data-caption="Estacionamento"><figure class="ph" data-ph="foto-estacionamento.jpg"><img src="fotos/foto-estacionamento.jpg" alt="Estacionamento gratuito" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Estacionamento</span></button></li>
-      <li class="b7 reveal"><button type="button" data-caption="Vestiários"><figure class="ph" data-ph="foto-vestiario.jpg"><img src="fotos/foto-vestiario.jpg" alt="Vestiários" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Vestiários</span></button></li>
-      <li class="b8 reveal"><button type="button" data-caption="Fachada"><figure class="ph" data-ph="foto-fachada.jpg"><img src="fotos/foto-fachada.jpg" alt="Fachada da Uplay na Rua Tenente Djalma Dutra" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Fachada</span></button></li>
+      <li class="b1 reveal"><button type="button" data-caption="Salão"><figure class="ph" data-ph="foto-salao.jpg"><img src="fotos/foto-salao.jpg" alt="Vista do salão principal com a passarela de madeira e a faixa amarela" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Salão</span></button></li>
+      <li class="b2 reveal"><button type="button" data-caption="Peso livre"><figure class="ph" data-ph="foto-peso-livre.jpg"><img src="fotos/foto-peso-livre.jpg" alt="Fileiras de halteres na área de peso livre" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Peso livre</span></button></li>
+      <li class="b3 reveal"><button type="button" data-caption="Cardio"><figure class="ph" data-ph="foto-cardio.jpg"><img src="fotos/foto-cardio.jpg" alt="Bikes de ar e remos na área de cardio" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Cardio</span></button></li>
+      <li class="b4 reveal"><button type="button" data-caption="Sala de coletivas"><figure class="ph" data-ph="foto-aula-coletiva.jpg"><img src="fotos/foto-aula-coletiva.jpg" alt="Sala de aulas coletivas com piso de madeira e espelho" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Sala de coletivas</span></button></li>
+      <li class="b5 reveal"><button type="button" data-caption="Musculação"><figure class="ph" data-ph="foto-supinos.jpg"><img src="fotos/foto-supinos.jpg" alt="Bancos de supino em frente ao painel Evolua" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Musculação</span></button></li>
+      <li class="b6 reveal"><button type="button" data-caption="Mobilidade"><figure class="ph" data-ph="foto-mobilidade.jpg"><img src="fotos/foto-mobilidade.jpg" alt="Barras montadas e medicine balls" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Mobilidade</span></button></li>
+      <li class="b7 reveal"><button type="button" data-caption="Funcional"><figure class="ph" data-ph="foto-funcional.jpg"><img src="fotos/foto-funcional.jpg" alt="Área funcional com bolas suíças, espaldar e TRX" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Funcional</span></button></li>
+      <li class="b8 reveal"><button type="button" data-caption="Vestiários"><figure class="ph" data-ph="foto-vestiario.jpg"><img src="fotos/foto-vestiario.jpg" alt="Vestiários" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Vestiários</span></button></li>
+      <li class="b9 reveal"><button type="button" data-caption="Fachada"><figure class="ph" data-ph="foto-fachada.jpg"><img src="fotos/foto-fachada.jpg" alt="Fachada da Uplay na Rua Tenente Djalma Dutra" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Fachada</span></button></li>
+      <li class="b10 reveal"><button type="button" data-caption="Espaço Kids"><figure class="ph" data-ph="foto-espaco-kids.jpg"><img src="fotos/foto-espaco-kids.jpg" alt="Espaço kids" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Espaço Kids</span></button></li>
+      <li class="b11 reveal"><button type="button" data-caption="Estacionamento"><figure class="ph" data-ph="foto-estacionamento.jpg"><img src="fotos/foto-estacionamento.jpg" alt="Estacionamento gratuito" loading="lazy" onerror="this.remove()"></figure><span class="bento__cap"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Estacionamento</span></button></li>
     </ul>
   </div>
 </section>

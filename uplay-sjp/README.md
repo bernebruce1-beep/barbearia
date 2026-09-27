@@ -6,20 +6,26 @@ Arquivo único: `index.html` (HTML, CSS e JS puro). Abra direto no navegador ou 
 
 Coloque as fotos em `fotos/` com exatamente estes nomes. Enquanto um arquivo não existir, aparece um placeholder com o nome dele.
 
-| Arquivo | Onde aparece |
-|---|---|
-| `foto-musculacao.jpg` | Hero (cortada pela seta) e galeria (já incluída: frase removida + upscale 4x) |
-| `foto-professor.jpg` | Por que Uplay – 01 |
-| `foto-estacionamento.jpg` | Por que Uplay – 02 e galeria |
-| `foto-espaco-kids.jpg` | Por que Uplay – 03 e galeria |
-| `foto-aula-coletiva.jpg` | Por que Uplay – 04 e galeria |
-| `foto-peso-livre.jpg` | Galeria |
-| `foto-cardio.jpg` | Galeria |
-| `foto-vestiario.jpg` | Galeria |
-| `foto-fachada.jpg` | Galeria |
-| `foto-depoimento-1.jpg` … `-3.jpg` | Depoimentos (quadradas, rosto centralizado) |
-| `og-uplay-sjp.jpg` | Prévia ao compartilhar o link (1200×630) |
-| `post-totalpass.jpg` | Bloco TotalPass no plano (já incluída, com upscale 4x) |
+| Arquivo | Onde aparece | Status |
+|---|---|---|
+| `foto-musculacao.jpg` | Hero (cortada pela seta) | incluída |
+| `foto-salao.jpg` | Galeria (destaque) | incluída |
+| `foto-peso-livre.jpg` | Galeria | incluída |
+| `foto-cardio.jpg` | Galeria | incluída |
+| `foto-aula-coletiva.jpg` | Por que Uplay – 04 e galeria | incluída (sala vazia; troque por foto de aula quando tiver) |
+| `foto-supinos.jpg` | Galeria | incluída |
+| `foto-mobilidade.jpg` | Galeria | incluída |
+| `foto-funcional.jpg` | Galeria | incluída |
+| `post-totalpass.jpg` | Bloco TotalPass no plano | incluída |
+| `foto-professor.jpg` | Por que Uplay – 01 | falta |
+| `foto-estacionamento.jpg` | Por que Uplay – 02 e galeria | falta |
+| `foto-espaco-kids.jpg` | Por que Uplay – 03 e galeria | falta |
+| `foto-vestiario.jpg` | Galeria | falta |
+| `foto-fachada.jpg` | Galeria | falta |
+| `foto-depoimento-1.jpg` … `-3.jpg` | Depoimentos (quadradas) | falta |
+| `og-uplay-sjp.jpg` | Prévia ao compartilhar o link (1200×630) | falta |
+
+As fotos incluídas saíram de posts e stories do @uplay.sjp: legendas e marcas d'água foram cortadas ou removidas, e as imagens passaram por upscale 4x (EDSR).
 
 Use JPG com cerca de 1600 px no lado maior (a do hero pode ter 2000 px).
 
