@@ -2731,3 +2731,11 @@ img {
         grid-template-columns: 1fr;
     }
 }
+
+.contact-hours em {
+    margin-top: 4px;
+    color: var(--gold-light);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+}

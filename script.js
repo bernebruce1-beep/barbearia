@@ -980,12 +980,19 @@ async function carregarHorarios() {
 
     if (DIAS_FECHADOS.includes(diaSemana)) {
 
-        horariosContainer.innerHTML = `
-            <p>
-                Agendamento só de terça a sexta.
-                Escolha outro dia.
-            </p>
-        `;
+        horariosContainer.innerHTML = diaSemana === 6
+            ? `
+                <p>
+                    Sábado o atendimento é por ordem de chegada,
+                    sem agendamento. É só vir!
+                </p>
+            `
+            : `
+                <p>
+                    Fechado aos domingos e segundas.
+                    Agendamento de terça a sexta.
+                </p>
+            `;
 
         return;
     }
