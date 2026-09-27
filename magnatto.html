@@ -134,6 +134,19 @@ header.scrolled{background:rgba(11,11,11,.92);backdrop-filter:blur(10px);border-
 @media(min-width:800px){.steps{grid-template-columns:repeat(3,1fr)}
   .step:not(:last-child)::after{content:"→";position:absolute;right:-1.1rem;top:3.2rem;color:var(--cobre);font-size:1.6rem}}
 
+/* Agendamento */
+.book{margin-top:3rem;display:grid;gap:1rem;background:var(--bg2);border:1px solid var(--line);border-top:3px solid var(--cobre);padding:1.6rem}
+.f{display:flex;flex-direction:column;gap:.4rem;min-width:0}
+.f label{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cobre);font-weight:600}
+.f input,.f select{background:var(--bg);color:var(--txt);border:1px solid #333;padding:.85rem .9rem;font:inherit;border-radius:0;color-scheme:dark;width:100%}
+.f input:focus,.f select:focus{outline:2px solid var(--cobre);outline-offset:-1px}
+.b-sum{color:#cfcfcf;font-size:.95rem}
+.b-sum:empty,.b-err:empty{display:none}
+.b-err{color:#ff8a65;font-size:.9rem}
+.book .btn{width:100%}
+.book [hidden]{display:none}
+@media(min-width:800px){.book{grid-template-columns:repeat(2,1fr);padding:2.4rem}.b-sum,.b-err,.book .btn{grid-column:1/-1}}
+
 /* Galeria */
 .gallery{display:grid;gap:8px;grid-template-columns:repeat(3,1fr)}
 .ph{aspect-ratio:1;position:relative;overflow:hidden;background:
@@ -214,7 +227,7 @@ footer a:hover{color:var(--cobre)}
       <a href="#servicos">Serviços</a>
       <a href="#galeria">Galeria</a>
       <a href="#localizacao">Localização</a>
-      <a href="https://barb.page.link/S6waW" target="_blank" rel="noopener" class="btn">Agendar horário</a>
+      <a href="#agendar" class="btn">Agendar horário</a>
     </nav>
   </div>
 </header>
@@ -229,7 +242,7 @@ footer a:hover{color:var(--cobre)}
     <p class="reveal">Cuidado masculino elevado a outro nível com serviços premium personalizados.</p>
     <div class="rating reveal"><span class="stars" aria-label="5 estrelas">⭑⭑⭑⭑⭑</span> Avaliação 5.0 dos clientes</div>
     <div class="actions reveal">
-      <a href="https://barb.page.link/S6waW" target="_blank" rel="noopener" class="btn">Agendar agora</a>
+      <a href="#agendar" class="btn">Agendar agora</a>
       <a href="#servicos" class="btn ghost">Ver serviços</a>
     </div>
   </div>
@@ -302,20 +315,32 @@ footer a:hover{color:var(--cobre)}
     <div class="steps">
       <div class="step reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7l1.7-1.7"/></svg></div>
-        <small>Passo 01</small><h3>Acesse o link</h3>
-        <p>Clique em “Agendar” e abra nossa agenda online.</p>
+        <small>Passo 01</small><h3>Escolha o serviço</h3>
+        <p>Selecione o que deseja fazer no formulário abaixo.</p>
       </div>
       <div class="step reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
-        <small>Passo 02</small><h3>Escolha serviço e profissional</h3>
-        <p>Selecione o que deseja fazer e com quem.</p>
+        <small>Passo 02</small><h3>Profissional, dia e horário</h3>
+        <p>Escolha com quem e quando quer ser atendido.</p>
       </div>
       <div class="step reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="1"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg></div>
-        <small>Passo 03</small><h3>Confirme o horário</h3>
-        <p>Pronto! É só chegar e aproveitar a experiência.</p>
+        <small>Passo 03</small><h3>Confirme no WhatsApp</h3>
+        <p>Envie o pedido e a equipe confirma o horário.</p>
       </div>
     </div>
+    <form class="book reveal" id="book" novalidate>
+      <div class="f"><label for="b-svc">Serviço</label><select id="b-svc"></select></div>
+      <div class="f"><label for="b-pro">Profissional</label><select id="b-pro"><option>Sem preferência</option><option>Jamili</option><option>João</option><option>Mario</option><option>Wellington</option></select></div>
+      <div class="f"><label for="b-date">Dia</label><input type="date" id="b-date"></div>
+      <div class="f"><label for="b-time">Horário</label><select id="b-time"><option value="">Escolha o dia primeiro</option></select></div>
+      <div class="f"><label for="b-name">Seu nome</label><input id="b-name" autocomplete="name" placeholder="Nome e sobrenome"></div>
+      <div class="f"><label for="b-phone">Seu WhatsApp</label><input id="b-phone" type="tel" autocomplete="tel" placeholder="(48) 90000-0000"></div>
+      <p class="b-sum" id="b-sum"></p>
+      <p class="b-err" id="b-err" role="alert"></p>
+      <button class="btn" type="submit">Confirmar agendamento</button>
+      <a class="btn ghost" id="b-send" hidden target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+    </form>
   </div>
 </section>
 
@@ -372,7 +397,7 @@ footer a:hover{color:var(--cobre)}
   <div class="bigstar"></div><div class="bigstar r"></div>
   <div class="wrap reveal">
     <h2>Seu próximo corte começa aqui</h2>
-    <a href="https://barb.page.link/S6waW" target="_blank" rel="noopener" class="btn dark">Agendar horário</a>
+    <a href="#agendar" class="btn dark">Agendar horário</a>
   </div>
 </section>
 </main>
@@ -394,7 +419,6 @@ footer a:hover{color:var(--cobre)}
 </a>
 
 <script>
-const LINK = "https://barb.page.link/S6waW";
 const servicos = [
   ["Corte Masculino", "Corte clássico ou moderno com acabamento impecável.", "65,00", 30],
   ["Barba", "Barba modelada com toalha quente e navalha.", "55,00", 30],
@@ -416,7 +440,7 @@ document.getElementById("svcList").innerHTML = servicos.map(([n, d, p, t]) => `
   <article class="svc reveal">
     <h3>${n}</h3><p>${d}</p>
     <div class="meta"><span class="price">${p ? "R$ " + p : "Sob consulta"}</span><span class="dur">${t ? "⏱ " + t + " min" : "Avaliação"}</span></div>
-    <a class="btn ghost" href="${LINK}" target="_blank" rel="noopener">Agendar</a>
+    <a class="btn ghost" href="#agendar" data-svc="${n}">Agendar</a>
   </article>`).join("");
 
 const fotos = [
@@ -445,8 +469,53 @@ document.getElementById("team").innerHTML = [["Jamili","jamili"], ["João","joao
   <article class="pro reveal">
     <div class="photo"><img src="img/${f}.png" alt="${n}, profissional da Magnatto" loading="lazy" width="530" height="575"></div>
     <h3>${n}</h3><p>Barbeiro</p>
-    <a class="btn ghost" href="${LINK}" target="_blank" rel="noopener">Agendar</a>
+    <a class="btn ghost" href="#agendar" data-pro="${n}">Agendar</a>
   </article>`).join("");
+
+// Agendamento
+const WA = "5548996601614";
+const bSvc = document.getElementById("b-svc"), bPro = document.getElementById("b-pro"),
+  bDate = document.getElementById("b-date"), bTime = document.getElementById("b-time"),
+  bSum = document.getElementById("b-sum"), bErr = document.getElementById("b-err"), bSend = document.getElementById("b-send");
+bSvc.innerHTML = `<option value="">Escolha o serviço</option>` +
+  servicos.map(([n, , p, t]) => `<option value="${n}">${n} — ${p ? "R$ " + p : "sob consulta"}${t ? " · " + t + " min" : ""}</option>`).join("");
+const pad = n => String(n).padStart(2, "0");
+const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+bDate.min = iso(new Date());
+const max = new Date(); max.setDate(max.getDate() + 60); bDate.max = iso(max);
+// Expediente: seg–sex 09:00–13:00 e 14:30–19:00; sáb 09:00–13:00 e 14:30–17:00; dom fechado
+const turnos = dia => dia === 0 ? [] : [[9 * 60, 13 * 60], [14 * 60 + 30, dia === 6 ? 17 * 60 : 19 * 60]];
+function fillTimes() {
+  if (!bDate.value) return;
+  const [y, m, d] = bDate.value.split("-").map(Number), data = new Date(y, m - 1, d);
+  const svc = servicos.find(x => x[0] === bSvc.value), dur = (svc && svc[3]) || 30;
+  const agora = new Date(), mesmoDia = iso(agora) === bDate.value, minAgora = agora.getHours() * 60 + agora.getMinutes();
+  const slots = [];
+  for (const [ini, fim] of turnos(data.getDay()))
+    for (let t = ini; t + dur <= fim; t += 30) if (!mesmoDia || t > minAgora + 30) slots.push(`${pad(t / 60 | 0)}:${pad(t % 60)}`);
+  bTime.innerHTML = slots.length ? `<option value="">Escolha o horário</option>` + slots.map(h => `<option>${h}</option>`).join("")
+    : `<option value="">${data.getDay() === 0 ? "Fechado aos domingos" : "Sem horários neste dia"}</option>`;
+}
+bDate.addEventListener("change", fillTimes); bSvc.addEventListener("change", fillTimes);
+document.addEventListener("click", e => {
+  const a = e.target.closest("[data-svc],[data-pro]"); if (!a) return;
+  if (a.dataset.svc) { bSvc.value = a.dataset.svc; fillTimes(); }
+  if (a.dataset.pro) bPro.value = a.dataset.pro;
+});
+document.getElementById("book").addEventListener("submit", e => {
+  e.preventDefault();
+  const nome = document.getElementById("b-name").value.trim(), fone = document.getElementById("b-phone").value.trim();
+  const falta = [[bSvc.value, "o serviço"], [bDate.value, "o dia"], [bTime.value, "o horário"], [nome, "seu nome"], [fone.replace(/\D/g, "").length >= 10, "seu WhatsApp com DDD"]]
+    .filter(([ok]) => !ok).map(([, n]) => n);
+  bErr.textContent = falta.length ? "Preencha " + falta.join(", ") + "." : "";
+  if (falta.length) { bSend.hidden = true; bSum.textContent = ""; return; }
+  const dataBR = bDate.value.split("-").reverse().join("/");
+  const msg = `Olá, Magnatto! Quero agendar:\n• Serviço: ${bSvc.value}\n• Profissional: ${bPro.value}\n• Dia: ${dataBR} às ${bTime.value}\n• Nome: ${nome}\n• WhatsApp: ${fone}`;
+  bSend.href = `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+  bSend.hidden = false;
+  bSum.textContent = `${bSvc.value}${bPro.value === "Sem preferência" ? "" : " com " + bPro.value}, em ${dataBR} às ${bTime.value}. Toque em “Enviar pelo WhatsApp” para mandar o pedido. A equipe confirma o horário por lá.`;
+  bSend.focus();
+});
 
 // Header ao rolar
 const header = document.querySelector("header");
