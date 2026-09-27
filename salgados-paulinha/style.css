@@ -22,7 +22,7 @@ h2{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:.6rem}
 .btn:hover{transform:translateY(-2px)}
 .btn--wpp{background:var(--wpp);color:#fff;box-shadow:0 6px 18px rgba(37,211,102,.35)}
 .btn--wpp:hover{background:var(--wpp-esc)}
-.btn--wpp:disabled{background:#bbb;box-shadow:none;cursor:not-allowed;transform:none}
+.btn--wpp[aria-disabled="true"]{pointer-events:none;background:#bbb;box-shadow:none;cursor:not-allowed;transform:none}
 .btn--outline{border-color:var(--laranja);color:var(--marrom);background:#fff}
 .btn--outline:hover{background:var(--laranja);color:#fff}
 .btn--lg{padding:1rem 1.8rem;font-size:1.08rem}

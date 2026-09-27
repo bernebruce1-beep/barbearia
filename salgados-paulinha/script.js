@@ -25,7 +25,6 @@ const CATS = { fritos:'Fritos', empadao:'Empadão', doces:'Doces', bebidas:'Bebi
 
 const brl = v => v.toLocaleString('pt-BR', { style:'currency', currency:'BRL' });
 const wppLink = msg => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
-const abrirWpp = msg => window.open(wppLink(msg), '_blank', 'noopener');
 
 // Todos os links com data-wpp viram links de WhatsApp com mensagem pronta
 document.querySelectorAll('[data-wpp]').forEach(el => {
@@ -111,7 +110,9 @@ function atualizarResumo() {
     ? itens.map(x => `<li><span>${x.q}x ${x.nome}</span><span>${brl(x.sub)}</span></li>`).join('')
     : '<li class="vazio">Nenhum item ainda. Bora escolher? 😋</li>';
   document.getElementById('calcTotal').textContent = brl(total);
-  document.getElementById('calcEnviar').disabled = !itens.length;
+  const env = document.getElementById('calcEnviar');
+  env.setAttribute('aria-disabled', !itens.length);
+  env.href = wppLink(mensagemPedido());
 }
 
 lista.addEventListener('click', e => {
@@ -131,22 +132,25 @@ document.querySelectorAll('input[name="tam"]').forEach(r => r.addEventListener('
 }));
 document.getElementById('calcLimpar').addEventListener('click', () => { qtds.fill(0); renderLista(); atualizarResumo(); });
 
-document.getElementById('calcEnviar').addEventListener('click', () => {
-  const itens = itensPedido(); if (!itens.length) return;
+function mensagemPedido() {
+  const itens = itensPedido();
   const total = itens.reduce((s, x) => s + x.sub, 0);
   const nome = document.getElementById('calcNome').value.trim();
   const entrega = document.getElementById('calcEntrega').value;
   const data = document.getElementById('calcData').value.trim();
   const tipo = modo() === 'un' ? 'tamanho normal' : 'mini salgados para festa';
-  const msg = [
+  return [
     `Oi Paulinha! ${nome ? `Aqui é ${nome}. ` : ''}Quero fazer este pedido (${tipo}):`, '',
     ...itens.map(x => `• ${x.q}x ${x.nome} — ${brl(x.sub)}`), '',
     `*Total: ${brl(total)}*`,
     `${entrega}${data ? ` para ${data}` : ''}`, '',
     'Pode confirmar pra mim? 😋',
   ].join('\n');
-  abrirWpp(msg);
-});
+}
+const enviar = document.getElementById('calcEnviar');
+const atualizarLinkEnvio = () => { enviar.href = wppLink(mensagemPedido()); };
+['calcNome', 'calcEntrega', 'calcData'].forEach(id => document.getElementById(id).addEventListener('input', atualizarLinkEnvio));
+enviar.addEventListener('click', e => { if (enviar.getAttribute('aria-disabled') === 'true') e.preventDefault(); else atualizarLinkEnvio(); });
 
 renderLista(); atualizarResumo();
 
