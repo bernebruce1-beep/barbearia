@@ -110,7 +110,10 @@ header.scrolled{background:rgba(11,11,11,.92);backdrop-filter:blur(10px);border-
 .team{display:grid;gap:1.2rem;grid-template-columns:repeat(2,1fr)}
 .pro{text-align:center;padding:1.8rem 1rem;border:1px solid var(--line);background:var(--bg2);transition:.3s}
 .pro:hover{border-color:var(--cobre);transform:translateY(-4px)}
-.pro .av{width:96px;height:96px;margin:0 auto 1rem;font-size:2.4rem;background:var(--bg)}
+.pro{padding:0 0 1.6rem;overflow:hidden}
+.pro .photo{aspect-ratio:1;overflow:hidden;margin-bottom:1.2rem;border-bottom:3px solid var(--cobre)}
+.pro .photo img{width:100%;height:100%;object-fit:cover;object-position:top;filter:grayscale(.35);transition:.4s}
+.pro:hover .photo img{filter:none;transform:scale(1.05)}
 .pro p{color:var(--muted);font-size:.85rem;margin:.3rem 0 1rem}
 @media(min-width:800px){.team{grid-template-columns:repeat(4,1fr)}}
 
@@ -411,9 +414,9 @@ document.getElementById("testi").innerHTML = ["C", "R", "M"].map((l, i) => `
     <footer class="who"><span class="av">${l}</span> Cliente ${i + 1}</footer>
   </blockquote>`).join("");
 
-document.getElementById("team").innerHTML = ["Jamili", "João", "Mario", "Wellington"].map(n => `
+document.getElementById("team").innerHTML = [["Jamili","jamili"], ["João","joao"], ["Mario","mario"], ["Wellington","wellington"]].map(([n, f]) => `
   <article class="pro reveal">
-    <div class="av">${n[0]}</div>
+    <div class="photo"><img src="img/${f}.png" alt="${n}, profissional da Magnatto" loading="lazy" width="530" height="575"></div>
     <h3>${n}</h3><p>Barbeiro</p>
     <a class="btn ghost" href="${LINK}" target="_blank" rel="noopener">Agendar</a>
   </article>`).join("");
