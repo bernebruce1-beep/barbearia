@@ -143,7 +143,7 @@ header.scrolled{background:rgba(11,11,11,.92);backdrop-filter:blur(10px);border-
 .ph::after{content:"";position:absolute;inset:0;background:var(--cobre);opacity:0;mix-blend-mode:multiply;transition:.35s}
 .ph span{position:relative;z-index:1;transition:.35s;display:flex;flex-direction:column;align-items:center;gap:.5rem}
 .ph span::before{content:"";width:22px;height:22px;background:currentColor;-webkit-mask:var(--star) center/contain no-repeat;mask:var(--star) center/contain no-repeat}
-.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 30%;transition:.4s}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 35%);transition:.4s}
 .ph:hover img{transform:scale(1.06)}
 .ph:hover::after{opacity:.75}
 .ph:hover span{color:#fff;transform:scale(1.08)}
@@ -417,9 +417,15 @@ document.getElementById("svcList").innerHTML = servicos.map(([n, d, p, t]) => `
     <a class="btn ghost" href="${LINK}" target="_blank" rel="noopener">Agendar</a>
   </article>`).join("");
 
-const fotos = [["img/galeria-1.webp", "Barbeiro da Magnatto fazendo a barba de um cliente com navalha"]];
+const fotos = [
+  ["img/galeria-1.webp", "Barbeiro da Magnatto fazendo a barba de um cliente com navalha"],
+  ["img/galeria-2.png", "Corte masculino com volume penteado para trás e barba alinhada"],
+  ["img/galeria-3.png", "Cabelo penteado para trás e barba desenhada na Magnatto"],
+  ["img/galeria-4.png", "Corte com topete penteado para trás e barba curta"],
+  ["img/galeria-5.png", "Cabelo médio penteado para trás com barba cheia"]
+];
 document.getElementById("gal").innerHTML = Array.from({length: 6}, (_, i) => fotos[i]
-  ? `<a class="ph reveal" href="https://www.instagram.com/magnattobarbearia/" target="_blank" rel="noopener"><img src="${fotos[i][0]}" alt="${fotos[i][1]}" loading="lazy"></a>`
+  ? `<a class="ph reveal" href="https://www.instagram.com/magnattobarbearia/" target="_blank" rel="noopener"><img style="${i ? "" : "--pos:70% 30%"}" src="${fotos[i][0]}" alt="${fotos[i][1]}" loading="lazy"></a>`
   : `<a class="ph reveal" href="https://www.instagram.com/magnattobarbearia/" target="_blank" rel="noopener"><span>foto do Instagram</span></a>`).join("");
 
 document.getElementById("testi").innerHTML = ["C", "R", "M"].map((l, i) => `
