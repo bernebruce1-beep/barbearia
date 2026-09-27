@@ -20,7 +20,7 @@ Coloque as fotos em `fotos/` com exatamente estes nomes. Enquanto um arquivo nã
 | `foto-funcional.jpg` | Galeria | incluída |
 | `post-totalpass.jpg` | Bloco TotalPass no plano | incluída |
 | `foto-professor.jpg` | Por que Uplay – 01 (Prof. Gi Ferreira) | incluída |
-| `foto-estacionamento.jpg` | Por que Uplay – 02 e galeria | falta |
+| `post-estacionamento.jpg` | Por que Uplay – 02 (post "Nosso estacionamento mudou") | incluída; o fundo parece ilustração, troque por foto real do pátio quando tiver |
 | `foto-espaco-kids.jpg` | Por que Uplay – 03 e galeria | falta |
 | `foto-fachada.jpg` | Prévia de link / futura galeria | falta |
 | `foto-depoimento-1.jpg` … `-3.jpg` | Depoimentos (quadradas) | falta |
