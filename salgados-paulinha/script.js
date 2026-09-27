@@ -1,5 +1,6 @@
 // ======= CONFIGURAÇÃO — edite aqui =======
 const WHATSAPP = '5512996317709';
+const TAXA_ENTREGA = 4;
 
 // Preços: "un" = unidade tamanho normal | "cento" = cento de mini (null = não vendido como mini)
 const PRODUTOS = [
@@ -102,12 +103,19 @@ function itensPedido() {
   });
 }
 
+const comEntrega = () => document.getElementById('calcEntrega').value.startsWith('Entrega');
+function totalPedido(itens) {
+  const soma = itens.reduce((s, x) => s + x.sub, 0);
+  return soma + (itens.length && comEntrega() ? TAXA_ENTREGA : 0);
+}
+
 function atualizarResumo() {
   const itens = itensPedido();
-  const total = itens.reduce((s, x) => s + x.sub, 0);
+  const total = totalPedido(itens);
   const ul = document.getElementById('calcItens');
   ul.innerHTML = itens.length
     ? itens.map(x => `<li><span>${x.q}x ${x.nome}</span><span>${brl(x.sub)}</span></li>`).join('')
+      + (comEntrega() ? `<li><span>Taxa de entrega</span><span>${brl(TAXA_ENTREGA)}</span></li>` : '')
     : '<li class="vazio">Nenhum item ainda. Bora escolher? 😋</li>';
   document.getElementById('calcTotal').textContent = brl(total);
   const env = document.getElementById('calcEnviar');
@@ -134,9 +142,9 @@ document.getElementById('calcLimpar').addEventListener('click', () => { qtds.fil
 
 function mensagemPedido() {
   const itens = itensPedido();
-  const total = itens.reduce((s, x) => s + x.sub, 0);
+  const total = totalPedido(itens);
   const nome = document.getElementById('calcNome').value.trim();
-  const entrega = document.getElementById('calcEntrega').value;
+  const entrega = comEntrega() ? `Entrega (taxa ${brl(TAXA_ENTREGA)})` : 'Retirada';
   const data = document.getElementById('calcData').value.trim();
   const tipo = modo() === 'un' ? 'tamanho normal' : 'mini salgados para festa';
   return [
@@ -149,7 +157,8 @@ function mensagemPedido() {
 }
 const enviar = document.getElementById('calcEnviar');
 const atualizarLinkEnvio = () => { enviar.href = wppLink(mensagemPedido()); };
-['calcNome', 'calcEntrega', 'calcData'].forEach(id => document.getElementById(id).addEventListener('input', atualizarLinkEnvio));
+['calcNome', 'calcData'].forEach(id => document.getElementById(id).addEventListener('input', atualizarLinkEnvio));
+document.getElementById('calcEntrega').addEventListener('change', atualizarResumo);
 enviar.addEventListener('click', e => { if (enviar.getAttribute('aria-disabled') === 'true') e.preventDefault(); else atualizarLinkEnvio(); });
 
 renderLista(); atualizarResumo();
