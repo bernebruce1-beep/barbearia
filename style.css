@@ -2670,3 +2670,64 @@ img {
 .services-grid .service-card.featured {
     grid-column: 1 / -1;
 }
+
+
+/* ===== CARDS DE SERVIÇO DO AGENDAMENTO (layout mais legível) ===== */
+
+.services-select .service-option {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 12px;
+    padding: 16px;
+    margin: 0;
+    text-transform: none;
+    letter-spacing: normal;
+    cursor: pointer;
+}
+
+.services-select .service-option input[type="checkbox"] {
+    margin: 1px 0 0 0 !important;
+}
+
+.service-option-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.service-option-info strong {
+    color: #f3f0e9;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    line-height: 1.2;
+}
+
+.service-option-info small {
+    color: #8a8a8a;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.45;
+}
+
+.services-select .service-option-price {
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: .3px;
+    white-space: nowrap;
+}
+
+.services-select .service-option-time {
+    font-size: 12px;
+    letter-spacing: 0;
+}
+
+@media (max-width: 560px) {
+    .services-select {
+        grid-template-columns: 1fr;
+    }
+}
