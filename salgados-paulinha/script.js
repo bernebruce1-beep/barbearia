@@ -2,17 +2,17 @@
 const WHATSAPP = '5512996317709';
 const TAXA_ENTREGA = 4;
 
-// Preços: "un" = unidade tamanho normal | "cento" = cento de mini (null = não vendido como mini)
+// Preços: "un" = preço por unidade (0 = "Consulte") | "cento" = preço do cento (null = não vende no cento)
 const PRODUTOS = [
-  { cat:'fritos', nome:'Coxinha de frango', img:'fotos/bolinhas.webp', desc:'Frango desfiado com catupiry, massa macia e casquinha crocante.', un:6.5, cento:75, tag:'Campeã',
+  { cat:'fritos', nome:'Coxinha de frango', img:'fotos/bolinhas.webp', desc:'Frango desfiado com catupiry, massa macia e casquinha crocante.', un:0.75, cento:75, tag:'Campeã',
     foto:'coxinha dourada partida ao meio, recheio de frango cremoso escorrendo' },
-  { cat:'fritos', nome:'Risole de carne', img:'fotos/quibes-risoles.webp', desc:'Carne moída temperadinha, empanado sequinho.', un:6, cento:75,
+  { cat:'fritos', nome:'Risole de carne', img:'fotos/quibes-risoles.webp', desc:'Carne moída temperadinha, empanado sequinho.', un:0.75, cento:75,
     foto:'risoles em formato de meia-lua empilhados num prato branco' },
-  { cat:'fritos', nome:'Bolinha de queijo', img:'fotos/bolinhas.webp', desc:'Puxa-puxa de muçarela derretida em cada mordida.', un:6, cento:75,
+  { cat:'fritos', nome:'Bolinha de queijo', img:'fotos/bolinhas.webp', desc:'Puxa-puxa de muçarela derretida em cada mordida.', un:0.75, cento:75,
     foto:'bolinha de queijo aberta com queijo esticando em fio' },
-  { cat:'fritos', nome:'Quibe', img:'fotos/quibes-risoles.webp', desc:'Trigo e carne bem temperados, com hortelã fresquinha.', un:6.5, cento:75,
+  { cat:'fritos', nome:'Quibe', img:'fotos/quibes-risoles.webp', desc:'Trigo e carne bem temperados, com hortelã fresquinha.', un:0.75, cento:75,
     foto:'quibes dourados com rodela de limão e folhas de hortelã' },
-  { cat:'fritos', nome:'Enroladinho de queijo e presunto', img:'fotos/enroladinho.webp', desc:'Massa macia enrolada com presunto e queijo derretido.', un:5.5, cento:75,
+  { cat:'fritos', nome:'Enroladinho de queijo e presunto', img:'fotos/enroladinho.webp', desc:'Massa macia enrolada com presunto e queijo derretido.', un:0.75, cento:75,
     foto:'enroladinho empanado de presunto e queijo, cortado mostrando o queijo derretido' },
   { cat:'empadao', nome:'Empadão de frango com catupiry', desc:'Tamanho família, massa amanteigada que desmancha e frango cremoso com catupiry.', un:0, cento:null, tag:'Sob encomenda',
     img:'fotos/empadao.webp', foto:'empadão de frango com catupiry inteiro, dourado e brilhante' },
@@ -74,7 +74,7 @@ document.getElementById('abas').addEventListener('click', e => {
 // Calculadora
 const lista = document.getElementById('calcLista');
 const qtds = PRODUTOS.map(() => 0);
-const modo = () => document.querySelector('input[name="tam"]:checked').value;
+const modo = () => 'un';
 const disponiveis = () => PRODUTOS.map((p, i) => ({ ...p, i })).filter(p => modo() === 'un' ? p.un : p.cento);
 
 function renderLista() {
@@ -82,7 +82,7 @@ function renderLista() {
   disponiveis().forEach(p => {
     if (p.cat !== ultima) { html += `<div class="calc__cat">${CATS[p.cat]}</div>`; ultima = p.cat; }
     const preco = modo() === 'un' ? `${brl(p.un)} /un` : `${brl(p.cento)} o cento`;
-    const passo = modo() === 'un' ? 1 : 25;
+    const passo = p.cat === 'fritos' ? 5 : 1;
     html += `<div class="linha">
       <div><div class="linha__nome">${p.nome}</div><div class="linha__preco">${preco}</div></div>
       <div class="qtd" data-i="${p.i}" data-passo="${passo}">
@@ -135,9 +135,6 @@ lista.addEventListener('input', e => {
   qtds[+e.target.parentElement.dataset.i] = Math.max(0, parseInt(e.target.value, 10) || 0);
   atualizarResumo();
 });
-document.querySelectorAll('input[name="tam"]').forEach(r => r.addEventListener('change', () => {
-  qtds.fill(0); renderLista(); atualizarResumo();
-}));
 document.getElementById('calcLimpar').addEventListener('click', () => { qtds.fill(0); renderLista(); atualizarResumo(); });
 
 function mensagemPedido() {
@@ -146,9 +143,8 @@ function mensagemPedido() {
   const nome = document.getElementById('calcNome').value.trim();
   const entrega = comEntrega() ? `Entrega (taxa ${brl(TAXA_ENTREGA)})` : 'Retirada';
   const data = document.getElementById('calcData').value.trim();
-  const tipo = modo() === 'un' ? 'tamanho normal' : 'mini salgados para festa';
-  return [
-    `Oi Paulinha! ${nome ? `Aqui é ${nome}. ` : ''}Quero fazer este pedido (${tipo}):`, '',
+    return [
+    `Oi Paulinha! ${nome ? `Aqui é ${nome}. ` : ''}Quero fazer este pedido:`, '',
     ...itens.map(x => `• ${x.q}x ${x.nome} — ${brl(x.sub)}`), '',
     `*Total: ${brl(total)}*`,
     `${entrega}${data ? ` para ${data}` : ''}`, '',
