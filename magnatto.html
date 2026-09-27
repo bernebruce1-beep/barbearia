@@ -254,7 +254,7 @@ footer a:hover{color:var(--cobre)}
       <h2>O diferencial da Magnatto</h2>
       <p class="lead">Na Magnatto, cada cliente é atendido de forma única. Ouvimos o que você procura, entendemos seu estilo e entregamos um resultado pensado para você — com técnica, precisão e atenção a cada detalhe, do primeiro corte da tesoura ao acabamento final.</p>
       <p class="slogan">Aqui os detalhes fazem a diferença.</p>
-      <figure class="about-photo"><img src="img/diferencial.png" alt="Barbeiro da Magnatto mostrando o resultado do corte ao cliente no espelho" loading="lazy" width="283" height="378"></figure>
+      <figure class="about-photo"><img src="img/diferencial.webp" alt="Barbeiro da Magnatto mostrando o resultado do corte ao cliente no espelho" loading="lazy" width="283" height="378"></figure>
     </div>
     <div class="cards3">
       <article class="feat reveal">
@@ -430,10 +430,10 @@ document.getElementById("svcList").innerHTML = servicos.map(([n, d, p, t]) => `
 
 const fotos = [
   ["img/galeria-1.webp", "Barbeiro da Magnatto fazendo a barba de um cliente com navalha"],
-  ["img/galeria-2.png", "Corte masculino com volume penteado para trás e barba alinhada"],
-  ["img/galeria-3.png", "Cabelo penteado para trás e barba desenhada na Magnatto"],
-  ["img/galeria-4.png", "Corte com topete penteado para trás e barba curta"],
-  ["img/galeria-5.png", "Cabelo médio penteado para trás com barba cheia"],
+  ["img/galeria-2.webp", "Corte masculino com volume penteado para trás e barba alinhada"],
+  ["img/galeria-3.webp", "Cabelo penteado para trás e barba desenhada na Magnatto"],
+  ["img/galeria-4.webp", "Corte com topete penteado para trás e barba curta"],
+  ["img/galeria-5.webp", "Cabelo médio penteado para trás com barba cheia"],
   ["img/galeria-6.webp", "Bancadas com espelhos iluminados e cadeiras de barbeiro"],
   ["img/galeria-7.webp", "Fileira de cadeiras de barbeiro em couro preto"],
   ["img/galeria-8.webp", "Sala de espera com poltronas e prateleiras iluminadas"],
@@ -445,7 +445,7 @@ document.getElementById("gal").innerHTML = Array.from({length: 9}, (_, i) => fot
 
 document.getElementById("team").innerHTML = [["Jamili","jamili"], ["João","joao"], ["Mario","mario"], ["Wellington","wellington"]].map(([n, f]) => `
   <article class="pro reveal">
-    <div class="photo"><img src="img/${f}.png" alt="${n}, profissional da Magnatto" loading="lazy" width="530" height="575"></div>
+    <div class="photo"><img src="img/${f}.webp" alt="${n}, profissional da Magnatto" loading="lazy" width="530" height="575"></div>
     <h3>${n}</h3><p>Barbeiro</p>
     <a class="btn ghost" href="#agendar" data-pro="${n}">Agendar</a>
   </article>`).join("");
