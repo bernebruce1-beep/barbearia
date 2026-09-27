@@ -440,6 +440,20 @@ section[id]{ scroll-margin-top:64px; }
   .print:nth-child(2){ transform:rotate(.8deg); margin-left:28px; }
 }
 
+
+/* Rede Uplay */
+.net{ display:grid; gap:32px; margin-top:80px; padding-top:28px; border-top:2px solid var(--black); }
+.net__intro p:not(.eyebrow){ max-width:40ch; color:#2A2925; font-size:1.05rem; }
+.net__link{ display:inline-flex; align-items:center; gap:10px; margin-top:16px; font-weight:800; text-decoration:none; border-bottom:2px solid var(--yellow); padding-bottom:2px; }
+.net__link .chev{ width:10px; height:12px; transition:transform .25s var(--ease); }
+.net__link:hover .chev{ transform:translateX(4px); }
+.net__nums{ display:flex; flex-wrap:wrap; gap:20px 28px; margin:0; }
+.net__nums div{ border-left:6px solid var(--yellow); padding-left:12px; display:flex; flex-direction:column-reverse; justify-content:flex-end; }
+.net__nums dd small{ font-size:.42em; margin-left:.12em; letter-spacing:0; }
+.net__nums dd{ margin:0; font-family:var(--f-display); font-size:clamp(2.4rem,9vw,4.2rem); line-height:.9; letter-spacing:-.02em; white-space:nowrap; }
+.net__nums dt{ margin-top:8px; font-weight:800; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-on-light); }
+@media (min-width:960px){ .net{ grid-template-columns:1fr 1.4fr; gap:56px; align-items:end; } }
+
 /* ---------- Horários + Como chegar ---------- */
 .hours{ margin-top:36px; }
 .hours__row{ display:grid; grid-template-columns:1fr auto; align-items:baseline; gap:16px; padding:18px 0; border-top:1px solid var(--line-dark); position:relative; }
@@ -883,6 +897,19 @@ section[id]{ scroll-margin-top:64px; }
           </div>
         </figure>
       </div>
+    </div>
+
+    <div class="net reveal">
+      <div class="net__intro">
+        <p class="eyebrow"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Rede Uplay</p>
+        <p>A Uplay SJP faz parte de uma rede com unidades em Curitiba, São José dos Pinhais, Guarapuava, Joinville e Jaraguá do Sul.</p>
+        <a class="net__link" href="https://uplayfit.com/unidades/" target="_blank" rel="noopener">Conheça as unidades <svg class="chev" aria-hidden="true"><use href="#chev"/></svg></a>
+      </div>
+      <dl class="net__nums">
+        <div><dt>anos de rede</dt><dd class="num">10+</dd></div>
+        <div><dt>alunos</dt><dd class="num">100<small>mil+</small></dd></div>
+        <div><dt>unidades no PR e SC</dt><dd class="num">9</dd></div>
+      </dl>
     </div>
   </div>
 </section>
