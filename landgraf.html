@@ -440,7 +440,6 @@
     .float3d {
       position: absolute;
       inset: 0;
-      perspective: 1100px;
       animation: float3dIn 1s cubic-bezier(.2,.8,.2,1) both;
     }
     .float3d__tilt {
@@ -448,8 +447,9 @@
       inset: 0;
       display: grid;
       place-items: center;
-      transform-style: preserve-3d;
-      transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+      /* perspective() no próprio transform: sem preserve-3d/translateZ, que
+         somem em alguns navegadores (WebKit) dentro de caixas com overflow */
+      transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
       transition: transform 500ms cubic-bezier(.2,.8,.2,1);
     }
     .float3d.is-tracking .float3d__tilt { transition-duration: 120ms; }
@@ -463,13 +463,11 @@
       border-radius: 50%;
       background: radial-gradient(ellipse at center, rgba(17,16,14,.6) 0%, rgba(17,16,14,.28) 45%, transparent 72%);
       filter: blur(4px);
-      transform: translateZ(0);
       animation: shadowPulse 5s ease-in-out infinite;
     }
     .float3d__lift {
       position: relative;
-      transform: translateZ(70px);
-      transform-style: preserve-3d;
+      transform: scale(1.06);
     }
     .float3d__float {
       line-height: 1;
@@ -859,9 +857,10 @@
     }
     .spotlight__food { font-size: clamp(180px, 50vw, 300px); }
     .spotlight__food .float3d__img { width: clamp(240px, 70vw, 420px); }
+    /* Entrada ao rolar: só esconde se o JS confirmou que consegue revelar (.reveal-ready) */
     .spotlight__media .float3d { animation: none; }
-    .spotlight__media .float3d.is-in { animation: float3dIn 1s cubic-bezier(.2,.8,.2,1) both; }
-    .spotlight__media .float3d:not(.is-in) { opacity: 0; }
+    .spotlight__media .float3d.reveal-ready:not(.is-in) { opacity: 0; }
+    .spotlight__media .float3d.reveal-ready.is-in { animation: float3dIn 1s cubic-bezier(.2,.8,.2,1) both; }
     .spotlight__chip {
       position: absolute;
       z-index: 2;
@@ -1328,7 +1327,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .spotlight__media .float3d:not(.is-in) { opacity: 1; }
+      .spotlight__media .float3d.reveal-ready:not(.is-in) { opacity: 1; }
       .hero__video { display: none; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
       html { scroll-behavior: auto; }
@@ -1976,14 +1975,15 @@
           });
         }
 
-        if (box.hasAttribute("data-reveal")) {
-          if (!("IntersectionObserver" in window)) { box.classList.add("is-in"); return; }
+        if (box.hasAttribute("data-reveal") && !reduceMotion && "IntersectionObserver" in window) {
+          box.classList.add("reveal-ready");
+          var reveal = function () { box.classList.add("is-in"); if (io) io.disconnect(); };
           var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (en) {
-              if (en.isIntersecting) { box.classList.add("is-in"); io.disconnect(); }
-            });
+            entries.forEach(function (en) { if (en.isIntersecting) reveal(); });
           }, { threshold: 0.3 });
           io.observe(box);
+          // Segurança: em prévias/visualizadores que não disparam o observer, mostra mesmo assim
+          setTimeout(reveal, 2000);
         }
       });
 
