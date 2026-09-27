@@ -106,6 +106,14 @@ header.scrolled{background:rgba(11,11,11,.92);backdrop-filter:blur(10px);border-
 .dur{font-size:.85rem;color:var(--muted)}
 .svc .btn{margin-top:.4rem}
 
+/* Equipe */
+.team{display:grid;gap:1.2rem;grid-template-columns:repeat(2,1fr)}
+.pro{text-align:center;padding:1.8rem 1rem;border:1px solid var(--line);background:var(--bg2);transition:.3s}
+.pro:hover{border-color:var(--cobre);transform:translateY(-4px)}
+.pro .av{width:96px;height:96px;margin:0 auto 1rem;font-size:2.4rem;background:var(--bg)}
+.pro p{color:var(--muted);font-size:.85rem;margin:.3rem 0 1rem}
+@media(min-width:800px){.team{grid-template-columns:repeat(4,1fr)}}
+
 /* Passos */
 .steps{display:grid;gap:1.5rem;counter-reset:s}
 .step{text-align:center;padding:2rem 1rem;position:relative}
@@ -257,6 +265,17 @@ footer a:hover{color:var(--cobre)}
   </div>
 </section>
 
+<!-- EQUIPE -->
+<section id="equipe">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">Nossa equipe</div>
+      <h2>Escolha seu profissional</h2>
+    </div>
+    <div class="team" id="team"></div>
+  </div>
+</section>
+
 <!-- COMO AGENDAR -->
 <section id="agendar">
   <div class="wrap">
@@ -382,6 +401,13 @@ document.getElementById("testi").innerHTML = ["C", "R", "M"].map((l, i) => `
     <p>[DEPOIMENTO DO CLIENTE]</p>
     <footer class="who"><span class="av">${l}</span> Cliente ${i + 1}</footer>
   </blockquote>`).join("");
+
+document.getElementById("team").innerHTML = ["Jamili", "João", "Mario", "Wellington"].map(n => `
+  <article class="pro reveal">
+    <div class="av">${n[0]}</div>
+    <h3>${n}</h3><p>Barbeiro</p>
+    <a class="btn ghost" href="${LINK}" target="_blank" rel="noopener">Agendar</a>
+  </article>`).join("");
 
 // Header ao rolar
 const header = document.querySelector("header");
