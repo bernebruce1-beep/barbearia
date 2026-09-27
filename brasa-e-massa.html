@@ -414,24 +414,114 @@
         0 0 0 28px rgba(245,240,216,.03),
         0 40px 80px rgba(17,16,14,.6);
     }
-    .hero__food {
+    /* ---------- Produto flutuante "3D" (PNG ou emoji) ----------
+       .float3d          → entrada com zoom + fade, define a perspectiva
+       .float3d__tilt    → gira acompanhando o mouse (--rx / --ry via JS)
+       .float3d__shadow  → sombra na bancada, pulsa junto com a flutuação
+       .float3d__float   → sobe e desce devagar
+       .float3d__img     → burger.png / pizza.png (troca o emoji se existir) */
+    .float3d {
+      position: absolute;
+      inset: 0;
+      perspective: 1100px;
+      animation: float3dIn 1s cubic-bezier(.2,.8,.2,1) both;
+    }
+    .float3d__tilt {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      transform-style: preserve-3d;
+      transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+      transition: transform 500ms cubic-bezier(.2,.8,.2,1);
+    }
+    .float3d.is-tracking .float3d__tilt { transition-duration: 120ms; }
+    .float3d__shadow {
+      position: absolute;
+      left: 50%;
+      bottom: 17%;
+      width: 58%;
+      height: 9%;
+      margin-left: -29%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(17,16,14,.6) 0%, rgba(17,16,14,.28) 45%, transparent 72%);
+      filter: blur(4px);
+      transform: translateZ(0);
+      animation: shadowPulse 5s ease-in-out infinite;
+    }
+    .float3d__lift {
       position: relative;
-      z-index: 2;
-      font-size: clamp(170px, 48vw, 290px);
+      transform: translateZ(70px);
+      transform-style: preserve-3d;
+    }
+    .float3d__float {
       line-height: 1;
-      filter: drop-shadow(0 30px 30px rgba(17,16,14,.55));
       animation: float 5s ease-in-out infinite;
+      will-change: transform;
     }
+    .float3d__img {
+      display: none;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 26px 22px rgba(17,16,14,.5));
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .float3d__emoji {
+      display: block;
+      filter: drop-shadow(0 30px 30px rgba(17,16,14,.55));
+    }
+    .float3d.has-img .float3d__img { display: block; }
+    .float3d.has-img .float3d__emoji { display: none; }
+
     @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(-3deg); }
-      50% { transform: translateY(-10px) rotate(0deg); }
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-16px) rotate(1deg); }
     }
+    @keyframes shadowPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(.78); opacity: .55; }
+    }
+    @keyframes float3dIn {
+      from { opacity: 0; transform: scale(.72) translateY(24px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .hero__food { font-size: clamp(170px, 48vw, 290px); }
+    .hero__food .float3d__img { width: clamp(240px, 70vw, 400px); }
+
+    /* Vídeo de fundo opcional (hero-bg.mp4). Só aparece se o arquivo existir. */
+    .hero__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 70% center;
+      opacity: 0;
+      transition: opacity 800ms ease;
+      pointer-events: none;
+    }
+    .hero__video-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(90deg, rgba(17,16,14,.88) 0%, rgba(58,9,8,.7) 40%, rgba(58,9,8,.15) 75%, transparent 100%);
+      transition: opacity 800ms ease;
+    }
+    .hero.has-video .hero__video,
+    .hero.has-video .hero__video-overlay { opacity: 1; }
+    .hero.has-video .hero__visual { visibility: hidden; }
+    .hero > .container { position: relative; z-index: 1; }
     .hero__side {
       position: absolute;
       z-index: 3;
       font-size: clamp(42px, 11vw, 64px);
       filter: drop-shadow(0 12px 14px rgba(17,16,14,.5));
     }
+    .hero__side, .hero__badge { animation: popIn 600ms cubic-bezier(.2,.8,.2,1) 500ms both; }
+    @keyframes popIn { from { opacity: 0; scale: .5; } to { opacity: 1; scale: 1; } }
     .hero__side--1 { top: 2%; right: 4%; transform: rotate(14deg); }
     .hero__side--2 { bottom: 8%; left: 0; transform: rotate(-12deg); }
     .hero__side--3 { bottom: 0; right: 12%; transform: rotate(8deg); }
@@ -750,12 +840,11 @@
       border-radius: 50%;
       border: 2px dashed rgba(245,240,216,.25);
     }
-    .spotlight__food {
-      position: relative;
-      font-size: clamp(180px, 50vw, 300px);
-      line-height: 1;
-      filter: drop-shadow(0 30px 30px rgba(17,16,14,.5));
-    }
+    .spotlight__food { font-size: clamp(180px, 50vw, 300px); }
+    .spotlight__food .float3d__img { width: clamp(240px, 70vw, 420px); }
+    .spotlight__media .float3d { animation: none; }
+    .spotlight__media .float3d.is-in { animation: float3dIn 1s cubic-bezier(.2,.8,.2,1) both; }
+    .spotlight__media .float3d:not(.is-in) { opacity: 0; }
     .spotlight__chip {
       position: absolute;
       z-index: 2;
@@ -1057,6 +1146,7 @@
       .hero__actions, .hero__meta { justify-content: flex-start; }
       .hero__visual { max-width: 560px; }
       .hero__food { font-size: 330px; }
+      .hero__food .float3d__img { width: 460px; }
       .hero__badge { width: 124px; height: 124px; }
       .hero__badge strong { font-size: 32px; }
       .wave { height: 80px; }
@@ -1087,6 +1177,8 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+      .spotlight__media .float3d:not(.is-in) { opacity: 1; }
+      .hero__video { display: none; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
       html { scroll-behavior: auto; }
     }
@@ -1135,7 +1227,12 @@
 
   <main>
     <!-- ========================= HERO ========================= -->
-    <section class="hero" id="inicio">
+    <section class="hero" id="inicio" data-tilt-area>
+      <!-- Vídeo de fundo opcional: salve como hero-bg.mp4 (menos de 3 MB). Sem o arquivo, nada aparece. -->
+      <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        <source src="hero-bg.mp4" type="video/mp4">
+      </video>
+      <div class="hero__video-overlay" aria-hidden="true"></div>
       <div class="container hero__grid">
         <div class="hero__content">
           <span class="eyebrow">Smash burgers &amp; pizzas de fermentação lenta</span>
@@ -1155,13 +1252,24 @@
           </div>
         </div>
 
-        <div class="hero__visual" aria-hidden="true">
-          <div class="hero__plate"></div>
-          <div class="hero__food">🍔</div>
-          <div class="hero__side hero__side--1">🍕</div>
-          <div class="hero__side hero__side--2">🧀</div>
-          <div class="hero__side hero__side--3">🥓</div>
-          <div class="hero__badge">
+        <div class="hero__visual">
+          <div class="float3d" data-tilt>
+            <div class="float3d__tilt">
+              <div class="hero__plate" aria-hidden="true"></div>
+              <div class="float3d__shadow" aria-hidden="true"></div>
+              <div class="float3d__lift">
+                <div class="float3d__float hero__food">
+                  <!-- Coloque burger.png (fundo transparente) na mesma pasta: ele substitui o emoji automaticamente -->
+                  <img class="float3d__img" src="burger.png" alt="Classic Smash: duplo smash com cheddar derretido" width="800" height="800" fetchpriority="high" draggable="false">
+                  <span class="float3d__emoji" role="img" aria-label="Hambúrguer">🍔</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero__side hero__side--1" aria-hidden="true">🍕</div>
+          <div class="hero__side hero__side--2" aria-hidden="true">🧀</div>
+          <div class="hero__side hero__side--3" aria-hidden="true">🥓</div>
+          <div class="hero__badge" aria-hidden="true">
             <small>A partir de</small>
             <strong>R$ 34</strong>
             <small>Smash duplo</small>
@@ -1264,10 +1372,21 @@
     <!-- ========================= PRODUTO EM DESTAQUE ========================= -->
     <section class="section spotlight" id="especial">
       <div class="container spotlight__grid">
-        <div class="spotlight__media" aria-hidden="true">
-          <span class="spotlight__chip spotlight__chip--1">🔥 Assada na lenha</span>
-          <div class="spotlight__food">🍕</div>
-          <span class="spotlight__chip spotlight__chip--2">⏱ Massa de 48h</span>
+        <div class="spotlight__media">
+          <span class="spotlight__chip spotlight__chip--1" aria-hidden="true">🔥 Assada na lenha</span>
+          <div class="float3d" data-tilt data-reveal>
+            <div class="float3d__tilt">
+              <div class="float3d__shadow" aria-hidden="true"></div>
+              <div class="float3d__lift">
+                <div class="float3d__float spotlight__food">
+                  <!-- Coloque pizza.png (fundo transparente) na mesma pasta para substituir o emoji -->
+                  <img class="float3d__img" src="pizza.png" alt="Pizza Pepperoni Artesanal" width="800" height="800" loading="lazy" draggable="false">
+                  <span class="float3d__emoji" role="img" aria-label="Pizza">🍕</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="spotlight__chip spotlight__chip--2" aria-hidden="true">⏱ Massa de 48h</span>
         </div>
 
         <div>
@@ -1568,6 +1687,72 @@
       }
       window.addEventListener("scroll", onScroll, { passive: true });
       onScroll();
+
+      /* ---------- Produto flutuante: PNG, tilt 3D e entrada ---------- */
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+      document.querySelectorAll(".float3d").forEach(function (box) {
+        // Troca o emoji pelo PNG apenas se o arquivo existir e carregar
+        var img = box.querySelector(".float3d__img");
+        if (img) {
+          var ok = function () { if (img.naturalWidth > 0) box.classList.add("has-img"); };
+          if (img.complete) ok(); else img.addEventListener("load", ok);
+          img.addEventListener("error", function () { img.remove(); });
+        }
+
+        // Tilt 3D acompanhando o mouse (a área de captura é o bloco pai)
+        if (canHover && !reduceMotion && box.hasAttribute("data-tilt")) {
+          var area = box.closest("[data-tilt-area]") || box.parentElement;
+          var frame = null;
+          area.addEventListener("pointermove", function (e) {
+            if (frame) return;
+            frame = requestAnimationFrame(function () {
+              frame = null;
+              var r = area.getBoundingClientRect();
+              var dx = (e.clientX - r.left) / r.width - 0.5;   // -0.5 … 0.5
+              var dy = (e.clientY - r.top) / r.height - 0.5;
+              box.classList.add("is-tracking");
+              box.style.setProperty("--ry", (dx * 26).toFixed(2) + "deg");
+              box.style.setProperty("--rx", (-dy * 20).toFixed(2) + "deg");
+            });
+          });
+          area.addEventListener("pointerleave", function () {
+            box.classList.remove("is-tracking");
+            box.style.setProperty("--rx", "0deg");
+            box.style.setProperty("--ry", "0deg");
+          });
+        }
+
+        // Entrada com zoom + fade quando entra na tela (seções abaixo do hero)
+        if (box.hasAttribute("data-reveal")) {
+          if (!("IntersectionObserver" in window)) { box.classList.add("is-in"); return; }
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) { box.classList.add("is-in"); io.disconnect(); }
+            });
+          }, { threshold: 0.3 });
+          io.observe(box);
+        }
+      });
+
+      /* ---------- Vídeo de fundo opcional do hero ---------- */
+      var video = document.getElementById("heroVideo");
+      if (video) {
+        if (reduceMotion) {
+          video.remove();
+        } else {
+          var src = video.querySelector("source");
+          // Sem hero-bg.mp4: remove o elemento (o erro pode ter disparado antes deste script)
+          if (video.networkState === 3) video.remove();
+          src.addEventListener("error", function () { video.remove(); });
+          video.addEventListener("loadeddata", function () {
+            hero.classList.add("has-video");
+            var p = video.play();
+            if (p && p.catch) p.catch(function () {});
+          });
+        }
+      }
 
       document.getElementById("year").textContent = new Date().getFullYear();
     })();
