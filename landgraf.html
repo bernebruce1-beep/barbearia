@@ -3,8 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brasa &amp; Massa — Burgers e Pizzas Artesanais</title>
-  <meta name="description" content="Brasa & Massa: smash burgers e pizzas artesanais em São Paulo. Artesanal. Quente. Irresistível. Peça agora.">
+  <title>Landgraf Hamburgueria — Burger artesanal e defumados em Campina da Lagoa</title>
+  <meta name="description" content="Landgraf Hamburgueria: smash burgers, carnes defumadas na nossa própria defumadora e pão feito na casa. Rua Kaigang, 80 – Campina da Lagoa, PR. Seg a Sáb, 18h30 às 22h30.">
+  <meta name="theme-color" content="#3A0908">
+  <meta property="og:type" content="restaurant">
+  <meta property="og:title" content="Landgraf Hamburgueria — Defumado no ponto certo.">
+  <meta property="og:description" content="Burger artesanal, defumação própria e pão feito na casa. Delivery e presencial em Campina da Lagoa – PR.">
+  <meta property="og:image" content="img/burger.webp">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%233A0908'/%3E%3Cg transform='translate(10 10) scale(.8)' fill='%23F28C16' stroke='%23F28C16'%3E%3Cpath fill='none' stroke-width='5' stroke-linecap='round' d='M65.4 17.1A40 40 0 1 1 34.6 17.1'/%3E%3Cpath stroke='none' fill-rule='evenodd' d='M49 4c3 10 17 16 17 32 0 12-7.5 20-16 20s-16-8-16-18c0-8 4.5-13 8-16-.5 6 1.5 10 5 11-2-9 0-19 2-29zm1.5 30c1 6 7 8.5 7 14 0 4.5-3.2 7.5-7 7.5s-7-3-7-7c0-3.5 2-5.5 3.5-7 0 2.5 1 4 2.5 4.5-.5-4 0-8 1-12z'/%3E%3Cpath fill='none' stroke-width='6' stroke-linecap='round' d='M24 49L79 58M33 57L47 66'/%3E%3Cpath stroke='none' d='M44 63c9-4 20 1 27 16-11 3-23 0-30-9-1.5-2.2 0-5.6 3-7z'/%3E%3C/g%3E%3C/svg%3E">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Landgraf Hamburgueria",
+    "servesCuisine": ["Hambúrguer", "Defumados"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Kaigang, 80 – Sol Nascente",
+      "addressLocality": "Campina da Lagoa",
+      "addressRegion": "PR",
+      "addressCountry": "BR"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "18:30",
+      "closes": "22:30"
+    }],
+    "sameAs": ["https://www.instagram.com/landgrafhamburgueria/"]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -202,25 +230,32 @@
     .logo {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      font-family: var(--font-display);
-      font-size: 24px;
-      text-transform: uppercase;
+      gap: 12px;
       color: var(--color-cream);
-      letter-spacing: .02em;
       line-height: 1;
     }
     .logo__mark {
-      display: grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: var(--color-yellow);
-      font-size: 22px;
-      box-shadow: inset 0 -3px 0 var(--color-orange-dark);
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      color: var(--color-orange);
+      transition: transform var(--transition-normal);
     }
-    .logo__amp { color: var(--color-yellow); }
+    .logo:hover .logo__mark { transform: rotate(-8deg) scale(1.05); }
+    .logo__text { display: flex; flex-direction: column; gap: 5px; }
+    .logo__name {
+      font-family: var(--font-display);
+      font-size: 25px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .logo__sub {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .36em;
+      text-transform: uppercase;
+      color: var(--color-orange);
+    }
 
     .nav { display: none; }
     .nav__list { display: flex; gap: 6px; }
@@ -239,36 +274,18 @@
 
     .header__actions { display: flex; align-items: center; gap: 10px; }
 
-    .cart-btn {
-      position: relative;
+    .icon-btn {
       display: grid;
       place-items: center;
       width: 46px;
       height: 46px;
       border-radius: 50%;
       background: rgba(245,240,216,.08);
-      font-size: 20px;
-      transition: background-color var(--transition-fast), transform var(--transition-fast);
+      color: var(--color-cream);
+      transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
     }
-    .cart-btn:hover { background: rgba(245,240,216,.16); transform: translateY(-1px); }
-    .cart-btn__count {
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      min-width: 20px;
-      height: 20px;
-      padding: 0 5px;
-      border-radius: var(--radius-pill);
-      background: var(--color-red);
-      color: var(--color-white);
-      font-size: 11px;
-      font-weight: 800;
-      display: grid;
-      place-items: center;
-      border: 2px solid var(--color-burgundy);
-    }
-    .cart-btn__count.bump { animation: bump 400ms ease-out; }
-    @keyframes bump { 0%{transform:scale(1)} 40%{transform:scale(1.35)} 100%{transform:scale(1)} }
+    .icon-btn:hover { background: var(--color-green); color: var(--color-white); transform: translateY(-1px); }
+    .icon-btn svg { width: 22px; height: 22px; }
 
     .header__cta { display: none; }
 
@@ -419,7 +436,7 @@
        .float3d__tilt    → gira acompanhando o mouse (--rx / --ry via JS)
        .float3d__shadow  → sombra na bancada, pulsa junto com a flutuação
        .float3d__float   → sobe e desce devagar
-       .float3d__img     → burger.png / pizza.png (troca o emoji se existir) */
+       .float3d__img     → img/burger.webp (troca o emoji se existir) */
     .float3d {
       position: absolute;
       inset: 0;
@@ -991,7 +1008,7 @@
       opacity: .14;
       pointer-events: none;
     }
-    .final-cta::before { content: "🍕"; top: -20px; left: -30px; transform: rotate(-20deg); }
+    .final-cta::before { content: "🍟"; top: -20px; left: -30px; transform: rotate(-20deg); }
     .final-cta::after { content: "🍔"; bottom: -30px; right: -20px; transform: rotate(15deg); }
 
     .final-cta .container { position: relative; z-index: 1; }
@@ -1073,30 +1090,6 @@
     /* ==========================================================
        TOAST + STICKY MOBILE CTA
        ========================================================== */
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 88px;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 20px;
-      border-radius: var(--radius-pill);
-      background: var(--color-black);
-      color: var(--color-cream);
-      font-weight: 600;
-      font-size: 14px;
-      box-shadow: var(--shadow-lg);
-      transform: translate(-50%, 20px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition-normal), transform var(--transition-normal);
-      max-width: calc(100% - 32px);
-    }
-    .toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
-    .toast strong { color: var(--color-yellow); }
-
     .sticky-cta {
       position: fixed;
       left: 12px;
@@ -1108,6 +1101,92 @@
     }
     .sticky-cta.is-visible { transform: translateY(0); }
     .sticky-cta .btn { width: 100%; box-shadow: var(--shadow-lg); }
+
+    /* ==========================================================
+       FOTOS REAIS (slots) — a imagem só aparece se o arquivo existir;
+       até lá, o emoji/fallback continua visível
+       ========================================================== */
+    :where([data-img-slot]) { position: relative; }
+    .slot-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 500ms ease, transform var(--transition-normal);
+    }
+    [data-img-slot].has-img > .slot-img { opacity: 1; }
+    [data-img-slot].has-img > .slot-fallback { visibility: hidden; }
+
+    .feature-card__media .slot-img { border-radius: inherit; }
+    .feature-card:hover .feature-card__media .slot-img { transform: scale(1.05); }
+    .feature-card__media { isolation: isolate; }
+
+    .product-card__photo { overflow: hidden; }
+    .product-card__photo .slot-img { border-radius: 50%; }
+
+    .spotlight__photo { object-position: center 60%; }
+    .spotlight__media.has-img::before { display: none; }
+    .spotlight__media.has-img > .float3d { display: none; }
+    .spotlight__media.has-img::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(17,16,14,.45) 100%);
+      pointer-events: none;
+    }
+    .spotlight__media .float3d__float { transform-origin: center; }
+    .spotlight__food .float3d__img { transform: scaleX(-1); }
+
+    /* Status aberto/fechado */
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+    .status__dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--color-red);
+      box-shadow: 0 0 0 3px rgba(185,46,36,.25);
+    }
+    .status.is-open .status__dot {
+      background: var(--color-green);
+      box-shadow: 0 0 0 3px rgba(60,122,33,.3);
+      animation: livePulse 2s ease-in-out infinite;
+    }
+    @keyframes livePulse { 50% { box-shadow: 0 0 0 6px rgba(60,122,33,0); } }
+
+    .feature-card__note {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-orange-dark);
+    }
+
+    .ingredients li span { width: 24px; text-align: center; }
+
+    .spotlight__buy .btn--outline { min-height: 58px; }
+
+    .final-cta__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+    .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    .testimonial__role em { font-style: normal; color: var(--color-orange-dark); font-weight: 600; }
+
+    .insta-cta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px 18px;
+      margin-top: 40px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--color-red-dark);
+    }
 
     /* ==========================================================
        RESPONSIVE — TABLET (≥ 640px)
@@ -1137,7 +1216,6 @@
       .menu-toggle, .mobile-nav { display: none; }
       .header__cta { display: inline-flex; }
       .sticky-cta { display: none; }
-      .toast { bottom: 32px; }
 
       .hero { padding: calc(var(--header-h) + 56px) 0 120px; min-height: 100vh; display: flex; align-items: center; }
       .hero__grid { grid-template-columns: 1.05fr 1fr; gap: 48px; }
@@ -1164,7 +1242,9 @@
 
       .menu__top .section-head { margin-bottom: 24px; }
       .filters { margin-bottom: 40px; flex-wrap: wrap; overflow: visible; }
-      .menu__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+      /* flex no desktop para centralizar a última linha incompleta */
+      .menu__grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+      .menu__grid .product-card { width: calc((100% - 72px) / 4); }
 
       .spotlight__grid { grid-template-columns: 1fr 1fr; gap: 72px; }
       .spotlight__food { font-size: 340px; }
@@ -1186,29 +1266,46 @@
 </head>
 <body>
 
+  <!-- Ícones reutilizáveis -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <!-- Emblema Landgraf: fogo + lenha + pá dentro do círculo -->
+    <symbol id="emblem" viewBox="0 0 100 100">
+      <path d="M65.4 17.1 A40 40 0 1 1 34.6 17.1" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+      <path fill="currentColor" fill-rule="evenodd" d="M49 4c3 10 17 16 17 32 0 12-7.5 20-16 20s-16-8-16-18c0-8 4.5-13 8-16-.5 6 1.5 10 5 11-2-9 0-19 2-29zm1.5 30c1 6 7 8.5 7 14 0 4.5-3.2 7.5-7 7.5s-7-3-7-7c0-3.5 2-5.5 3.5-7 0 2.5 1 4 2.5 4.5-.5-4 0-8 1-12z"/>
+      <path d="M24 49 L79 58 M33 57 L47 66" fill="none" stroke="currentColor" stroke-width="4.2" stroke-linecap="round"/>
+      <path fill="currentColor" d="M44 63c9-4 20 1 27 16-11 3-23 0-30-9-1.5-2.2 0-5.6 3-7z"/>
+    </symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 0 1 12 2.2a9.8 9.8 0 0 1 0 19.6zM12 0a12 12 0 0 0-10.3 18L0 24l6.2-1.6A12 12 0 1 0 12 0z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></g></symbol>
+  </svg>
+
   <!-- ========================= HEADER ========================= -->
   <header class="header" id="header">
     <div class="container header__inner">
-      <a href="#inicio" class="logo" aria-label="Brasa & Massa — início">
-        <span class="logo__mark" aria-hidden="true">🔥</span>
-        <span>Brasa <span class="logo__amp">&amp;</span> Massa</span>
+      <a href="#inicio" class="logo" aria-label="Landgraf Hamburgueria — início">
+        <svg class="logo__mark" aria-hidden="true"><use href="#emblem"/></svg>
+        <span class="logo__text">
+          <span class="logo__name">Landgraf</span>
+          <span class="logo__sub">Hamburgueria</span>
+        </span>
       </a>
 
       <nav class="nav" aria-label="Navegação principal">
         <ul class="nav__list">
           <li><a class="nav__link" href="#destaques">Destaques</a></li>
           <li><a class="nav__link" href="#cardapio">Cardápio</a></li>
-          <li><a class="nav__link" href="#especial">Especial</a></li>
+          <li><a class="nav__link" href="#defumado">Defumado</a></li>
           <li><a class="nav__link" href="#depoimentos">Avaliações</a></li>
           <li><a class="nav__link" href="#contato">Contato</a></li>
         </ul>
       </nav>
 
       <div class="header__actions">
-        <button class="cart-btn" type="button" aria-label="Itens no pedido: 0" id="cartBtn">
-          🛒<span class="cart-btn__count" id="cartCount">0</span>
-        </button>
-        <a href="#cardapio" class="btn btn--primary header__cta">Pedir agora</a>
+        <a class="icon-btn js-wa" href="#" target="_blank" rel="noopener" aria-label="Pedir pelo WhatsApp">
+          <svg aria-hidden="true"><use href="#i-wa"/></svg>
+        </a>
+        <a href="#" class="btn btn--primary header__cta js-wa" target="_blank" rel="noopener">Pedir agora</a>
         <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileNav" id="menuToggle">
           <span></span>
         </button>
@@ -1219,60 +1316,59 @@
   <nav class="mobile-nav" id="mobileNav" aria-label="Menu mobile">
     <a href="#destaques">Destaques</a>
     <a href="#cardapio">Cardápio</a>
-    <a href="#especial">Especial</a>
+    <a href="#defumado">Defumado</a>
     <a href="#depoimentos">Avaliações</a>
     <a href="#contato">Contato</a>
-    <a href="#cardapio" class="btn btn--primary">Pedir agora</a>
+    <a href="#" class="btn btn--primary js-wa" target="_blank" rel="noopener">Pedir agora</a>
   </nav>
 
   <main>
     <!-- ========================= HERO ========================= -->
     <section class="hero" id="inicio" data-tilt-area>
-      <!-- Vídeo de fundo opcional: salve como hero-bg.mp4 (menos de 3 MB). Sem o arquivo, nada aparece. -->
+      <!-- Vídeo de fundo opcional: salve como img/hero-bg.mp4 (menos de 3 MB). Sem o arquivo, nada aparece. -->
       <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-        <source src="hero-bg.mp4" type="video/mp4">
+        <source src="img/hero-bg.mp4" type="video/mp4">
       </video>
       <div class="hero__video-overlay" aria-hidden="true"></div>
       <div class="container hero__grid">
         <div class="hero__content">
-          <span class="eyebrow">Smash burgers &amp; pizzas de fermentação lenta</span>
+          <span class="eyebrow">Smokehouse · Campina da Lagoa – PR</span>
           <h1 class="hero__title">
-            Direto da brasa
-            <span class="hl">pra sua <span class="hl-orange">mesa</span></span>
+            Defumado
+            <span class="hl">no ponto <span class="hl-orange">certo</span></span>
           </h1>
-          <p class="hero__subtitle">Artesanal. Quente. Irresistível. Blend fresco, massa de 48h e queijo que derrete de verdade.</p>
+          <p class="hero__subtitle">Smash na chapa, carnes defumadas por horas na nossa própria defumadora e pão feito aqui. Artesanal. Quente. Irresistível.</p>
           <div class="hero__actions">
-            <a href="#cardapio" class="btn btn--primary btn--lg">Pedir agora</a>
+            <a href="#" class="btn btn--primary btn--lg js-wa" target="_blank" rel="noopener">Pedir agora</a>
             <a href="#cardapio" class="btn btn--ghost btn--lg">Ver cardápio</a>
           </div>
           <div class="hero__meta">
-            <span>⭐ <strong>4,9</strong> no delivery</span>
-            <span>🛵 Entrega em <strong>30 min</strong></span>
-            <span>🔥 Aberto até <strong>00h</strong></span>
+            <span class="status js-status"><span class="status__dot"></span><span class="js-status-text">Seg a Sáb · 18h30–22h30</span></span>
+            <span>💨 Defumação <strong>própria</strong></span>
+            <span>🍞 Pão <strong>da casa</strong></span>
           </div>
         </div>
 
         <div class="hero__visual">
-          <div class="float3d" data-tilt>
+          <div class="float3d" data-tilt data-img-slot>
             <div class="float3d__tilt">
               <div class="hero__plate" aria-hidden="true"></div>
               <div class="float3d__shadow" aria-hidden="true"></div>
               <div class="float3d__lift">
                 <div class="float3d__float hero__food">
-                  <!-- burger.webp (fundo transparente) substitui o emoji automaticamente; se faltar, o emoji aparece -->
-                  <img class="float3d__img" src="burger.webp" alt="Hambúrguer artesanal com queijo derretido, bacon e alface no pão brioche" width="1000" height="830" fetchpriority="high" draggable="false">
+                  <img class="float3d__img" src="img/burger.webp" alt="Hambúrguer artesanal com queijo derretido, bacon e alface no pão brioche" width="1000" height="830" fetchpriority="high" draggable="false">
                   <span class="float3d__emoji" role="img" aria-label="Hambúrguer">🍔</span>
                 </div>
               </div>
             </div>
           </div>
-          <div class="hero__side hero__side--1" aria-hidden="true">🍕</div>
+          <div class="hero__side hero__side--1" aria-hidden="true">🍟</div>
           <div class="hero__side hero__side--2" aria-hidden="true">🧀</div>
           <div class="hero__side hero__side--3" aria-hidden="true">🥓</div>
           <div class="hero__badge" aria-hidden="true">
-            <small>A partir de</small>
-            <strong>R$ 34</strong>
-            <small>Smash duplo</small>
+            <small>Pão feito</small>
+            <strong>Na casa</strong>
+            <small>todo dia</small>
           </div>
         </div>
       </div>
@@ -1284,7 +1380,6 @@
 
     <!-- ========================= DESTAQUES ========================= -->
     <section class="section highlights" id="destaques">
-      <!-- Pincelada laranja decorativa -->
       <svg class="brush brush--top" viewBox="0 0 600 160" aria-hidden="true">
         <path d="M18,92 C60,58 130,44 210,46 C300,48 360,30 440,36 C510,41 560,58 588,74 C572,92 530,104 470,110 C400,117 340,108 270,118 C190,129 120,134 60,124 C30,119 10,108 18,92 Z" fill="#F28C16"/>
         <path d="M60,80 C140,66 230,70 320,62 C400,55 470,58 540,70" stroke="#D7650F" stroke-width="6" stroke-linecap="round" fill="none" opacity=".55"/>
@@ -1300,42 +1395,51 @@
         <div class="highlights__head">
           <div>
             <span class="eyebrow">Os queridinhos da casa</span>
-            <h2 class="highlights__title">Fresh <span class="slash">/</span> <span class="hot">Hot</span></h2>
+            <h2 class="highlights__title">Brasa <span class="slash">/</span> <span class="hot">Fumaça</span></h2>
           </div>
-          <p class="lead">Saem da chapa e do forno a lenha direto pro seu pedido. Ingredientes frescos, todo dia, sem atalho.</p>
+          <p class="lead">Da chapa quente e da defumadora direto pro seu pedido. Carne boa não tem atalho.</p>
         </div>
 
         <div class="highlights__grid">
           <article class="feature-card">
             <span class="tag tag--hot">🔥 Mais pedido</span>
-            <div class="feature-card__media bg-warm"><span>🍔</span></div>
-            <h3 class="feature-card__name">Classic Smash</h3>
-            <p class="feature-card__desc">Duplo smash, cheddar artesanal, picles e molho especial no pão brioche tostado.</p>
+            <div class="feature-card__media bg-warm" data-img-slot>
+              <img class="slot-img" src="img/smash-cheddar.jpg" alt="Dois Smash Cheddar sendo servidos, com cheddar derretido e pão brioche" loading="lazy" style="object-position: center 62%">
+              <span class="slot-fallback">🍔</span>
+            </div>
+            <h3 class="feature-card__name">Smash Cheddar</h3>
+            <p class="feature-card__desc">Dois smash burgers prensados na chapa, cheddar derretido e pão artesanal.</p>
             <div class="feature-card__foot">
-              <span class="price"><small>R$</small>34,90</span>
-              <button class="btn btn--red js-add" type="button" data-name="Classic Smash">Quero pedir</button>
+              <span class="feature-card__note">🔥 Na chapa</span>
+              <a class="btn btn--red js-wa" data-item="Smash Cheddar" href="#" target="_blank" rel="noopener">Quero pedir</a>
             </div>
           </article>
 
           <article class="feature-card">
-            <span class="tag tag--fresh">🌿 Fresh</span>
-            <div class="feature-card__media bg-fire"><span>🍕</span></div>
-            <h3 class="feature-card__name">Margherita da Casa</h3>
-            <p class="feature-card__desc">Molho san marzano, fior di latte e manjericão fresco colhido no dia.</p>
+            <span class="tag tag--top">💨 Defumado</span>
+            <div class="feature-card__media bg-deep" data-img-slot>
+              <img class="slot-img" src="img/pulled-pork.jpg" alt="Pulled Pork: carne desfiada defumada com coleslaw roxo no pão" loading="lazy">
+              <span class="slot-fallback">🥪</span>
+            </div>
+            <h3 class="feature-card__name">Pulled Pork</h3>
+            <p class="feature-card__desc">Porco desfiado defumado por horas, molho barbecue e pão artesanal.</p>
             <div class="feature-card__foot">
-              <span class="price"><small>R$</small>42,90</span>
-              <button class="btn btn--red js-add" type="button" data-name="Margherita da Casa">Quero pedir</button>
+              <span class="feature-card__note">💨 Defumação própria</span>
+              <a class="btn btn--red js-wa" data-item="Pulled Pork" href="#" target="_blank" rel="noopener">Quero pedir</a>
             </div>
           </article>
 
           <article class="feature-card">
-            <span class="tag tag--top">★ Premium</span>
-            <div class="feature-card__media bg-deep"><span>🍔</span></div>
-            <h3 class="feature-card__name">Trufada Premium</h3>
-            <p class="feature-card__desc">Blend angus, queijo brie, cogumelos salteados e molho trufado da casa.</p>
+            <span class="tag tag--fresh">🌿 Especial</span>
+            <div class="feature-card__media bg-fire" data-img-slot>
+              <img class="slot-img" src="img/choripan.jpg" alt="Choripán com chimichurri" loading="lazy">
+              <span class="slot-fallback">🌭</span>
+            </div>
+            <h3 class="feature-card__name">Choripán</h3>
+            <p class="feature-card__desc">Linguiça artesanal na brasa, chimichurri fresco e pão crocante.</p>
             <div class="feature-card__foot">
-              <span class="price"><small>R$</small>47,90</span>
-              <button class="btn btn--red js-add" type="button" data-name="Trufada Premium">Quero pedir</button>
+              <span class="feature-card__note">🔥 Na brasa</span>
+              <a class="btn btn--red js-wa" data-item="Choripán" href="#" target="_blank" rel="noopener">Quero pedir</a>
             </div>
           </article>
         </div>
@@ -1358,8 +1462,8 @@
           <div class="filters" role="tablist" aria-label="Filtrar cardápio por categoria">
             <button class="filter-btn is-active" type="button" role="tab" aria-selected="true" data-filter="todos">Todos <span class="filter-btn__count" data-count="todos"></span></button>
             <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="burgers">🍔 Burgers <span class="filter-btn__count" data-count="burgers"></span></button>
-            <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="pizzas">🍕 Pizzas <span class="filter-btn__count" data-count="pizzas"></span></button>
-            <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="combos">🍟 Combos <span class="filter-btn__count" data-count="combos"></span></button>
+            <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="especiais">💨 Especiais <span class="filter-btn__count" data-count="especiais"></span></button>
+            <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="porcoes">🍟 Porções <span class="filter-btn__count" data-count="porcoes"></span></button>
             <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="bebidas">🥤 Bebidas <span class="filter-btn__count" data-count="bebidas"></span></button>
           </div>
         </div>
@@ -1370,54 +1474,57 @@
     </section>
 
     <!-- ========================= PRODUTO EM DESTAQUE ========================= -->
-    <section class="section spotlight" id="especial">
+    <section class="section spotlight" id="defumado">
       <div class="container spotlight__grid">
-        <div class="spotlight__media">
-          <span class="spotlight__chip spotlight__chip--1" aria-hidden="true">🔥 Assada na lenha</span>
-          <div class="float3d" data-tilt data-reveal>
+        <div class="spotlight__media" data-img-slot>
+          <!-- Foto real: img/burger-defumado.jpg. Sem ela, aparece o burger flutuante -->
+          <img class="slot-img spotlight__photo" src="img/burger-defumado.jpg" alt="Burger Defumado Landgraf com queijo derretido, cebola caramelizada e molho especial, servido na tábua de madeira" loading="lazy">
+          <span class="spotlight__chip spotlight__chip--1" aria-hidden="true">💨 Defumação própria</span>
+          <div class="float3d" data-tilt data-reveal data-img-slot>
             <div class="float3d__tilt">
               <div class="float3d__shadow" aria-hidden="true"></div>
               <div class="float3d__lift">
                 <div class="float3d__float spotlight__food">
-                  <!-- Coloque pizza.png (fundo transparente) na mesma pasta para substituir o emoji -->
-                  <img class="float3d__img" src="pizza.png" alt="Pizza Pepperoni Artesanal" width="800" height="800" loading="lazy" draggable="false">
-                  <span class="float3d__emoji" role="img" aria-label="Pizza">🍕</span>
+                  <img class="float3d__img" src="img/burger.webp" alt="" width="1000" height="830" draggable="false">
+                  <span class="float3d__emoji" aria-hidden="true">🍔</span>
                 </div>
               </div>
             </div>
           </div>
-          <span class="spotlight__chip spotlight__chip--2" aria-hidden="true">⏱ Massa de 48h</span>
+          <span class="spotlight__chip spotlight__chip--2" aria-hidden="true">🍞 Pão da casa</span>
         </div>
 
         <div>
-          <span class="eyebrow">Especial da semana</span>
-          <h2 class="title">Pepperoni Artesanal</h2>
+          <span class="eyebrow">O segredo tá na fumaça</span>
+          <h2 class="title">Burger Defumado</h2>
           <p class="spotlight__desc">
-            Nossa massa descansa 48 horas antes de ir ao forno a 450 °C. O resultado: borda aerada, crocante por fora e macia por dentro,
-            coberta com pepperoni importado que fica levemente curvado e crocante nas pontas. Tudo isso com borda recheada de queijo cremoso.
+            Carne boa não tem atalho. Nosso blend passa horas na defumadora, em fogo baixo e lenha selecionada,
+            até ganhar a casquinha escura e a suculência que desmancha. Vai no pão feito na casa — macio pra abraçar
+            a carne e firme pra segurar o queijo escorrendo.
           </p>
 
           <ul class="ingredients" aria-label="Ingredientes">
-            <li><span>🍅</span> Molho san marzano</li>
-            <li><span>🧀</span> Mozzarella fresca</li>
-            <li><span>🍕</span> Pepperoni importado</li>
-            <li><span>🧈</span> Borda de requeijão</li>
-            <li><span>🌿</span> Orégano fresco</li>
-            <li><span>🌶️</span> Mel picante</li>
+            <li><span>🥩</span> Blend da casa</li>
+            <li><span>💨</span> Defumação lenta</li>
+            <li><span>🧀</span> Queijo derretido</li>
+            <li><span>🧅</span> Cebola caramelizada</li>
+            <li><span>🥫</span> Molho especial</li>
+            <li><span>🍞</span> Pão artesanal</li>
           </ul>
 
           <div class="spotlight__buy">
-            <div>
-              <span class="price-old">R$ 56,90</span>
-              <span class="price"><small>R$</small>48,90</span>
-            </div>
-            <button class="btn btn--primary btn--lg js-add" type="button" data-name="Pepperoni Artesanal">Pedir agora</button>
+            <a class="btn btn--primary btn--lg js-wa" data-item="Burger Defumado" href="#" target="_blank" rel="noopener">
+              <svg aria-hidden="true"><use href="#i-wa"/></svg> Quero um defumado
+            </a>
+            <a class="btn btn--outline" href="#cardapio">Ver cardápio</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========================= DEPOIMENTOS ========================= -->
+    <!-- ========================= DEPOIMENTOS =========================
+         ATENÇÃO: textos de EXEMPLO. Troque por avaliações reais de clientes
+         (Google, iFood, Instagram) antes de publicar. -->
     <section class="section testimonials" id="depoimentos">
       <div class="container">
         <div class="section-head section-head--center">
@@ -1428,45 +1535,46 @@
         <div class="testimonials__grid">
           <article class="testimonial">
             <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
-            <p class="testimonial__text">"O melhor smash burger que já comi. Volta e meia estou aqui."</p>
+            <p class="testimonial__text">"O pulled pork é absurdo: macio e com gostinho de fumaça de verdade."</p>
             <div class="testimonial__author">
-              <span class="avatar avatar--red" aria-hidden="true">L</span>
+              <span class="avatar avatar--red" aria-hidden="true">C</span>
               <div>
-                <div class="testimonial__name">Lucas M.</div>
-                <div class="testimonial__role">Cliente desde 2023</div>
+                <div class="testimonial__name">Cliente Landgraf</div>
+                <div class="testimonial__role"><em>Exemplo</em> · troque por uma avaliação real</div>
               </div>
             </div>
           </article>
 
           <article class="testimonial">
             <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
-            <p class="testimonial__text">"A pizza trufada é de outro nível. Ingredientes de verdade."</p>
+            <p class="testimonial__text">"Melhor pão de hambúrguer da região, dá pra sentir que é feito na hora."</p>
             <div class="testimonial__author">
-              <span class="avatar avatar--orange" aria-hidden="true">F</span>
+              <span class="avatar avatar--orange" aria-hidden="true">C</span>
               <div>
-                <div class="testimonial__name">Fernanda R.</div>
-                <div class="testimonial__role">Pediu 32 vezes</div>
+                <div class="testimonial__name">Cliente Landgraf</div>
+                <div class="testimonial__role"><em>Exemplo</em> · troque por uma avaliação real</div>
               </div>
             </div>
           </article>
 
           <article class="testimonial">
             <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
-            <p class="testimonial__text">"Atendimento rápido e a comida chega perfeita. Favorito da família."</p>
+            <p class="testimonial__text">"Pedi no delivery e chegou quentinho. O Smash Cheddar é viciante."</p>
             <div class="testimonial__author">
               <span class="avatar avatar--green" aria-hidden="true">C</span>
               <div>
-                <div class="testimonial__name">Carlos S.</div>
-                <div class="testimonial__role">Fã do Combo Família</div>
+                <div class="testimonial__name">Cliente Landgraf</div>
+                <div class="testimonial__role"><em>Exemplo</em> · troque por uma avaliação real</div>
               </div>
             </div>
           </article>
         </div>
 
-        <div class="rating-summary">
-          <strong>4,9</strong>
-          <span class="stars" aria-hidden="true">★★★★★</span>
-          <span>de mais de 2.300 avaliações</span>
+        <div class="insta-cta">
+          <span>Mais fotos e novidades no nosso Instagram</span>
+          <a class="btn btn--outline" href="https://www.instagram.com/landgrafhamburgueria/" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-ig"/></svg> @landgrafhamburgueria
+          </a>
         </div>
       </div>
     </section>
@@ -1476,12 +1584,19 @@
       <div class="container">
         <span class="eyebrow" style="color: var(--color-yellow);">Bateu a fome?</span>
         <h2 class="final-cta__title">A brasa já tá <span>acesa</span></h2>
-        <p class="final-cta__sub">Faça seu pedido agora e receba quentinho em até 30 minutos. Sem enrolação.</p>
-        <a href="#cardapio" class="btn btn--primary btn--lg">Quero pedir</a>
+        <p class="final-cta__sub">Peça pelo WhatsApp e receba quentinho, ou vem comer aqui com a gente — agora em frente à Assembleia, no Sol Nascente.</p>
+        <div class="final-cta__actions">
+          <a href="#" class="btn btn--primary btn--lg js-wa" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-wa"/></svg> Quero pedir
+          </a>
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Rua+Kaigang,+80,+Sol+Nascente,+Campina+da+Lagoa+-+PR" class="btn btn--ghost btn--lg" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-pin"/></svg> Como chegar
+          </a>
+        </div>
         <div class="final-cta__perks">
-          <span>🛵 Entrega rápida</span>
-          <span>🔥 Sai quente da chapa</span>
-          <span>💳 Pix e cartão</span>
+          <span>🛵 Delivery</span>
+          <span>🍽️ Presencial</span>
+          <span class="status js-status"><span class="status__dot"></span><span class="js-status-text">Seg a Sáb · 18h30–22h30</span></span>
         </div>
       </div>
     </section>
@@ -1492,99 +1607,131 @@
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
-          <a href="#inicio" class="logo">
-            <span class="logo__mark" aria-hidden="true">🔥</span>
-            <span>Brasa <span class="logo__amp">&amp;</span> Massa</span>
+          <a href="#inicio" class="logo" aria-label="Landgraf Hamburgueria — início">
+            <svg class="logo__mark" aria-hidden="true"><use href="#emblem"/></svg>
+            <span class="logo__text">
+              <span class="logo__name">Landgraf</span>
+              <span class="logo__sub">Hamburgueria</span>
+            </span>
           </a>
-          <p>Artesanal. Quente. Irresistível. Burgers na brasa e pizzas de fermentação lenta desde 2019.</p>
+          <p>Burger artesanal, defumação própria e pão feito na casa. Defumado no ponto certo.</p>
         </div>
 
         <div>
           <h3 class="footer__title">Endereço</h3>
           <ul class="footer__list">
-            <li><span aria-hidden="true">📍</span> Rua das Flames, 420<br>São Paulo, SP</li>
-            <li><span aria-hidden="true">📞</span> <a href="tel:+5511999990420">(11) 99999-0420</a></li>
+            <li><span aria-hidden="true">📍</span> <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Rua+Kaigang,+80,+Sol+Nascente,+Campina+da+Lagoa+-+PR" target="_blank" rel="noopener">Rua Kaigang, 80 – Sol Nascente<br>Em frente à Assembleia<br>Campina da Lagoa – PR</a></li>
           </ul>
         </div>
 
         <div>
           <h3 class="footer__title">Horário</h3>
           <ul class="footer__list">
-            <li><span aria-hidden="true">🕚</span> Seg–Sex: 11h–23h</li>
-            <li><span aria-hidden="true">🕛</span> Sáb–Dom: 11h–00h</li>
+            <li><span aria-hidden="true">🕡</span> Seg a Sáb: 18h30 às 22h30</li>
+            <li><span aria-hidden="true">🚫</span> Domingo: fechado</li>
+            <li><span class="status js-status"><span class="status__dot"></span><span class="js-status-text"></span></span></li>
           </ul>
         </div>
 
         <div>
           <h3 class="footer__title">Siga a gente</h3>
           <div class="socials">
-            <a class="social" href="#" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            <a class="social" href="https://www.instagram.com/landgrafhamburgueria/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg aria-hidden="true"><use href="#i-ig"/></svg>
             </a>
-            <a class="social" href="#" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.7-.6H14z"/></svg>
-            </a>
-            <a class="social" href="#" aria-label="WhatsApp">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
-            </a>
-            <a class="social" href="#" aria-label="TikTok">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.2v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.6a5.8 5.8 0 1 0 5 5.8V9a7.4 7.4 0 0 0 4.3 1.4V7.2a4.3 4.3 0 0 1-3.2-1.4z"/></svg>
+            <a class="social js-wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg aria-hidden="true"><use href="#i-wa"/></svg>
             </a>
           </div>
+          <ul class="footer__list" style="margin-top: 14px;">
+            <li><a href="https://www.instagram.com/landgrafhamburgueria/" target="_blank" rel="noopener">@landgrafhamburgueria</a></li>
+          </ul>
         </div>
       </div>
 
       <div class="footer__bottom">
-        <span>© <span id="year">2026</span> Brasa &amp; Massa. Todos os direitos reservados.</span>
-        <span>Feito com 🔥 em São Paulo</span>
+        <span>© <span id="year">2026</span> Landgraf Hamburgueria. Todos os direitos reservados.</span>
+        <span>Defumado no ponto certo. 🔥</span>
       </div>
     </div>
   </footer>
 
-  <!-- Sticky CTA (mobile) + Toast -->
+  <!-- CTA fixo (mobile) -->
   <div class="sticky-cta" id="stickyCta">
-    <a href="#cardapio" class="btn btn--primary btn--lg">🍔 Pedir agora</a>
+    <a href="#" class="btn btn--primary btn--lg js-wa" target="_blank" rel="noopener">
+      <svg aria-hidden="true"><use href="#i-wa"/></svg> Pedir no WhatsApp
+    </a>
   </div>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
     (function () {
       "use strict";
 
-      /* ---------- Dados do cardápio ---------- */
+      /* ================= CONFIGURAÇÃO ================= */
+      // Link oficial do WhatsApp (da bio do Instagram).
+      var WA_LINK = "https://wa.me/message/ZHE2F6LC7OC2F1";
+      // Para cada botão já abrir com o nome do lanche, informe o número no
+      // formato 55 + DDD + número (só dígitos). Ex.: "5544999999999"
+      var WA_PHONE = "";
+
+      // Funcionamento: 0 = domingo … 6 = sábado; horários em minutos desde 00:00
+      var HOURS = { open: 18 * 60 + 30, close: 22 * 60 + 30, days: [1, 2, 3, 4, 5, 6] };
+      var TZ = "America/Sao_Paulo";
+
+      // Cardápio. Para mostrar preço, adicione  price: "R$ 34,90".
+      // Para usar foto real, adicione  img: "img/arquivo.jpg"  (sem o arquivo, fica o emoji).
       var MENU = [
-        { name: "Classic Smash",       cat: "burgers", emoji: "🍔", bg: "bg-warm",  price: 34.90,  desc: "Duplo smash, cheddar artesanal, picles, molho especial" },
-        { name: "Brasa BBQ",           cat: "burgers", emoji: "🍔", bg: "bg-fire",  price: 39.90,  desc: "Blend premium, bacon defumado, cebola caramelizada, molho BBQ" },
-        { name: "Trufada Premium",     cat: "burgers", emoji: "🍔", bg: "bg-deep",  price: 47.90,  desc: "Blend angus, queijo brie, cogumelo, molho trufado" },
-        { name: "Margherita da Casa",  cat: "pizzas",  emoji: "🍕", bg: "bg-warm",  price: 42.90,  desc: "Molho san marzano, fior di latte, manjericão fresco" },
-        { name: "Pepperoni Artesanal", cat: "pizzas",  emoji: "🍕", bg: "bg-fire",  price: 48.90,  desc: "Pepperoni importado, queijo cremoso, borda recheada" },
-        { name: "Combo Família",       cat: "combos",  emoji: "🍟", bg: "bg-deep",  price: 129.90, desc: "2 burgers + 1 pizza + 4 bebidas" },
-        { name: "Limonada da Casa",    cat: "bebidas", emoji: "🍋", bg: "bg-fresh", price: 12.90,  desc: "Limão siciliano, hortelã e gelo — feita na hora" },
-        { name: "Refri Lata",          cat: "bebidas", emoji: "🥤", bg: "bg-fresh", price: 7.90,   desc: "350 ml bem gelado. Escolha o sabor no pedido" }
+        { cat: "burgers",   name: "Smash Cheddar",      emoji: "🍔", bg: "bg-warm",  img: "img/smash-cheddar.jpg",   desc: "Dois smash prensados na chapa, cheddar derretido e pão artesanal" },
+        { cat: "burgers",   name: "Burger Defumado",    emoji: "🍔", bg: "bg-deep",  img: "img/burger-defumado.jpg", desc: "Blend da casa defumado, queijo, cebola caramelizada e molho especial" },
+        { cat: "burgers",   name: "Bacon Burger",       emoji: "🥓", bg: "bg-fire",  desc: "Burger suculento, bacon crocante, cheddar e maionese da casa" },
+        { cat: "burgers",   name: "X-Salada Artesanal", emoji: "🥬", bg: "bg-fresh", desc: "Burger, queijo, alface, tomate, cebola roxa e pão artesanal" },
+        { cat: "especiais", name: "Pulled Pork",        emoji: "🥪", bg: "bg-deep",  img: "img/pulled-pork.jpg",     desc: "Porco desfiado defumado por horas, barbecue e pão artesanal" },
+        { cat: "especiais", name: "Choripán",           emoji: "🌭", bg: "bg-fire",  img: "img/choripan.jpg",        desc: "Linguiça artesanal na brasa, chimichurri e pão crocante" },
+        { cat: "porcoes",   name: "Batata Frita",       emoji: "🍟", bg: "bg-warm",  desc: "Porção de batata crocante, sequinha e bem temperada" },
+        { cat: "porcoes",   name: "Porção Defumada",    emoji: "🍖", bg: "bg-deep",  desc: "Carnes defumadas da casa para compartilhar" },
+        { cat: "bebidas",   name: "Refrigerante",       emoji: "🥤", bg: "bg-fresh", desc: "Lata ou 2 litros, bem gelado" },
+        { cat: "bebidas",   name: "Suco Natural",       emoji: "🧃", bg: "bg-fresh", desc: "Feito na hora com os sabores do dia" }
       ];
 
-      var CAT_LABEL = { burgers: "Burger", pizzas: "Pizza", combos: "Combo", bebidas: "Bebida" };
+      var CAT_LABEL = { burgers: "Burger", especiais: "Especial", porcoes: "Porção", bebidas: "Bebida" };
 
-      var fmt = function (v) { return v.toFixed(2).replace(".", ","); };
+      /* ================= WHATSAPP ================= */
+      function waHref(item) {
+        if (!WA_PHONE) return WA_LINK;
+        var msg = item ? "Olá, Landgraf! Quero pedir: " + item + " 🍔" : "Olá, Landgraf! Quero fazer um pedido 🍔";
+        return "https://wa.me/" + WA_PHONE + "?text=" + encodeURIComponent(msg);
+      }
+      function wireWa(root) {
+        (root || document).querySelectorAll(".js-wa").forEach(function (a) {
+          a.href = waHref(a.getAttribute("data-item"));
+        });
+      }
 
-      /* ---------- Render do cardápio ---------- */
+      /* ================= CARDÁPIO ================= */
+      var esc = function (str) {
+        return String(str).replace(/[&<>"']/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+        });
+      };
       var grid = document.getElementById("menuGrid");
       var empty = document.getElementById("menuEmpty");
 
       grid.innerHTML = MENU.map(function (p) {
         return (
           '<article class="product-card" data-cat="' + p.cat + '">' +
-            '<div class="product-card__photo ' + p.bg + '" aria-hidden="true">' + p.emoji + '</div>' +
+            '<div class="product-card__photo ' + p.bg + '" data-img-slot>' +
+              (p.img ? '<img class="slot-img" src="' + esc(p.img) + '" alt="' + esc(p.name) + '" loading="lazy">' : "") +
+              '<span class="slot-fallback" aria-hidden="true">' + p.emoji + '</span>' +
+            '</div>' +
             '<span class="product-card__cat">' + CAT_LABEL[p.cat] + '</span>' +
-            '<h3 class="product-card__name">' + p.name + '</h3>' +
-            '<p class="product-card__desc">' + p.desc + '</p>' +
-            '<span class="price"><small>R$</small>' + fmt(p.price) + '</span>' +
-            '<button class="btn btn--red js-add" type="button" data-name="' + p.name + '">Pedir</button>' +
+            '<h3 class="product-card__name">' + esc(p.name) + '</h3>' +
+            '<p class="product-card__desc">' + esc(p.desc) + '</p>' +
+            (p.price ? '<span class="price">' + esc(p.price).replace("R$", "<small>R$</small>") + '</span>' : "") +
+            '<a class="btn btn--red js-wa" data-item="' + esc(p.name) + '" href="#" target="_blank" rel="noopener">Pedir</a>' +
           '</article>'
         );
       }).join("");
 
-      /* Contagem por categoria */
       document.querySelectorAll("[data-count]").forEach(function (el) {
         var c = el.getAttribute("data-count");
         el.textContent = c === "todos" ? MENU.length : MENU.filter(function (p) { return p.cat === c; }).length;
@@ -1596,7 +1743,7 @@
 
       function applyFilter(filter) {
         var visible = 0;
-        cards.forEach(function (card, i) {
+        cards.forEach(function (card) {
           var show = filter === "todos" || card.getAttribute("data-cat") === filter;
           card.classList.toggle("is-hidden", !show);
           card.classList.remove("is-entering");
@@ -1622,39 +1769,51 @@
         });
       });
 
-      /* ---------- Carrinho simples + toast ---------- */
-      var count = 0;
-      var countEl = document.getElementById("cartCount");
-      var cartBtn = document.getElementById("cartBtn");
-      var toast = document.getElementById("toast");
-      var toastTimer;
+      wireWa();
 
-      function showToast(html) {
-        toast.innerHTML = html;
-        toast.classList.add("is-visible");
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(function () { toast.classList.remove("is-visible"); }, 2200);
+      /* ================= FOTOS REAIS (slots) ================= */
+      // A foto só substitui o emoji/fallback se o arquivo existir e carregar.
+      document.querySelectorAll("[data-img-slot]").forEach(function (slot) {
+        var img = slot.querySelector(":scope > img, :scope .float3d__img");
+        if (!img) return;
+        var ok = function () { if (img.naturalWidth > 0) slot.classList.add("has-img"); };
+        if (img.complete) ok(); else img.addEventListener("load", ok);
+        img.addEventListener("error", function () { img.remove(); });
+      });
+
+      /* ================= ABERTO / FECHADO ================= */
+      function nowInTZ() {
+        try {
+          var parts = new Intl.DateTimeFormat("en-US", { timeZone: TZ, weekday: "short", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date());
+          var get = function (t) { return parts.filter(function (x) { return x.type === t; })[0].value; };
+          var days = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+          return { day: days[get("weekday")], min: +get("hour") * 60 + +get("minute") };
+        } catch (e) {
+          var d = new Date();
+          return { day: d.getDay(), min: d.getHours() * 60 + d.getMinutes() };
+        }
       }
+      function updateStatus() {
+        var n = nowInTZ();
+        var open = HOURS.days.indexOf(n.day) > -1 && n.min >= HOURS.open && n.min < HOURS.close;
+        var text;
+        if (open) {
+          text = "Aberto agora · até 22h30";
+        } else if (HOURS.days.indexOf(n.day) > -1 && n.min < HOURS.open) {
+          text = "Fechado · abre hoje às 18h30";
+        } else {
+          var next = (n.day + 1) % 7;
+          text = HOURS.days.indexOf(next) > -1 ? "Fechado · abre amanhã às 18h30" : "Fechado · abre segunda às 18h30";
+        }
+        document.querySelectorAll(".js-status").forEach(function (el) {
+          el.classList.toggle("is-open", open);
+          el.querySelector(".js-status-text").textContent = text;
+        });
+      }
+      updateStatus();
+      setInterval(updateStatus, 60000);
 
-      document.addEventListener("click", function (e) {
-        var btn = e.target.closest(".js-add");
-        if (!btn) return;
-        count++;
-        countEl.textContent = count;
-        cartBtn.setAttribute("aria-label", "Itens no pedido: " + count);
-        countEl.classList.remove("bump");
-        void countEl.offsetWidth;
-        countEl.classList.add("bump");
-        showToast("✅ <strong>" + btn.getAttribute("data-name") + "</strong> adicionado ao pedido");
-      });
-
-      cartBtn.addEventListener("click", function () {
-        showToast(count
-          ? "🛒 Você tem <strong>" + count + " " + (count === 1 ? "item" : "itens") + "</strong> no pedido"
-          : "🛒 Seu pedido está vazio — bora escolher?");
-      });
-
-      /* ---------- Menu mobile ---------- */
+      /* ================= MENU MOBILE ================= */
       var toggle = document.getElementById("menuToggle");
       var mobileNav = document.getElementById("mobileNav");
 
@@ -1671,7 +1830,7 @@
       });
       document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
 
-      /* ---------- Header on scroll + sticky CTA ---------- */
+      /* ================= HEADER + CTA FIXO ================= */
       var header = document.getElementById("header");
       var sticky = document.getElementById("stickyCta");
       var hero = document.getElementById("inicio");
@@ -1688,20 +1847,11 @@
       window.addEventListener("scroll", onScroll, { passive: true });
       onScroll();
 
-      /* ---------- Produto flutuante: PNG, tilt 3D e entrada ---------- */
+      /* ================= PRODUTO FLUTUANTE: TILT 3D + ENTRADA ================= */
       var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
       document.querySelectorAll(".float3d").forEach(function (box) {
-        // Troca o emoji pelo PNG apenas se o arquivo existir e carregar
-        var img = box.querySelector(".float3d__img");
-        if (img) {
-          var ok = function () { if (img.naturalWidth > 0) box.classList.add("has-img"); };
-          if (img.complete) ok(); else img.addEventListener("load", ok);
-          img.addEventListener("error", function () { img.remove(); });
-        }
-
-        // Tilt 3D acompanhando o mouse (a área de captura é o bloco pai)
         if (canHover && !reduceMotion && box.hasAttribute("data-tilt")) {
           var area = box.closest("[data-tilt-area]") || box.parentElement;
           var frame = null;
@@ -1710,7 +1860,7 @@
             frame = requestAnimationFrame(function () {
               frame = null;
               var r = area.getBoundingClientRect();
-              var dx = (e.clientX - r.left) / r.width - 0.5;   // -0.5 … 0.5
+              var dx = (e.clientX - r.left) / r.width - 0.5;
               var dy = (e.clientY - r.top) / r.height - 0.5;
               box.classList.add("is-tracking");
               box.style.setProperty("--ry", (dx * 26).toFixed(2) + "deg");
@@ -1724,7 +1874,6 @@
           });
         }
 
-        // Entrada com zoom + fade quando entra na tela (seções abaixo do hero)
         if (box.hasAttribute("data-reveal")) {
           if (!("IntersectionObserver" in window)) { box.classList.add("is-in"); return; }
           var io = new IntersectionObserver(function (entries) {
@@ -1736,16 +1885,15 @@
         }
       });
 
-      /* ---------- Vídeo de fundo opcional do hero ---------- */
+      /* ================= VÍDEO DE FUNDO OPCIONAL ================= */
       var video = document.getElementById("heroVideo");
       if (video) {
         if (reduceMotion) {
           video.remove();
         } else {
-          var src = video.querySelector("source");
-          // Sem hero-bg.mp4: remove o elemento (o erro pode ter disparado antes deste script)
+          // Sem o arquivo: remove o elemento (o erro pode ter disparado antes deste script)
           if (video.networkState === 3) video.remove();
-          src.addEventListener("error", function () { video.remove(); });
+          video.querySelector("source").addEventListener("error", function () { video.remove(); });
           video.addEventListener("loadeddata", function () {
             hero.classList.add("has-video");
             var p = video.play();
