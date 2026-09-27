@@ -46,7 +46,7 @@
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday","PublicHolidays"], "opens": "08:00", "closes": "13:00" }
   ],
   "amenityFeature": [
-    { "@type": "LocationFeatureSpecification", "name": "Estacionamento gratuito", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Estacionamento gratuito por 2 horas (R. Voluntários da Pátria, 758)", "value": true },
     { "@type": "LocationFeatureSpecification", "name": "Espaço kids", "value": true },
     { "@type": "LocationFeatureSpecification", "name": "Aulas coletivas", "value": true }
   ],
@@ -164,11 +164,12 @@ section[id]{ scroll-margin-top:64px; }
 .header.is-solid{ background:rgba(10,10,10,.97); padding-block:10px; border-bottom-color:var(--line-dark); }
 .header .wrap{ display:flex; align-items:center; gap:24px; }
 .logo{ display:inline-flex; align-items:center; gap:10px; text-decoration:none; line-height:1; }
-.logo__mark{ width:22px; height:28px; color:var(--yellow); transition:width .3s var(--ease), height .3s var(--ease); }
-.logo__word{ font-family:var(--f-display); font-size:1.55rem; letter-spacing:-.01em; transition:font-size .3s var(--ease); }
-.logo__unit{ display:block; font:800 .58rem/1 var(--f-text); letter-spacing:.2em; color:var(--muted-on-dark); margin-top:4px; }
+.logo__mark{ width:20px; height:28px; color:var(--yellow); fill:none; stroke:currentColor; stroke-width:4; stroke-linecap:round; stroke-linejoin:round; margin-left:2px; transition:width .3s var(--ease), height .3s var(--ease); }
+.logo__word b{ font-weight:400; color:var(--yellow); }
+.logo__word{ font-family:var(--f-display); font-size:1.55rem; letter-spacing:.06em; transition:font-size .3s var(--ease); }
+.logo__unit{ display:block; text-align:right; font:800 .6rem/1 var(--f-text); letter-spacing:.3em; color:var(--muted-on-dark); margin-top:3px; }
 .header.is-solid .logo__word{ font-size:1.3rem; }
-.header.is-solid .logo__mark{ width:18px; height:23px; }
+.header.is-solid .logo__mark{ width:17px; height:24px; }
 
 .nav{ margin-left:auto; display:flex; align-items:center; gap:28px; }
 .nav__links{ display:flex; gap:26px; list-style:none; margin:0; padding:0; }
@@ -277,6 +278,7 @@ section[id]{ scroll-margin-top:64px; }
 .why__n .chev{ stroke-width:4.2; }
 .why__item h3{ font-size:clamp(2rem,4.6vw,3.4rem); margin-top:20px; max-width:14ch; }
 .why__item p{ margin-top:16px; font-size:1.1rem; max-width:38ch; color:#2A2925; }
+.why__item p.why__note{ margin-top:10px; font-size:.95rem; font-weight:700; color:var(--muted-on-light); }
 .why__photo{ aspect-ratio:4/3; }
 @media (min-width:860px){
   .why__item{ grid-template-columns:1fr 1.15fr; gap:56px; align-items:center; padding-block:48px; }
@@ -374,20 +376,21 @@ section[id]{ scroll-margin-top:64px; }
 .ticks li:last-child{ border-bottom:0; }
 .ticks .chev{ color:var(--yellow); width:11px; height:13px; transform:translateY(1px); }
 .ticks .chev{ stroke-width:4.5; }
-.seal{
-  margin-top:28px; display:inline-grid; gap:4px; padding:16px 18px;
-  border:2px solid var(--yellow); border-radius:var(--radius); transform:rotate(-3deg);
-  outline:1px solid var(--yellow); outline-offset:4px;
-}
-.seal small{ font-weight:800; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--yellow); }
-.seal strong{ font-family:var(--f-display); font-weight:400; font-size:1.6rem; text-transform:uppercase; line-height:1; }
-.seal span{ font-weight:700; font-size:.88rem; color:#D9D5CB; }
 @media (min-width:900px){
   .plan{ grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); }
   .plan__main{ padding:52px 48px; }
   .plan__main .btn{ width:auto; min-width:320px; }
   .plan__side{ border-top:0; border-left:1px solid var(--line-dark); padding:52px 40px; }
 }
+
+
+/* TotalPass */
+.tp{ display:grid; gap:28px; margin-top:20px; padding:22px; border:1px solid var(--line-dark); background:var(--black-2); align-items:center; }
+.tp__post{ aspect-ratio:4/5; width:100%; max-width:360px; }
+.tp h3{ font-size:clamp(2rem,5vw,3.2rem); margin-top:14px; max-width:12ch; }
+.tp__text > p:not(.plan__label):not(.tp__tag){ margin-top:16px; font-size:1.1rem; color:#D9D5CB; max-width:36ch; }
+.tp__tag{ display:inline-block; margin-top:22px; background:var(--yellow); color:var(--black); font-family:var(--f-display); text-transform:uppercase; font-size:1rem; padding:10px 14px; transform:skewX(-8deg); }
+@media (min-width:760px){ .tp{ grid-template-columns:minmax(0,360px) minmax(0,1fr); gap:48px; padding:32px; } }
 
 /* ---------- Depoimentos ---------- */
 .quotes{ display:grid; gap:20px; margin-top:52px; }
@@ -440,7 +443,8 @@ section[id]{ scroll-margin-top:64px; }
 .park{ display:flex; gap:14px; align-items:center; margin-top:20px; padding:16px 18px; border-left:6px solid var(--yellow); background:var(--black-2); }
 .park svg{ width:34px; height:34px; color:var(--yellow); flex:none; }
 .park b{ display:block; font-family:var(--f-display); font-weight:400; text-transform:uppercase; font-size:1.25rem; line-height:1; }
-.park span{ color:var(--muted-on-dark); font-size:.95rem; }
+.park span{ display:block; margin-top:6px; color:var(--muted-on-dark); font-size:.95rem; line-height:1.45; }
+.park a{ color:var(--paper); font-weight:700; white-space:nowrap; }
 .visit__btns{ display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
 .visit__btns .btn{ flex:1 1 180px; justify-content:space-between; }
 @media (min-width:960px){
@@ -506,8 +510,8 @@ section[id]{ scroll-margin-top:64px; }
   <div class="wrap">
     <!-- Troque pelo SVG oficial do logo Uplay quando tiver o arquivo -->
     <a class="logo" href="#topo" aria-label="Uplay São José dos Pinhais – início">
-      <svg class="logo__mark" viewBox="0 0 22 28" aria-hidden="true"><path fill="currentColor" d="M0 0h9.5L22 14 9.5 28H0l12.5-14z"/></svg>
-      <span><span class="logo__word">UPLAY</span><span class="logo__unit">SÃO JOSÉ DOS PINHAIS</span></span>
+      <span><span class="logo__word"><b>U</b>PLAY</span><span class="logo__unit">SJP</span></span>
+      <svg class="logo__mark" viewBox="0 0 20 28" aria-hidden="true"><path d="M4 3l12 11L4 25"/></svg>
     </a>
 
     <button class="menu-btn" id="menuBtn" aria-controls="nav" aria-expanded="false"><span></span><b class="visually-hidden">Abrir menu</b></button>
@@ -563,7 +567,7 @@ section[id]{ scroll-margin-top:64px; }
 
     <ul class="facts">
       <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Matrícula zero</li>
-      <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Estacionamento grátis</li>
+      <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Estacionamento grátis por 2h</li>
       <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Aceita TotalPass</li>
       <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Aberto até 23h</li>
     </ul>
@@ -623,6 +627,7 @@ section[id]{ scroll-margin-top:64px; }
           <span class="why__n"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>02</span>
           <h3>Estacionamento gratuito</h3>
           <p>Chegou, estacionou, treinou. Sem dor de cabeça no Centro.</p>
+          <p class="why__note">Grátis por 2 horas, na R. Voluntários da Pátria, 758, ao lado da farmácia.</p>
         </div>
         <figure class="why__photo ph reveal" data-ph="foto-estacionamento.jpg">
           <img src="fotos/foto-estacionamento.jpg" alt="Estacionamento gratuito da Uplay São José dos Pinhais" loading="lazy" onerror="this.remove()">
@@ -789,14 +794,21 @@ section[id]{ scroll-margin-top:64px; }
           <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Professor acompanhando seu treino</li>
           <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Aulas coletivas</li>
           <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Espaço Kids</li>
-          <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Estacionamento gratuito</li>
+          <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Estacionamento gratuito por 2 horas</li>
           <li><svg class="chev" aria-hidden="true"><use href="#chev"/></svg><span>Seg a Sex das <span class="num">5h30</span> às <span class="num">23h</span></span></li>
         </ul>
-        <div class="seal">
-          <small>Aceitamos</small>
-          <strong>TotalPass</strong>
-          <span>a partir do plano TP3</span>
-        </div>
+      </div>
+    </div>
+
+    <div class="tp reveal">
+      <figure class="tp__post ph" data-ph="post-totalpass.jpg">
+        <img src="fotos/post-totalpass.jpg" alt="Post da Uplay SJP: Agora aceitamos TotalPass. Válido a partir do plano TP3." loading="lazy" onerror="this.remove()">
+      </figure>
+      <div class="tp__text">
+        <p class="plan__label"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Novidade</p>
+        <h3>Agora aceitamos TotalPass</h3>
+        <p>Tem TotalPass pela sua empresa? Então já pode fazer check-in e treinar aqui na Uplay.</p>
+        <p class="tp__tag">Válido a partir do plano TP3</p>
       </div>
     </div>
   </div>
@@ -881,7 +893,7 @@ section[id]{ scroll-margin-top:64px; }
       <p class="addr reveal">Rua Tenente Djalma Dutra, 915 – Centro<small>São José dos Pinhais – PR</small></p>
       <div class="park reveal">
         <svg viewBox="0 0 34 34" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="2" width="30" height="30" rx="2"/><path d="M12 25V9h6.5a4.5 4.5 0 0 1 0 9H12"/></svg>
-        <div><b>Estacionamento gratuito</b><span>Chegou, estacionou, treinou.</span></div>
+        <div><b>Estacionamento gratuito</b><span>Por 2 horas. R. Voluntários da Pátria, 758, ao lado da farmácia. <a href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Volunt%C3%A1rios+da+P%C3%A1tria%2C+758%2C+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR" target="_blank" rel="noopener">Ver no mapa</a></span></div>
       </div>
       <div class="visit__btns reveal">
         <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Tenente+Djalma+Dutra%2C+915%2C+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR" target="_blank" rel="noopener">Abrir no Maps <svg class="chev" aria-hidden="true"><use href="#chev"/></svg></a>
@@ -915,8 +927,8 @@ section[id]{ scroll-margin-top:64px; }
     <div class="footer__grid">
       <div>
         <a class="logo" href="#topo" aria-label="Uplay São José dos Pinhais – voltar ao topo">
-          <svg class="logo__mark" viewBox="0 0 22 28" aria-hidden="true"><path fill="currentColor" d="M0 0h9.5L22 14 9.5 28H0l12.5-14z"/></svg>
-          <span><span class="logo__word">UPLAY</span><span class="logo__unit">SÃO JOSÉ DOS PINHAIS</span></span>
+          <span><span class="logo__word"><b>U</b>PLAY</span><span class="logo__unit">SJP</span></span>
+          <svg class="logo__mark" viewBox="0 0 20 28" aria-hidden="true"><path d="M4 3l12 11L4 25"/></svg>
         </a>
         <p class="footer__tag">Sua saúde importa. Ajuda, cuidado e acolhimento.</p>
       </div>

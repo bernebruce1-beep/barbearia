@@ -19,6 +19,7 @@ Coloque as fotos em `fotos/` com exatamente estes nomes. Enquanto um arquivo nã
 | `foto-fachada.jpg` | Galeria |
 | `foto-depoimento-1.jpg` … `-3.jpg` | Depoimentos (quadradas, rosto centralizado) |
 | `og-uplay-sjp.jpg` | Prévia ao compartilhar o link (1200×630) |
+| `post-totalpass.jpg` | Bloco TotalPass no plano (já incluída, com upscale 4x) |
 
 Use JPG com cerca de 1600 px no lado maior (a do hero pode ter 2000 px).
 
