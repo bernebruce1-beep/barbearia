@@ -76,7 +76,7 @@ header.scrolled{background:rgba(11,11,11,.92);backdrop-filter:blur(10px);border-
   url("img/fachada.webp") 70% 30%/cover no-repeat,#0B0B0B;
   clip-path:polygon(0 0,100% 0,100% calc(100% - var(--cut)),0 100%)}
 .hero .bigstar{width:min(90vw,720px);right:-15%;top:50%;transform:translateY(-50%) rotate(12deg);opacity:.09}
-.hero h1{font-size:clamp(2.8rem,11vw,7.5rem);overflow-wrap:anywhere;max-width:900px}
+.hero h1{font-size:clamp(2.6rem,10.5vw,7.5rem);overflow-wrap:break-word;hyphens:manual;max-width:900px}
 .hero h1 em{font-style:normal;color:var(--cobre)}
 .hero p{font-size:1.1rem;color:#cfcfcf;max-width:520px;margin:1.2rem 0}
 .rating{display:flex;align-items:center;gap:.7rem;margin-bottom:2rem;font-size:.9rem;color:var(--muted)}
@@ -210,6 +210,40 @@ footer a:hover{color:var(--cobre)}
 .reveal.left{transform:translateX(-40px)}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+
+/* Ajustes para celular */
+@media(max-width:700px){
+  :root{--cut:32px}
+  section{padding:64px 0}
+  .diag-top{padding-top:calc(64px + var(--cut))}
+  .head{margin-bottom:2rem}
+  .hero{min-height:auto;padding:110px 0 90px}
+  .hero .actions .btn{flex:1 1 100%}
+  .rating{margin-bottom:1.5rem}
+  .services{gap:.8rem}
+  .svc{padding:1.2rem 1.2rem 1.1rem;gap:.5rem}
+  .svc h3{font-size:1.35rem}
+  .svc p{font-size:.88rem}
+  .svc .meta{padding-top:.7rem}
+  .price{font-size:1.5rem}
+  .svc .btn{padding:.7rem 1rem}
+  .feat{padding:1.3rem}
+  .team{gap:.8rem}
+  .pro{padding-bottom:1.1rem}
+  .pro h3{font-size:1.25rem;overflow-wrap:anywhere;padding:0 .4rem}
+  .pro p{margin:.1rem 0 .8rem}
+  .pro .btn{padding:.65rem .5rem;font-size:.72rem;margin:0 .6rem;width:calc(100% - 1.2rem)}
+  .step{padding:1rem .5rem}
+  .step .ico{width:60px;height:60px;margin-bottom:.8rem}
+  .book{margin-top:2rem;padding:1.2rem}
+  .map{min-height:300px}
+  .map-tag strong{font-size:1.4rem}
+  .about-photo{max-width:100%;margin-right:14px}
+  .cta{padding:80px 0}
+  .cta .bigstar{width:320px}
+  .bigstar{width:320px}
+  footer{padding:50px 0 90px}
+}
 </style>
 </head>
 <body>
@@ -235,7 +269,7 @@ footer a:hover{color:var(--cobre)}
   <div class="bigstar"></div>
   <div class="wrap">
     <div class="eyebrow reveal">Barbearia Premium · Kobrasol</div>
-    <h1 class="reveal">Onde o <em>extraordinário</em> vive!</h1>
+    <h1 class="reveal">Onde o <em>extraor&shy;dinário</em> vive!</h1>
     <p class="reveal">Cuidado masculino elevado a outro nível com serviços premium personalizados.</p>
     <div class="rating reveal"><span class="stars" aria-label="5 estrelas">⭑⭑⭑⭑⭑</span> Avaliação 5.0 dos clientes</div>
     <div class="actions reveal">
