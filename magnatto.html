@@ -120,6 +120,10 @@ header.scrolled{background:rgba(11,11,11,.92);backdrop-filter:blur(10px);border-
 .pro p{color:var(--muted);font-size:.85rem;margin:.3rem 0 1rem}
 @media(min-width:800px){.team{grid-template-columns:repeat(4,1fr)}}
 
+.team-photo{margin-bottom:2rem;border:1px solid var(--line);overflow:hidden;aspect-ratio:16/9;max-width:100%}
+.team-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 35%}
+@media(max-width:600px){.team-photo{aspect-ratio:4/3}}
+
 /* Passos */
 .steps{display:grid;gap:1.5rem;counter-reset:s}
 .step{text-align:center;padding:2rem 1rem;position:relative}
@@ -280,7 +284,9 @@ footer a:hover{color:var(--cobre)}
     <div class="head reveal">
       <div class="eyebrow">Nossa equipe</div>
       <h2>Escolha seu profissional</h2>
+      <p class="lead">Time pronto, tesouras afiadas e muita dedicação! Na Magnatto, a excelência começa com quem faz parte dela.</p>
     </div>
+    <figure class="team-photo reveal"><img src="img/equipe.webp" alt="Equipe da Magnatto Barbearia reunida no salão" loading="lazy" width="903" height="903"></figure>
     <div class="team" id="team"></div>
   </div>
 </section>
