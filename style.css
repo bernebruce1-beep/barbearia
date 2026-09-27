@@ -2663,3 +2663,10 @@ img {
     text-decoration: underline;
     cursor: pointer;
 }
+
+
+/* Card da oferta ocupa a linha inteira (7 cards no grid). */
+
+.services-grid .service-card.featured {
+    grid-column: 1 / -1;
+}
