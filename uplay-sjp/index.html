@@ -229,6 +229,7 @@ section[id]{ scroll-margin-top:64px; }
 .hero__photo{ position:absolute; inset:0; clip-path:polygon(17% 0,100% 0,100% 100%,17% 100%,39% 50%); }
 .hero__cut{ position:absolute; inset:0; background:var(--yellow); clip-path:polygon(0 0,11% 0,33% 50%,11% 100%,0 100%,22% 50%); }
 .hero__photo.ph::before{ left:auto; right:14px; }
+.hero__photo img{ object-position:62% 60%; }
 
 .facts{
   list-style:none; margin:40px 0 0; padding:22px 0 30px; border-top:1px solid var(--line-dark);
@@ -337,17 +338,32 @@ section[id]{ scroll-margin-top:64px; }
 .board__top{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px 20px; align-items:center; padding:18px 20px; border-bottom:1px solid var(--line-dark); }
 .board__top strong{ font-family:var(--f-display); font-weight:400; text-transform:uppercase; font-size:1.2rem; }
 .board__top span{ color:var(--muted-on-dark); font-size:.88rem; }
-.board__scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
-.board table{ width:100%; min-width:760px; border-collapse:collapse; font-variant-numeric:tabular-nums; }
-.board th{ background:var(--yellow); color:var(--black); font-family:var(--f-display); font-weight:400; font-size:1rem; text-align:left; padding:12px 16px; letter-spacing:.02em; }
-.board th:first-child, .board td:first-child{ position:sticky; left:0; }
-.board th:first-child{ background:var(--yellow); }
-.board td:first-child{ background:var(--black-2); color:var(--muted-on-dark); font-weight:800; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; }
-.board td{ padding:16px; border-top:1px solid var(--line-dark); border-left:1px solid var(--line-dark); vertical-align:top; }
-.board td:first-child{ border-left:0; }
-.slot b{ display:block; font-weight:800; font-size:1rem; }
-.slot small{ display:block; color:var(--muted-on-dark); font-size:.82rem; margin-top:2px; }
-.slot--empty{ color:#4D4B46; }
+.board__days{ display:grid; grid-template-columns:1fr; }
+.day{ padding:18px 20px 20px; border-top:1px solid var(--line-dark); }
+.day:first-child{ border-top:0; }
+.day h3{ display:flex; align-items:center; gap:10px; font-size:1.15rem; color:var(--yellow); margin-bottom:10px; }
+.day h3 em{ display:none; font:800 .62rem/1 var(--f-text); font-style:normal; letter-spacing:.14em; background:var(--yellow); color:var(--black); padding:4px 6px; }
+.day.is-today{ background:var(--black-2); }
+.day.is-today h3 em{ display:inline-block; }
+.day ul{ list-style:none; margin:0; padding:0; }
+.day li{ display:grid; grid-template-columns:62px 1fr; gap:12px; padding:7px 0; border-bottom:1px dashed #2E2E2B; font-weight:700; }
+.day li:last-child{ border-bottom:0; }
+.day time{ color:var(--yellow); font-weight:800; }
+@media (min-width:600px){
+  .board__days{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .day{ border-left:1px solid var(--line-dark); }
+  .day:nth-child(2){ border-top:0; }
+  .day:nth-child(odd){ border-left:0; }
+}
+@media (min-width:1000px){
+  .board__days{ grid-template-columns:repeat(5,minmax(0,1fr)); }
+  .day{ border-top:0; border-left:1px solid var(--line-dark); padding:22px 18px 24px; }
+  .day:first-child{ border-left:0; }
+  .day:nth-child(odd){ border-left:1px solid var(--line-dark); }
+  .day:first-child{ border-left:0; }
+  .day li{ grid-template-columns:1fr; gap:0; }
+  .day li span{ font-size:.95rem; }
+}
 .board__note{ padding:14px 20px; border-top:1px solid var(--line-dark); color:var(--muted-on-dark); font-size:.9rem; display:flex; gap:8px; align-items:center; }
 .board__note .chev{ color:var(--yellow); width:9px; height:11px; }
 .board__note a{ color:var(--paper); font-weight:700; }
@@ -707,59 +723,67 @@ section[id]{ scroll-margin-top:64px; }
         <p class="eyebrow reveal"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Aulas coletivas</p>
         <h2 class="h2 reveal">Quadro da<br>semana.</h2>
       </div>
-      <p class="reveal">Pra quem treina melhor em grupo. Escolha o horário e chega junto.</p>
+      <p class="reveal">Yoga, Pilates, Ritmos, Fit Dance, Step, Funcional, Muay Thai e Combat, de segunda a sexta. Escolha o horário e chega junto.</p>
     </div>
 
-    <!-- Preencha [MODALIDADE] e [HORÁRIO] com a grade real (destaque "Aulas" do Instagram) -->
+    <!-- Grade conforme o destaque "Aulas" do Instagram. Atualize aqui quando mudar. -->
     <div class="board reveal">
       <div class="board__top">
         <strong>Grade de aulas</strong>
-        <span>Uplay São José dos Pinhais</span>
+        <span>Segunda a sexta · sala de coletivas</span>
       </div>
-      <div class="board__scroll" tabindex="0" aria-label="Tabela de aulas coletivas, role para os lados">
-        <table>
-          <thead>
-            <tr><th scope="col">Turno</th><th scope="col">Seg</th><th scope="col">Ter</th><th scope="col">Qua</th><th scope="col">Qui</th><th scope="col">Sex</th><th scope="col">Sáb</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Manhã</td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-            </tr>
-            <tr>
-              <td>Almoço</td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot slot--empty">—</td>
-            </tr>
-            <tr>
-              <td>Noite</td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot slot--empty">—</td>
-            </tr>
-            <tr>
-              <td>Noite</td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot"><b>[HORÁRIO]</b><small>[MODALIDADE]</small></td>
-              <td class="slot slot--empty">—</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="board__days">
+          <div class="day" data-day="1">
+            <h3>Segunda<em>hoje</em></h3>
+            <ul>
+              <li><time class="num">07h00</time><span>Yoga</span></li>
+              <li><time class="num">09h00</time><span>Pilates</span></li>
+              <li><time class="num">12h00</time><span>Ritmos</span></li>
+              <li><time class="num">18h00</time><span>Muay Thai</span></li>
+              <li><time class="num">19h00</time><span>Ritmos</span></li>
+              <li><time class="num">20h00</time><span>Fit Dance</span></li>
+            </ul>
+          </div>
+          <div class="day" data-day="2">
+            <h3>Terça<em>hoje</em></h3>
+            <ul>
+              <li><time class="num">07h00</time><span>Step</span></li>
+              <li><time class="num">08h00</time><span>Fit Dance</span></li>
+              <li><time class="num">18h15</time><span>Yoga</span></li>
+              <li><time class="num">19h15</time><span>Funcional</span></li>
+              <li><time class="num">20h15</time><span>Step</span></li>
+            </ul>
+          </div>
+          <div class="day" data-day="3">
+            <h3>Quarta<em>hoje</em></h3>
+            <ul>
+              <li><time class="num">07h00</time><span>Yoga</span></li>
+              <li><time class="num">08h00</time><span>Fit Dance</span></li>
+              <li><time class="num">09h00</time><span>Pilates</span></li>
+              <li><time class="num">12h00</time><span>Ritmos</span></li>
+              <li><time class="num">18h00</time><span>Muay Thai</span></li>
+              <li><time class="num">19h00</time><span>Combat</span></li>
+              <li><time class="num">20h00</time><span>Fit Dance</span></li>
+            </ul>
+          </div>
+          <div class="day" data-day="4">
+            <h3>Quinta<em>hoje</em></h3>
+            <ul>
+              <li><time class="num">07h00</time><span>Step</span></li>
+              <li><time class="num">18h00</time><span>Pilates</span></li>
+              <li><time class="num">19h00</time><span>Funcional</span></li>
+              <li><time class="num">20h15</time><span>Step</span></li>
+            </ul>
+          </div>
+          <div class="day" data-day="5">
+            <h3>Sexta<em>hoje</em></h3>
+            <ul>
+              <li><time class="num">08h00</time><span>Fit Dance</span></li>
+              <li><time class="num">09h00</time><span>Pilates</span></li>
+              <li><time class="num">18h15</time><span>Ritmos</span></li>
+              <li><time class="num">19h00</time><span>Combat</span></li>
+            </ul>
+          </div>
       </div>
       <p class="board__note"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>A grade pode mudar. Confirme o horário no <a href="https://wa.me/5541988560845?text=Ol%C3%A1!%20Queria%20confirmar%20os%20hor%C3%A1rios%20das%20aulas%20coletivas%20da%20Uplay%20SJP." target="_blank" rel="noopener">WhatsApp</a>.</p>
     </div>
@@ -1065,6 +1089,7 @@ section[id]{ scroll-margin-top:64px; }
       var today = hol ? days.indexOf('h') > -1 : days.indexOf(String(wd)) > -1;
       row.classList.toggle('is-today', today);
     });
+    document.querySelectorAll('.day').forEach(function(d){ d.classList.toggle('is-today', !hol && +d.getAttribute('data-day') === wd); });
   }
   updateStatus();
   setInterval(updateStatus, 60000);

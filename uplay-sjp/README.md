@@ -8,7 +8,7 @@ Coloque as fotos em `fotos/` com exatamente estes nomes. Enquanto um arquivo nã
 
 | Arquivo | Onde aparece |
 |---|---|
-| `foto-musculacao.jpg` | Hero (cortada pela seta) e galeria |
+| `foto-musculacao.jpg` | Hero (cortada pela seta) e galeria (já incluída: frase removida + upscale 4x) |
 | `foto-professor.jpg` | Por que Uplay – 01 |
 | `foto-estacionamento.jpg` | Por que Uplay – 02 e galeria |
 | `foto-espaco-kids.jpg` | Por que Uplay – 03 e galeria |
@@ -25,7 +25,7 @@ Use JPG com cerca de 1600 px no lado maior (a do hero pode ter 2000 px).
 
 ## O que falta preencher
 
-- **Aulas coletivas**: troque `[HORÁRIO]` e `[MODALIDADE]` na tabela da seção `#aulas`.
+- **Aulas coletivas**: a grade já está preenchida, conforme o destaque do Instagram. Quando mudar, edite a seção `#aulas`.
 - **Depoimentos**: troque `[DEPOIMENTO REAL]`, `[NOME DO ALUNO]`, `[@usuario]`, `[DATA]`, `[ANO]` e `[HH:MM]`.
 - **Plano**: confira se todos os itens da lista "O que está incluso" valem para o plano anual.
 - **Feriados**: a lista `FIXED` no script tem os feriados nacionais (e ainda Sexta-feira Santa e Corpus Christi). Acrescente os feriados municipais de São José dos Pinhais.
