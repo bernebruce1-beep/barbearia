@@ -15,8 +15,8 @@ const PRODUTOS = [
     foto:'enroladinhos de presunto e queijo abertos mostrando o queijo derretido' },
   { cat:'empadao', nome:'Empadão de frango com catupiry', desc:'Tamanho família, massa amanteigada que desmancha e frango cremoso com catupiry.', un:0, cento:null, tag:'Sob encomenda',
     img:'fotos/empadao.webp', foto:'empadão de frango com catupiry inteiro, dourado e brilhante' },
-  { cat:'doces', nome:'Trufas', desc:'Chocolate cremoso por dentro e casquinha que derrete na boca. Pergunte os sabores do dia!', un:0, cento:null,
-    foto:'trufas de chocolate embrulhadas em papel colorido, uma mordida mostrando o recheio cremoso' },
+  { cat:'doces', nome:'Trufas', img:'fotos/trufas.webp', desc:'Chocolate ao leite e branco, recheio cremoso e decoradas à mão. Pergunte os sabores do dia!', un:0, cento:null,
+    foto:'bandeja de trufas de chocolate ao leite e chocolate branco decoradas com fios de chocolate e coco' },
   { cat:'bebidas', nome:'Refrigerantes', desc:'Lata ou 2 litros, sempre geladinho para acompanhar os salgados.', un:0, cento:null,
     foto:'refrigerantes gelados em lata e garrafa de 2 litros com gotinhas' },
 ];
