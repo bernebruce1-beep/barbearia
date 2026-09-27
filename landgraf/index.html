@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landgraf Hamburgueria | Burger Artesanal e Defumados em Campina da Lagoa – PR</title>
+<meta name="description" content="Hambúrguer artesanal, carnes defumadas e pão artesanal em Campina da Lagoa – PR. Seg a Sáb, 18h30 às 22h30. Presencial e delivery pelo WhatsApp.">
+<meta name="theme-color" content="#0E0C0A">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Landgraf Hamburgueria">
+<meta property="og:title" content="Landgraf Hamburgueria | Defumado no ponto certo.">
+<meta property="og:description" content="Burger artesanal, defumação própria e pão artesanal. Rua Kaigang, 80 – Sol Nascente, Campina da Lagoa – PR.">
+<meta property="og:url" content="https://www.instagram.com/landgrafhamburgueria/">
+<!-- Troque pela URL de uma foto real (1200x630) quando publicar -->
+<meta property="og:image" content="og-image.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230E0C0A'/%3E%3Cpath fill='%23C8883A' d='M32 8c2 10 14 16 14 30a14 14 0 0 1-28 0c0-7 4-12 7-15 0 6 3 9 6 9-2-8 1-17 1-24z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Landgraf Hamburgueria",
+  "servesCuisine": ["Hambúrguer", "Defumados"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rua Kaigang, 80 – Sol Nascente",
+    "addressLocality": "Campina da Lagoa",
+    "addressRegion": "PR",
+    "addressCountry": "BR"
+  },
+  "openingHours": "Mo-Sa 18:30-22:30",
+  "sameAs": ["https://www.instagram.com/landgrafhamburgueria/"]
+}
+</script>
+<style>
+:root{
+  --carvao:#0E0C0A;
+  --cafe:#1C1714;
+  --cafe-2:#26201b;
+  --mostarda:#F2B705;
+  --mostarda-2:#ffcb2e;
+  --cobre:#C8883A;
+  --texto:#EDE6DD;
+  --texto-2:#b7ab9d;
+  --linha:rgba(200,136,58,.25);
+  --raio:14px;
+  --sombra:0 18px 40px rgba(0,0,0,.45);
+  --header:72px;
+  --f-display:'Anton',Impact,'Arial Narrow',sans-serif;
+  --f-serif:'Cinzel','Playfair Display',Georgia,serif;
+  --f-body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:var(--header)}
+body{
+  font-family:var(--f-body);color:var(--texto);background:var(--carvao);
+  line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+/* textura sutil de madeira/fumaça */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.5;
+  background:
+    repeating-linear-gradient(92deg,rgba(255,255,255,.012) 0 2px,transparent 2px 9px),
+    repeating-linear-gradient(88deg,rgba(0,0,0,.18) 0 1px,transparent 1px 23px),
+    radial-gradient(ellipse at 20% 0%,rgba(200,136,58,.06),transparent 60%),
+    radial-gradient(ellipse at 80% 100%,rgba(242,183,5,.04),transparent 60%);
+}
+main{overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--mostarda);outline-offset:3px;border-radius:4px}
+.container{width:min(1180px,100% - 32px);margin-inline:auto}
+section{padding:88px 0;position:relative}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--cobre);margin-bottom:12px;
+}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--cobre)}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.02;letter-spacing:.01em;text-transform:uppercase}
+h2{font-size:clamp(2.2rem,6vw,3.6rem);margin-bottom:16px}
+h2 .hl{color:var(--mostarda)}
+.lead{color:var(--texto-2);max-width:620px;font-size:1.05rem}
+.center{text-align:center}.center .lead{margin-inline:auto}
+.center .eyebrow::after{content:"";width:28px;height:2px;background:var(--cobre)}
+
+/* ---------- botões ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 26px;border-radius:999px;font-weight:700;font-size:.95rem;
+  letter-spacing:.03em;text-transform:uppercase;transition:transform .2s,background .2s,box-shadow .2s,color .2s;
+  white-space:nowrap;
+}
+.btn svg{width:20px;height:20px;flex-shrink:0}
+.btn-primary{background:var(--mostarda);color:#120e08;box-shadow:0 8px 24px rgba(242,183,5,.25)}
+.btn-primary:hover{background:var(--mostarda-2);transform:translateY(-2px);box-shadow:0 12px 30px rgba(242,183,5,.35)}
+.btn-ghost{border:2px solid var(--cobre);color:var(--texto)}
+.btn-ghost:hover{background:var(--cobre);color:#120e08;transform:translateY(-2px)}
+.btn-dark{background:var(--carvao);color:var(--mostarda)}
+.btn-dark:hover{background:#000;transform:translateY(-2px)}
+
+/* ---------- logo ---------- */
+.logo{display:flex;align-items:center;gap:12px}
+.logo-mark{
+  width:44px;height:44px;border-radius:50%;background:var(--carvao);
+  border:2px solid var(--cobre);display:grid;place-items:center;flex-shrink:0;
+}
+.logo-mark svg{width:22px;height:22px;fill:var(--cobre)}
+.logo-text{display:flex;flex-direction:column;line-height:1}
+.logo-text strong{font-family:var(--f-serif);font-size:1.25rem;letter-spacing:.14em;color:var(--texto)}
+.logo-text span{font-size:.62rem;letter-spacing:.42em;text-transform:uppercase;color:var(--cobre);margin-top:4px}
+
+/* ---------- header ---------- */
+.header{
+  position:fixed;inset:0 0 auto;height:var(--header);z-index:100;
+  transition:background .3s,border-color .3s;border-bottom:1px solid transparent;
+}
+.header.scrolled{background:rgba(14,12,10,.92);backdrop-filter:blur(10px);border-color:var(--linha)}
+.header .container{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav{display:flex;align-items:center;gap:28px}
+.nav a.link{font-size:.9rem;font-weight:600;color:var(--texto-2);position:relative;transition:color .2s}
+.nav a.link::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--mostarda);transition:width .25s}
+.nav a.link:hover,.nav a.link.active{color:var(--texto)}
+.nav a.link:hover::after,.nav a.link.active::after{width:100%}
+.header .btn{padding:10px 18px;font-size:.8rem}
+.burger{display:none;width:44px;height:44px;position:relative}
+.burger span{position:absolute;left:10px;right:10px;height:2px;background:var(--texto);transition:.3s}
+.burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:27px}
+.burger[aria-expanded="true"] span:nth-child(1){top:21px;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){top:21px;transform:rotate(-45deg)}
+
+@media (max-width:900px){
+  .burger{display:block;z-index:2}
+  .nav{
+    position:fixed;inset:0;flex-direction:column;justify-content:center;gap:26px;
+    background:rgba(14,12,10,.98);transform:translateX(100%);transition:transform .35s ease;
+  }
+  .nav.open{transform:none}
+  .nav a.link{font-family:var(--f-display);font-size:2rem;text-transform:uppercase;color:var(--texto)}
+  .header .btn{padding:14px 26px;font-size:.95rem}
+}
+
+/* ---------- placeholders de foto ---------- */
+.ph{
+  position:relative;overflow:hidden;background:
+    radial-gradient(ellipse at 50% 70%,rgba(200,136,58,.28),transparent 60%),
+    radial-gradient(ellipse at 30% 20%,rgba(242,183,5,.08),transparent 50%),
+    linear-gradient(160deg,#2a211a,#120f0c);
+  display:grid;place-items:center;
+}
+.ph::after{
+  content:attr(data-label);position:absolute;bottom:12px;left:12px;font-size:.68rem;
+  letter-spacing:.14em;text-transform:uppercase;color:rgba(237,230,221,.45);
+}
+.ph svg.flame-ph{width:28%;max-width:90px;fill:rgba(200,136,58,.35)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ---------- hero ---------- */
+.hero{
+  min-height:100svh;display:flex;align-items:center;padding:calc(var(--header) + 40px) 0 80px;
+  overflow:hidden;isolation:isolate;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:-2;
+  background:
+    linear-gradient(90deg,rgba(14,12,10,.96) 0%,rgba(14,12,10,.75) 45%,rgba(14,12,10,.35) 100%),
+    radial-gradient(ellipse at 75% 60%,rgba(242,183,5,.35),transparent 40%),
+    radial-gradient(ellipse at 72% 75%,rgba(200,136,58,.45),transparent 50%),
+    linear-gradient(180deg,#1C1714,#0E0C0A);
+  /* Para usar foto real: background-image: linear-gradient(...), url('hero.jpg'); background-size:cover; */
+}
+.hero-bg::after{
+  content:"";position:absolute;inset:auto 0 0;height:30%;
+  background:linear-gradient(transparent,var(--carvao));
+}
+/* burger ilustrado (substituir por foto) */
+.hero-burger{
+  position:absolute;right:max(-60px,calc((100vw - 1180px)/2 - 40px));top:50%;transform:translateY(-45%);
+  width:min(560px,70vw);z-index:-1;opacity:.95;filter:drop-shadow(0 30px 60px rgba(0,0,0,.6));
+}
+.smoke{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.smoke span{
+  position:absolute;bottom:-120px;width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(237,230,221,.10),transparent 65%);
+  filter:blur(18px);animation:smoke 14s linear infinite;opacity:0;
+}
+.smoke span:nth-child(1){left:55%;animation-delay:0s}
+.smoke span:nth-child(2){left:68%;animation-delay:3s;width:320px;height:320px}
+.smoke span:nth-child(3){left:78%;animation-delay:6s}
+.smoke span:nth-child(4){left:62%;animation-delay:9s;width:200px;height:200px}
+.smoke span:nth-child(5){left:85%;animation-delay:11s}
+@keyframes smoke{
+  0%{transform:translate(0,0) scale(.6);opacity:0}
+  15%{opacity:1}
+  100%{transform:translate(-120px,-110vh) scale(1.8);opacity:0}
+}
+.hero-content{max-width:620px}
+.hero h1{font-size:clamp(3rem,11vw,6.4rem);margin:10px 0 20px}
+.hero h1 em{font-style:normal;color:var(--mostarda);display:block}
+.hero p{font-size:clamp(1rem,2.4vw,1.2rem);color:var(--texto-2);max-width:520px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin:32px 0 28px}
+.seal{
+  display:inline-flex;flex-wrap:wrap;align-items:center;gap:10px;padding:10px 18px;
+  border:1px solid var(--linha);border-radius:999px;background:rgba(28,23,20,.7);
+  font-size:.85rem;font-weight:600;color:var(--texto);
+}
+.seal svg{width:16px;height:16px;fill:var(--cobre)}
+.status{display:inline-flex;align-items:center;gap:6px;font-weight:700}
+.status .dot{width:9px;height:9px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 0 rgba(239,68,68,.6)}
+.status.open .dot{background:#22c55e;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.6)}70%{box-shadow:0 0 0 10px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+@media (max-width:700px){
+  .hero-burger{opacity:.35;right:-30%;width:110vw}
+}
+
+/* ---------- faixas inclinadas ---------- */
+.stripe{
+  background:var(--mostarda);color:#120e08;transform:rotate(-2deg);margin:0 -20px;
+  padding:14px 0;overflow:hidden;position:relative;z-index:2;box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+.stripe-track{display:flex;gap:40px;width:max-content;animation:marquee 30s linear infinite}
+.stripe-track span{font-family:var(--f-display);font-size:1.6rem;text-transform:uppercase;display:flex;align-items:center;gap:40px}
+.stripe-track span::after{content:"";width:18px;height:22px;background:#120e08;
+  -webkit-mask:var(--flame-mask) center/contain no-repeat;mask:var(--flame-mask) center/contain no-repeat}
+@keyframes marquee{to{transform:translateX(-50%)}}
+:root{--flame-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 30'%3E%3Cpath d='M12 0c1 5 9 9 9 18a9 9 0 0 1-18 0c0-5 3-8 5-10 0 4 2 6 4 6-1-5 0-10 0-14z'/%3E%3C/svg%3E")}
+
+/* ---------- diferenciais ---------- */
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:48px}
+.feature{
+  background:linear-gradient(180deg,var(--cafe),var(--carvao));border:1px solid var(--linha);
+  border-radius:var(--raio);padding:34px 28px;position:relative;overflow:hidden;transition:transform .3s,border-color .3s;
+}
+.feature:hover{transform:translateY(-6px);border-color:var(--cobre)}
+.feature::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--mostarda),var(--cobre))}
+.feature .ico{
+  width:62px;height:62px;border-radius:50%;display:grid;place-items:center;margin-bottom:20px;
+  background:rgba(242,183,5,.1);border:1px solid rgba(242,183,5,.35);
+}
+.feature .ico svg{width:30px;height:30px;stroke:var(--mostarda);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.feature h3{font-size:1.7rem;margin-bottom:10px}
+.feature p{color:var(--texto-2)}
+
+/* ---------- cardápio ---------- */
+#cardapio{background:linear-gradient(180deg,transparent,var(--cafe) 20%,var(--cafe) 80%,transparent)}
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:36px 0 40px}
+.tab{
+  padding:10px 22px;border-radius:999px;border:1.5px solid var(--linha);font-weight:700;
+  font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2);transition:.2s;
+}
+.tab:hover{border-color:var(--cobre);color:var(--texto)}
+.tab[aria-selected="true"]{background:var(--mostarda);border-color:var(--mostarda);color:#120e08}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:22px}
+.item{
+  background:var(--carvao);border:1px solid var(--linha);border-radius:var(--raio);overflow:hidden;
+  display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s,border-color .3s;
+  animation:fadeUp .45s ease both;
+}
+.item:hover{transform:translateY(-6px);box-shadow:var(--sombra);border-color:var(--cobre)}
+.item[hidden]{display:none}
+.item .ph{aspect-ratio:4/3}
+.item .tag{
+  position:absolute;top:12px;left:12px;background:var(--mostarda);color:#120e08;font-size:.7rem;
+  font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:4px;transform:rotate(-3deg);
+}
+.item-body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.item-body h3{font-size:1.5rem}
+.item-body p{color:var(--texto-2);font-size:.92rem;flex:1}
+.item-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
+.price{font-family:var(--f-display);font-size:1.4rem;color:var(--mostarda)}
+.item .btn{padding:10px 18px;font-size:.78rem}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ---------- blocos com foto (defumação / pão) ---------- */
+.split{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+.split.reverse{grid-template-columns:1fr 1.1fr}
+.split.reverse .split-media{order:2}
+.split-media{position:relative}
+.split-media .ph{aspect-ratio:4/5;border-radius:var(--raio);box-shadow:var(--sombra);border:1px solid var(--linha)}
+.split-media .frame{position:absolute;inset:18px -18px -18px 18px;border:2px solid var(--cobre);border-radius:var(--raio);z-index:-1}
+.split.reverse .split-media .frame{inset:18px 18px -18px -18px}
+.badge-tilt{
+  position:absolute;left:-14px;bottom:36px;background:var(--mostarda);color:#120e08;
+  font-family:var(--f-display);font-size:clamp(1.8rem,5vw,2.8rem);text-transform:uppercase;
+  padding:8px 26px;transform:rotate(-6deg);box-shadow:0 14px 30px rgba(0,0,0,.5);z-index:2;
+}
+.steps{list-style:none;margin:28px 0 32px;display:grid;gap:16px}
+.steps li{display:flex;gap:16px;align-items:flex-start}
+.steps b{
+  font-family:var(--f-display);font-weight:400;font-size:1.3rem;color:var(--carvao);background:var(--cobre);
+  min-width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+}
+.steps strong{display:block;font-size:1rem}
+.steps span{color:var(--texto-2);font-size:.92rem}
+.stats{display:flex;gap:32px;flex-wrap:wrap;margin-top:24px}
+.stats div strong{font-family:var(--f-display);font-weight:400;font-size:2.4rem;color:var(--mostarda);display:block;line-height:1}
+.stats div span{font-size:.8rem;color:var(--texto-2);text-transform:uppercase;letter-spacing:.12em}
+@media (max-width:860px){
+  .split,.split.reverse{grid-template-columns:1fr;gap:48px}
+  .split.reverse .split-media{order:0}
+  .split-media{max-width:460px;margin-inline:auto;width:100%}
+  .badge-tilt{left:-8px}
+}
+#pao{background:linear-gradient(180deg,transparent,var(--cafe) 30%,var(--cafe) 70%,transparent)}
+
+/* ---------- feedbacks ---------- */
+.carousel{position:relative;max-width:760px;margin:48px auto 0}
+.slides{overflow:hidden;border-radius:var(--raio)}
+.slides-track{display:flex;transition:transform .6s cubic-bezier(.65,0,.35,1)}
+.slide{
+  min-width:100%;padding:44px clamp(24px,6vw,56px);text-align:center;
+  background:linear-gradient(180deg,var(--cafe),var(--carvao));border:1px solid var(--linha);border-radius:var(--raio);
+}
+.stars{color:var(--mostarda);font-size:1.3rem;letter-spacing:4px;margin-bottom:18px}
+.slide blockquote{font-size:clamp(1.05rem,2.6vw,1.3rem);font-style:italic;margin-bottom:22px}
+.slide cite{font-style:normal;font-weight:700;color:var(--cobre);letter-spacing:.06em}
+.car-ctrl{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:24px}
+.car-btn{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--linha);display:grid;place-items:center;transition:.2s}
+.car-btn:hover{border-color:var(--mostarda);color:var(--mostarda)}
+.car-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2}
+.dots{display:flex;gap:8px}
+.dots button{width:10px;height:10px;border-radius:999px;background:rgba(237,230,221,.25);transition:.3s}
+.dots button[aria-current="true"]{width:28px;background:var(--mostarda)}
+
+/* ---------- galeria ---------- */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px}
+.gallery .ph{aspect-ratio:1;border-radius:10px;border:1px solid var(--linha);cursor:zoom-in}
+.gallery .ph > *{transition:transform .6s ease}
+.gallery .ph::before{content:"";position:absolute;inset:0;background:rgba(242,183,5,.0);transition:background .4s;z-index:1}
+.gallery .ph:hover > *{transform:scale(1.15)}
+.gallery .ph:hover::before{background:rgba(242,183,5,.08)}
+.gallery .ph:nth-child(1){grid-row:span 2;aspect-ratio:auto}
+@media (max-width:640px){
+  .gallery{grid-template-columns:repeat(2,1fr);gap:10px}
+  .gallery .ph:nth-child(1){grid-row:auto;grid-column:span 2;aspect-ratio:16/10}
+}
+
+/* ---------- localização ---------- */
+.notice{
+  display:inline-flex;align-items:center;gap:10px;background:var(--mostarda);color:#120e08;
+  font-family:var(--f-display);font-size:1.4rem;text-transform:uppercase;padding:8px 22px;
+  transform:rotate(-2deg);margin-bottom:22px;box-shadow:0 10px 24px rgba(0,0,0,.4);
+}
+.loc{display:grid;grid-template-columns:1fr 1.3fr;gap:32px;margin-top:40px;align-items:stretch}
+.loc-card{
+  background:var(--cafe);border:1px solid var(--linha);border-radius:var(--raio);padding:32px;
+  display:flex;flex-direction:column;gap:22px;
+}
+.loc-row{display:flex;gap:14px}
+.loc-row svg{width:24px;height:24px;flex-shrink:0;stroke:var(--cobre);fill:none;stroke-width:1.8;margin-top:2px}
+.loc-row h3{font-family:var(--f-body);font-weight:700;font-size:.8rem;letter-spacing:.14em;color:var(--cobre);margin-bottom:4px}
+.loc-row p{color:var(--texto)}
+.hours{list-style:none;display:grid;gap:4px;font-size:.95rem}
+.hours li{display:flex;justify-content:space-between;gap:16px;border-bottom:1px dashed rgba(200,136,58,.18);padding:4px 0}
+.hours li.today{color:var(--mostarda);font-weight:700}
+.hours li .off{color:var(--texto-2)}
+.map{border-radius:var(--raio);overflow:hidden;border:1px solid var(--linha);min-height:380px;background:var(--cafe)}
+.map iframe{width:100%;height:100%;min-height:380px;border:0;filter:grayscale(.4) contrast(1.05) brightness(.85)}
+@media (max-width:860px){.loc{grid-template-columns:1fr}}
+
+/* ---------- CTA ---------- */
+.cta{background:var(--mostarda);color:#120e08;padding:72px 0;overflow:hidden;clip-path:polygon(0 6%,100% 0,100% 94%,0 100%)}
+.cta .container{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px}
+.cta h2{margin:0;font-size:clamp(2.2rem,6vw,3.8rem)}
+.cta p{font-weight:600;font-size:1.1rem;margin-top:6px}
+.cta .flame-bg{position:absolute;right:-40px;top:50%;transform:translateY(-50%) rotate(12deg);width:280px;opacity:.08;fill:#120e08;pointer-events:none}
+
+/* ---------- rodapé ---------- */
+footer{padding:72px 0 28px;border-top:1px solid var(--linha);margin-top:40px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+.foot h4{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cobre);margin-bottom:14px}
+.foot p,.foot a{color:var(--texto-2);font-size:.92rem}
+.foot a:hover{color:var(--mostarda)}
+.foot ul{list-style:none;display:grid;gap:8px}
+.foot .about{margin-top:16px;max-width:300px}
+.socials{display:flex;gap:10px;margin-top:18px}
+.socials a{width:40px;height:40px;border-radius:50%;border:1px solid var(--linha);display:grid;place-items:center;transition:.2s}
+.socials a:hover{background:var(--mostarda);border-color:var(--mostarda)}
+.socials a:hover svg{fill:#120e08}
+.socials svg{width:18px;height:18px;fill:var(--texto)}
+.copy{margin-top:52px;padding-top:22px;border-top:1px solid rgba(200,136,58,.12);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:.82rem;color:var(--texto-2)}
+@media (max-width:860px){.foot{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.foot{grid-template-columns:1fr}}
+
+/* ---------- whatsapp flutuante ---------- */
+.wa-float{
+  position:fixed;right:18px;bottom:18px;z-index:90;width:60px;height:60px;border-radius:50%;
+  background:#25D366;display:grid;place-items:center;box-shadow:0 10px 28px rgba(0,0,0,.45);transition:transform .2s;
+}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:32px;height:32px;fill:#fff}
+.wa-float::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;animation:ring 2.4s infinite}
+@keyframes ring{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Símbolo da chama reutilizável -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="flame" viewBox="0 0 24 30"><path d="M12 0c1 5 9 9 9 18a9 9 0 0 1-18 0c0-5 3-8 5-10 0 4 2 6 4 6-1-5 0-10 0-14zm0 17c-1 2-4 4-4 7a4 4 0 0 0 8 0c0-3-3-4-4-7z" fill-rule="evenodd"/></symbol>
+  <symbol id="wa" viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 0 1 12 2.2a9.8 9.8 0 0 1 0 19.6zM12 0a12 12 0 0 0-10.3 18L0 24l6.2-1.6A12 12 0 1 0 12 0z"/></symbol>
+  <symbol id="ig" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></symbol>
+</svg>
+
+<!-- 1. HEADER -->
+<header class="header" id="header">
+  <div class="container">
+    <a href="#inicio" class="logo" aria-label="Landgraf Hamburgueria – início">
+      <span class="logo-mark"><svg><use href="#flame"/></svg></span>
+      <span class="logo-text"><strong>LANDGRAF</strong><span>Hamburgueria</span></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Menu principal">
+      <a class="link" href="#inicio">Início</a>
+      <a class="link" href="#cardapio">Cardápio</a>
+      <a class="link" href="#defumacao">Defumação</a>
+      <a class="link" href="#sobre">Sobre</a>
+      <a class="link" href="#localizacao">Localização</a>
+      <a class="btn btn-primary js-wa" href="#" target="_blank" rel="noopener">
+        <svg><use href="#wa"/></svg> Pedir no WhatsApp
+      </a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+<!-- 2. HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <!-- Ilustração provisória: troque por uma foto real (burger com cheddar escorrendo) -->
+  <svg class="hero-burger" viewBox="0 0 400 320" aria-hidden="true">
+    <defs>
+      <linearGradient id="bun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e0a052"/><stop offset="1" stop-color="#8a4f1c"/></linearGradient>
+      <linearGradient id="meat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a2e18"/><stop offset="1" stop-color="#2a140a"/></linearGradient>
+      <linearGradient id="ched" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset="1" stop-color="#F2B705"/></linearGradient>
+    </defs>
+    <ellipse cx="200" cy="300" rx="170" ry="14" fill="#000" opacity=".5"/>
+    <path d="M50 250h300q0 40-40 40H90q-40 0-40-40z" fill="url(#bun)"/>
+    <rect x="42" y="205" width="316" height="48" rx="24" fill="url(#meat)"/>
+    <path d="M40 200h320l-10 22q-10 8-20 0l-12 30q-8 10-16 0l-8-22q-10 6-20 0l-14 40q-8 10-16 0l-6-40q-10 6-20 0l-10 24q-8 8-16 0l-10-26q-12 6-22 0l-12 34q-8 10-16 0l-4-32q-12 8-24 0l-10 18q-8 6-14-2z" fill="url(#ched)"/>
+    <rect x="46" y="160" width="308" height="44" rx="22" fill="url(#meat)"/>
+    <path d="M44 156h312l-12 18q-10 8-20 0l-10 22q-8 8-16 0l-8-18q-12 6-22 0l-12 28q-8 8-16 0l-6-26q-10 6-22 0l-8 16q-8 6-16-2l-8-14q-12 6-22 0l-10 24q-8 8-14 0l-6-22q-12 6-22 0l-10 12q-8 4-14-4z" fill="url(#ched)"/>
+    <path d="M40 158q0-120 160-120t160 120z" fill="url(#bun)"/>
+    <g fill="#f6e2b8" opacity=".85">
+      <ellipse cx="140" cy="80" rx="6" ry="3" transform="rotate(-20 140 80)"/><ellipse cx="190" cy="66" rx="6" ry="3"/>
+      <ellipse cx="240" cy="78" rx="6" ry="3" transform="rotate(20 240 78)"/><ellipse cx="170" cy="100" rx="6" ry="3" transform="rotate(10 170 100)"/>
+      <ellipse cx="220" cy="104" rx="6" ry="3" transform="rotate(-10 220 104)"/><ellipse cx="270" cy="108" rx="6" ry="3" transform="rotate(30 270 108)"/>
+      <ellipse cx="120" cy="112" rx="6" ry="3" transform="rotate(-30 120 112)"/>
+    </g>
+  </svg>
+  <div class="smoke" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+
+  <div class="container">
+    <div class="hero-content">
+      <span class="eyebrow reveal">Campina da Lagoa – PR</span>
+      <h1 class="reveal d1">Defumado <em>no ponto certo.</em></h1>
+      <p class="reveal d2">Hambúrguer artesanal feito na hora, carne suculenta, pão artesanal e ingredientes frescos.</p>
+      <div class="hero-actions reveal d3">
+        <a class="btn btn-primary js-wa" href="#" target="_blank" rel="noopener"><svg><use href="#wa"/></svg> Pedir agora</a>
+        <a class="btn btn-ghost" href="#cardapio">Ver cardápio</a>
+      </div>
+      <div class="seal reveal d3">
+        <span class="status js-status"><span class="dot"></span><span class="js-status-text">Verificando…</span></span>
+        <span aria-hidden="true">•</span>
+        <svg><use href="#flame"/></svg>
+        Seg a Sáb • 18h30 às 22h30 • Presencial e Delivery
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe" aria-hidden="true">
+  <div class="stripe-track">
+    <span>Defumação própria</span><span>Pão artesanal</span><span>Pulled pork</span><span>Choripán</span><span>Feito na hora</span><span>Cê tá doido!</span>
+    <span>Defumação própria</span><span>Pão artesanal</span><span>Pulled pork</span><span>Choripán</span><span>Feito na hora</span><span>Cê tá doido!</span>
+  </div>
+</div>
+
+<!-- 3. DIFERENCIAIS -->
+<section id="sobre">
+  <div class="container center">
+    <span class="eyebrow reveal">Por que Landgraf</span>
+    <h2 class="reveal">Fogo, fumaça e <span class="hl">capricho</span></h2>
+    <p class="lead reveal">Aqui ninguém tem pressa com a carne, só com o seu pedido.</p>
+    <div class="features" style="text-align:left">
+      <article class="feature reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 3-6 0 2 1 3 2 3-.5-3 .5-6 1-9z"/><path d="M5 22h14"/></svg></div>
+        <h3>Defumação própria</h3>
+        <p>Carnes defumadas lentamente, por horas, na nossa própria defumadora. Sabor de fogo de verdade.</p>
+      </article>
+      <article class="feature reveal d2">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 11a8 5 0 0 1 16 0v1H4z"/><path d="M3 15h18"/><path d="M4 18h16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 8l.5-.5M12 7v-.5M15 8l-.5-.5"/></svg></div>
+        <h3>Pão artesanal</h3>
+        <p>Feito aqui, todo dia. Macio por dentro, dourado por fora, do jeito que um burger de respeito merece.</p>
+      </article>
+      <article class="feature reveal d3">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg></div>
+        <h3>Feito na hora</h3>
+        <p>Nada de pronto. Cada lanche é montado no momento do pedido, quentinho, do chapeiro pra você.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 4. CARDÁPIO -->
+<section id="cardapio">
+  <div class="container center">
+    <span class="eyebrow reveal">Cardápio</span>
+    <h2 class="reveal">Escolha o <span class="hl">seu</span></h2>
+    <p class="lead reveal">Preços e itens sujeitos a alteração. Consulte o cardápio completo no WhatsApp.</p>
+
+    <div class="tabs" role="tablist" aria-label="Categorias do cardápio">
+      <button class="tab" role="tab" aria-selected="true" data-filter="todos">Todos</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="burgers">Burgers</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="especiais">Especiais</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="porcoes">Porções</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="bebidas">Bebidas</button>
+    </div>
+
+    <div class="menu-grid" id="menu" style="text-align:left"></div>
+  </div>
+</section>
+
+<!-- 5. DEFUMAÇÃO -->
+<section id="defumacao">
+  <div class="container split">
+    <div class="split-media reveal">
+      <div class="frame" aria-hidden="true"></div>
+      <div class="ph" data-label="[Foto: defumadora / carne defumando]"><svg class="flame-ph"><use href="#flame"/></svg></div>
+      <div class="badge-tilt">Cê tá doido!</div>
+    </div>
+    <div class="reveal d1">
+      <span class="eyebrow">O segredo tá na fumaça</span>
+      <h2>Defumação <span class="hl">lenta</span>, sabor de verdade</h2>
+      <p class="lead">Carne boa não tem atalho. Nossas carnes passam horas na defumadora, em fogo baixo e lenha selecionada, até ganharem aquela casquinha escura, o anel rosado e a suculência que desmancha.</p>
+      <ol class="steps">
+        <li><b>1</b><div><strong>Tempero da casa</strong><span>Rub seco preparado aqui, aplicado com antecedência.</span></div></li>
+        <li><b>2</b><div><strong>Horas na fumaça</strong><span>Fogo baixo e paciência até o ponto certo.</span></div></li>
+        <li><b>3</b><div><strong>Direto pro seu lanche</strong><span>Pulled pork, choripán e burgers defumados.</span></div></li>
+      </ol>
+      <a class="btn btn-primary js-wa" data-item="Burger Defumado" href="#" target="_blank" rel="noopener"><svg><use href="#wa"/></svg> Quero um defumado</a>
+    </div>
+  </div>
+</section>
+
+<!-- 6. PÃO ARTESANAL -->
+<section id="pao">
+  <div class="container split reverse">
+    <div class="split-media reveal">
+      <div class="frame" aria-hidden="true"></div>
+      <div class="ph" data-label="[Foto: pães artesanais]"><svg class="flame-ph"><use href="#flame"/></svg></div>
+    </div>
+    <div class="reveal d1">
+      <span class="eyebrow">Produção própria</span>
+      <h2>Pão <span class="hl">artesanal</span>, feito aqui</h2>
+      <p class="lead">O pão é metade do lanche. Por isso a gente faz o nosso: massa com fermentação no tempo certo, assado na casa, macio pra abraçar a carne e firme pra segurar o cheddar escorrendo.</p>
+      <div class="stats">
+        <div><strong>100%</strong><span>Feito na casa</span></div>
+        <div><strong>Diário</strong><span>Fornada fresca</span></div>
+        <div><strong>0</strong><span>Pão de pacote</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. FEEDBACKS -->
+<section id="feedbacks">
+  <div class="container center">
+    <span class="eyebrow reveal">Feedbacks</span>
+    <h2 class="reveal">Quem provou, <span class="hl">voltou</span></h2>
+    <div class="carousel reveal d1" aria-roledescription="carrossel" aria-label="Depoimentos de clientes">
+      <div class="slides">
+        <div class="slides-track" id="track">
+          <div class="slide" role="group" aria-label="1 de 4">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <blockquote>“[DEPOIMENTO] O pulled pork é absurdo, macio e com gostinho de fumaça.”</blockquote>
+            <cite>— [NOME DO CLIENTE]</cite>
+          </div>
+          <div class="slide" role="group" aria-label="2 de 4">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <blockquote>“[DEPOIMENTO] Melhor pão de hambúrguer da região, dá pra sentir que é feito na hora.”</blockquote>
+            <cite>— [NOME DO CLIENTE]</cite>
+          </div>
+          <div class="slide" role="group" aria-label="3 de 4">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <blockquote>“[DEPOIMENTO] Pedi no delivery e chegou quentinho. O smash cheddar é viciante.”</blockquote>
+            <cite>— [NOME DO CLIENTE]</cite>
+          </div>
+          <div class="slide" role="group" aria-label="4 de 4">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <blockquote>“[DEPOIMENTO] O choripán é diferente de tudo. Cê tá doido!”</blockquote>
+            <cite>— [NOME DO CLIENTE]</cite>
+          </div>
+        </div>
+      </div>
+      <div class="car-ctrl">
+        <button class="car-btn" id="prev" aria-label="Depoimento anterior"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <div class="dots" id="dots"></div>
+        <button class="car-btn" id="next" aria-label="Próximo depoimento"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. GALERIA -->
+<section id="galeria">
+  <div class="container center">
+    <span class="eyebrow reveal">Galeria</span>
+    <h2 class="reveal">Direto da <span class="hl">chapa</span></h2>
+    <p class="lead reveal">Mais fotos no nosso <a href="https://www.instagram.com/landgrafhamburgueria/" target="_blank" rel="noopener" style="color:var(--mostarda)">Instagram</a>.</p>
+    <div class="gallery reveal d1">
+      <div class="ph" data-label="[Foto 1]"><svg class="flame-ph"><use href="#flame"/></svg></div>
+      <div class="ph" data-label="[Foto 2]"><svg class="flame-ph"><use href="#flame"/></svg></div>
+      <div class="ph" data-label="[Foto 3]"><svg class="flame-ph"><use href="#flame"/></svg></div>
+      <div class="ph" data-label="[Foto 4]"><svg class="flame-ph"><use href="#flame"/></svg></div>
+      <div class="ph" data-label="[Foto 5]"><svg class="flame-ph"><use href="#flame"/></svg></div>
+      <div class="ph" data-label="[Foto 6]"><svg class="flame-ph"><use href="#flame"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. LOCALIZAÇÃO -->
+<section id="localizacao">
+  <div class="container">
+    <div class="center">
+      <div class="notice reveal">📍 Novo endereço!</div>
+      <h2 class="reveal">Vem pra <span class="hl">brasa</span></h2>
+      <p class="lead reveal">Agora em frente à Assembleia, no Sol Nascente.</p>
+    </div>
+    <div class="loc">
+      <div class="loc-card reveal">
+        <div class="loc-row">
+          <svg viewBox="0 0 24 24"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <div><h3>ENDEREÇO</h3><p>Rua Kaigang, 80 – Bairro Sol Nascente<br>Em frente à Assembleia<br>Campina da Lagoa – PR</p></div>
+        </div>
+        <div class="loc-row">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <div style="flex:1">
+            <h3>HORÁRIOS <span class="status js-status" style="margin-left:8px;font-size:.8rem;letter-spacing:0"><span class="dot"></span><span class="js-status-text"></span></span></h3>
+            <ul class="hours" id="hours"></ul>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:auto">
+          <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=Rua+Kaigang,+80,+Sol+Nascente,+Campina+da+Lagoa+-+PR" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-9-9 19-2-8z"/></svg> Como chegar
+          </a>
+          <a class="btn btn-ghost js-wa" href="#" target="_blank" rel="noopener">Delivery</a>
+        </div>
+      </div>
+      <div class="map reveal d1">
+        <iframe title="Mapa – Landgraf Hamburgueria" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Rua+Kaigang,+80,+Sol+Nascente,+Campina+da+Lagoa+-+PR&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. CTA -->
+<section class="cta">
+  <svg class="flame-bg" aria-hidden="true"><use href="#flame"/></svg>
+  <div class="container">
+    <div>
+      <h2>Bateu a fome?</h2>
+      <p>Peça agora pelo delivery ou venha nos visitar.</p>
+    </div>
+    <a class="btn btn-dark js-wa" href="#" target="_blank" rel="noopener"><svg><use href="#wa"/></svg> Pedir no WhatsApp</a>
+  </div>
+</section>
+</main>
+
+<!-- 11. RODAPÉ -->
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div>
+        <a href="#inicio" class="logo">
+          <span class="logo-mark"><svg><use href="#flame"/></svg></span>
+          <span class="logo-text"><strong>LANDGRAF</strong><span>Hamburgueria</span></span>
+        </a>
+        <p class="about">Burger artesanal, defumação própria e pão feito na casa. Defumado no ponto certo.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/landgrafhamburgueria/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#ig"/></svg></a>
+          <a class="js-wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg><use href="#wa"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/landgrafhamburgueria/" target="_blank" rel="noopener">@landgrafhamburgueria</a></li>
+          <li><a class="js-wa" href="#" target="_blank" rel="noopener">WhatsApp – Pedidos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Endereço</h4>
+        <p>Rua Kaigang, 80<br>Sol Nascente – em frente à Assembleia<br>Campina da Lagoa – PR</p>
+      </div>
+      <div>
+        <h4>Horários</h4>
+        <p>Segunda a Sábado<br>18h30 às 22h30<br>Domingo: fechado</p>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 Landgraf Hamburgueria. Todos os direitos reservados.</span>
+      <span>Defumado no ponto certo.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float js-wa" href="#" target="_blank" rel="noopener" aria-label="Pedir pelo WhatsApp"><svg><use href="#wa"/></svg></a>
+
+<script>
+/* ================= CONFIGURAÇÃO ================= */
+// Link oficial do WhatsApp (da bio do Instagram).
+const WA_LINK = 'https://wa.me/message/ZHE2F6LC7OC2F1';
+// Links "wa.me/message/..." NÃO aceitam mensagem pré-preenchida.
+// Para que cada botão "Pedir" já abra com o nome do lanche, informe o número
+// no formato 55 + DDD + número (só dígitos). Ex.: '5544999999999'
+const WA_PHONE = '';
+
+// Horário de funcionamento (0 = domingo … 6 = sábado), em minutos desde 00:00
+const HOURS = { open: 18 * 60 + 30, close: 22 * 60 + 30, days: [1, 2, 3, 4, 5, 6] };
+const TZ = 'America/Sao_Paulo';
+
+// Cardápio – troque [PREÇO] pelos valores reais e adicione itens à vontade.
+// Para usar foto real, adicione img: 'caminho/foto.jpg'.
+const MENU = [
+  { cat: 'burgers',   name: 'Smash Cheddar',       desc: 'Dois smash burgers prensados na chapa, cheddar derretido e pão artesanal.', tag: 'Mais pedido' },
+  { cat: 'burgers',   name: 'Burger Defumado',     desc: 'Blend da casa defumado lentamente, queijo, cebola caramelizada e molho especial.', tag: 'Defumado' },
+  { cat: 'burgers',   name: 'Bacon Burger',        desc: 'Burger suculento, bacon crocante, cheddar e maionese da casa.' },
+  { cat: 'burgers',   name: 'X-Salada Artesanal',  desc: 'Clássico bem feito: burger, queijo, alface, tomate, cebola roxa e pão artesanal.' },
+  { cat: 'especiais', name: 'Pulled Pork',         desc: 'Porco desfiado defumado por horas, molho barbecue e pão artesanal.', tag: 'Defumado' },
+  { cat: 'especiais', name: 'Choripán',            desc: 'Linguiça artesanal na brasa, chimichurri e pão crocante.', tag: 'Especial' },
+  { cat: 'porcoes',   name: 'Batata Frita',        desc: '[DESCRIÇÃO] Porção de batata crocante.' },
+  { cat: 'porcoes',   name: 'Porção Defumada',     desc: '[DESCRIÇÃO] Carnes defumadas da casa para compartilhar.' },
+  { cat: 'bebidas',   name: 'Refrigerante',        desc: '[DESCRIÇÃO] Lata ou 2L.' },
+  { cat: 'bebidas',   name: 'Suco Natural',        desc: '[DESCRIÇÃO] Sabores do dia.' },
+];
+
+/* ================= WHATSAPP ================= */
+function waHref(item) {
+  if (!WA_PHONE) return WA_LINK;
+  const msg = item
+    ? `Olá, Landgraf! Quero pedir: ${item} 🍔`
+    : 'Olá, Landgraf! Quero fazer um pedido 🍔';
+  return `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(msg)}`;
+}
+function wireWa(root = document) {
+  root.querySelectorAll('.js-wa').forEach(a => { a.href = waHref(a.dataset.item); });
+}
+
+/* ================= CARDÁPIO ================= */
+const menuEl = document.getElementById('menu');
+const esc = s => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+menuEl.innerHTML = MENU.map(i => `
+  <article class="item" data-cat="${i.cat}">
+    <div class="ph" data-label="[Foto: ${esc(i.name)}]">
+      ${i.img ? `<img src="${esc(i.img)}" alt="${esc(i.name)}" loading="lazy">` : '<svg class="flame-ph"><use href="#flame"/></svg>'}
+      ${i.tag ? `<span class="tag">${esc(i.tag)}</span>` : ''}
+    </div>
+    <div class="item-body">
+      <h3>${esc(i.name)}</h3>
+      <p>${esc(i.desc)}</p>
+      <div class="item-foot">
+        <span class="price">${esc(i.price || '[PREÇO]')}</span>
+        <a class="btn btn-primary js-wa" data-item="${esc(i.name)}" href="#" target="_blank" rel="noopener"><svg><use href="#wa"/></svg> Pedir</a>
+      </div>
+    </div>
+  </article>`).join('');
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected', t === tab));
+    const f = tab.dataset.filter;
+    menuEl.querySelectorAll('.item').forEach(el => {
+      const show = f === 'todos' || el.dataset.cat === f;
+      el.hidden = !show;
+      if (show) { el.style.animation = 'none'; el.offsetHeight; el.style.animation = ''; }
+    });
+  });
+});
+wireWa();
+
+/* ================= ABERTO / FECHADO ================= */
+const DAY_NAMES = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+function nowInTZ() {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: TZ, weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+  }).formatToParts(new Date());
+  const get = t => parts.find(p => p.type === t).value;
+  const day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
+  return { day, mins: +get('hour') * 60 + +get('minute') };
+}
+function updateStatus() {
+  const { day, mins } = nowInTZ();
+  const open = HOURS.days.includes(day) && mins >= HOURS.open && mins < HOURS.close;
+  let label = open ? 'Aberto agora' : 'Fechado';
+  if (!open && HOURS.days.includes(day) && mins < HOURS.open) label = 'Fechado • abre às 18h30';
+  document.querySelectorAll('.js-status').forEach(el => el.classList.toggle('open', open));
+  document.querySelectorAll('.js-status-text').forEach(el => el.textContent = label);
+
+  const order = [1, 2, 3, 4, 5, 6, 0];
+  document.getElementById('hours').innerHTML = order.map(d => `
+    <li class="${d === day ? 'today' : ''}"><span>${DAY_NAMES[d]}</span>
+    <span class="${HOURS.days.includes(d) ? '' : 'off'}">${HOURS.days.includes(d) ? '18h30 – 22h30' : 'Fechado'}</span></li>`).join('');
+}
+updateStatus();
+setInterval(updateStatus, 60 * 1000);
+
+/* ================= HEADER / MENU MOBILE ================= */
+const header = document.getElementById('header');
+const burger = document.getElementById('burger');
+const nav = document.getElementById('nav');
+const onScroll = () => header.classList.toggle('scrolled', scrollY > 30);
+addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+function setMenu(open) {
+  nav.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+  burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+burger.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+// link ativo conforme a seção visível
+const links = [...document.querySelectorAll('.nav a.link')];
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id));
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+['inicio', 'cardapio', 'defumacao', 'sobre', 'localizacao'].forEach(id => spy.observe(document.getElementById(id)));
+
+/* ================= ANIMAÇÕES AO ROLAR ================= */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+}, { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ================= CARROSSEL ================= */
+(() => {
+  const track = document.getElementById('track');
+  const slides = track.children.length;
+  const dots = document.getElementById('dots');
+  let i = 0, timer;
+  dots.innerHTML = [...Array(slides)].map((_, n) => `<button aria-label="Depoimento ${n + 1}"></button>`).join('');
+  const go = n => {
+    i = (n + slides) % slides;
+    track.style.transform = `translateX(-${i * 100}%)`;
+    [...dots.children].forEach((d, k) => d.setAttribute('aria-current', k === i));
+  };
+  const auto = () => { clearInterval(timer); timer = setInterval(() => go(i + 1), 6000); };
+  document.getElementById('prev').onclick = () => { go(i - 1); auto(); };
+  document.getElementById('next').onclick = () => { go(i + 1); auto(); };
+  [...dots.children].forEach((d, k) => d.onclick = () => { go(k); auto(); });
+  // swipe no celular
+  let x0 = null;
+  track.addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
+  track.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) { go(i + (dx < 0 ? 1 : -1)); auto(); }
+    x0 = null;
+  });
+  go(0); auto();
+})();
+</script>
+</body>
+</html>
