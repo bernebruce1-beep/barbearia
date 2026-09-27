@@ -338,8 +338,7 @@ footer a:hover{color:var(--cobre)}
       <div class="f"><label for="b-phone">Seu WhatsApp</label><input id="b-phone" type="tel" autocomplete="tel" placeholder="(48) 90000-0000"></div>
       <p class="b-sum" id="b-sum"></p>
       <p class="b-err" id="b-err" role="alert"></p>
-      <button class="btn" type="submit">Confirmar agendamento</button>
-      <a class="btn ghost" id="b-send" hidden target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+      <a class="btn" id="b-send" href="#agendar" target="_blank" rel="noopener">Confirmar agendamento no WhatsApp</a>
     </form>
   </div>
 </section>
@@ -496,25 +495,32 @@ function fillTimes() {
   bTime.innerHTML = slots.length ? `<option value="">Escolha o horário</option>` + slots.map(h => `<option>${h}</option>`).join("")
     : `<option value="">${data.getDay() === 0 ? "Fechado aos domingos" : "Sem horários neste dia"}</option>`;
 }
-bDate.addEventListener("change", fillTimes); bSvc.addEventListener("change", fillTimes);
+bDate.addEventListener("change", () => { fillTimes(); pedido(); }); bSvc.addEventListener("change", () => { fillTimes(); pedido(); });
 document.addEventListener("click", e => {
   const a = e.target.closest("[data-svc],[data-pro]"); if (!a) return;
   if (a.dataset.svc) { bSvc.value = a.dataset.svc; fillTimes(); }
   if (a.dataset.pro) bPro.value = a.dataset.pro;
+  pedido();
 });
-document.getElementById("book").addEventListener("submit", e => {
-  e.preventDefault();
+// O botão é um link real para o WhatsApp: o href é atualizado a cada alteração no formulário
+const bForm = document.getElementById("book");
+function pedido() {
   const nome = document.getElementById("b-name").value.trim(), fone = document.getElementById("b-phone").value.trim();
   const falta = [[bSvc.value, "o serviço"], [bDate.value, "o dia"], [bTime.value, "o horário"], [nome, "seu nome"], [fone.replace(/\D/g, "").length >= 10, "seu WhatsApp com DDD"]]
     .filter(([ok]) => !ok).map(([, n]) => n);
-  bErr.textContent = falta.length ? "Preencha " + falta.join(", ") + "." : "";
-  if (falta.length) { bSend.hidden = true; bSum.textContent = ""; return; }
+  if (falta.length) { bSend.href = "#agendar"; bSum.textContent = ""; return falta; }
   const dataBR = bDate.value.split("-").reverse().join("/");
   const msg = `Olá, Magnatto! Quero agendar:\n• Serviço: ${bSvc.value}\n• Profissional: ${bPro.value}\n• Dia: ${dataBR} às ${bTime.value}\n• Nome: ${nome}\n• WhatsApp: ${fone}`;
   bSend.href = `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
-  bSend.hidden = false;
-  bSum.textContent = `${bSvc.value}${bPro.value === "Sem preferência" ? "" : " com " + bPro.value}, em ${dataBR} às ${bTime.value}. Toque em “Enviar pelo WhatsApp” para mandar o pedido. A equipe confirma o horário por lá.`;
-  bSend.focus();
+  bSum.textContent = `${bSvc.value}${bPro.value === "Sem preferência" ? "" : " com " + bPro.value}, em ${dataBR} às ${bTime.value}. Ao tocar no botão, o WhatsApp abre com o pedido pronto. É só enviar e a equipe confirma o horário.`;
+  bErr.textContent = "";
+  return [];
+}
+bForm.addEventListener("input", pedido); bForm.addEventListener("change", pedido);
+bForm.addEventListener("submit", e => e.preventDefault());
+bSend.addEventListener("click", e => {
+  const falta = pedido();
+  if (falta.length) { e.preventDefault(); bErr.textContent = "Preencha " + falta.join(", ") + "."; bErr.scrollIntoView({block: "center", behavior: "smooth"}); }
 });
 
 // Header ao rolar
