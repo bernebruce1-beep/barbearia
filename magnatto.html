@@ -265,7 +265,7 @@ footer a:hover{color:var(--cobre)}
   <div class="wrap">
     <div class="head reveal">
       <div class="eyebrow">Nossos serviços</div>
-      <h2>Serviços premium</h2>
+      <h2>Quais serviços nós realizamos?</h2>
       <p class="lead">Escolha o cuidado ideal e agende em poucos cliques.</p>
     </div>
     <div class="services" id="svcList"></div>
@@ -398,13 +398,14 @@ const servicos = [
   ["Camuflagem do cabelo", "Disfarce natural dos fios brancos do cabelo.", "60,00", 30],
   ["Selagem", "Redução de volume e alinhamento dos fios.", "70,00", 30],
   ["Sobrancelha", "Design e alinhamento para um olhar marcante.", "15,00", 30],
-  ["Depilação Nariz", "Remoção rápida e precisa dos pelos do nariz.", "17,00", 30],
-  ["Depilação Orelha", "Remoção rápida e precisa dos pelos da orelha.", "17,00", 30]
+  ["Depilação Nariz", "Remoção dos pelos do nariz com cera.", "17,00", 30],
+  ["Depilação Orelha", "Remoção dos pelos da orelha com cera.", "17,00", 30],
+  ["Micropigmentação Capilar", "Efeito de fios raspados que preenche falhas e disfarça a calvície.", null, null]
 ];
 document.getElementById("svcList").innerHTML = servicos.map(([n, d, p, t]) => `
   <article class="svc reveal">
     <h3>${n}</h3><p>${d}</p>
-    <div class="meta"><span class="price">R$ ${p}</span><span class="dur">⏱ ${t} min</span></div>
+    <div class="meta"><span class="price">${p ? "R$ " + p : "Sob consulta"}</span><span class="dur">${t ? "⏱ " + t + " min" : "Avaliação"}</span></div>
     <a class="btn ghost" href="${LINK}" target="_blank" rel="noopener">Agendar</a>
   </article>`).join("");
 
