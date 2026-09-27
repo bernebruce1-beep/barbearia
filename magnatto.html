@@ -481,10 +481,10 @@ document.getElementById("gal").innerHTML = Array.from({length: 9}, (_, i) => fot
   ? `<a class="ph reveal" href="https://www.instagram.com/magnattobarbearia/" target="_blank" rel="noopener"><img style="${i ? "" : "--pos:70% 30%"}" src="${fotos[i][0]}" alt="${fotos[i][1]}" loading="lazy"></a>`
   : `<a class="ph reveal" href="https://www.instagram.com/magnattobarbearia/" target="_blank" rel="noopener"><span>foto do Instagram</span></a>`).join("");
 
-document.getElementById("team").innerHTML = [["Jamili","jamili"], ["João","joao"], ["Mario","mario"], ["Wellington","wellington"]].map(([n, f]) => `
+document.getElementById("team").innerHTML = [["Jamili","jamili","Barbeira"], ["João","joao","Barbeiro"], ["Mario","mario","Barbeiro"], ["Wellington","wellington","Barbeiro"]].map(([n, f, cargo]) => `
   <article class="pro reveal">
     <div class="photo"><img src="img/${f}.webp" alt="${n}, profissional da Magnatto" loading="lazy" width="530" height="575"></div>
-    <h3>${n}</h3><p>Barbeiro</p>
+    <h3>${n}</h3><p>${cargo}</p>
     <a class="btn ghost" href="#agendar" data-pro="${n}">Agendar</a>
   </article>`).join("");
 
