@@ -1189,6 +1189,75 @@
     }
 
     /* ==========================================================
+       PÃO ARTESANAL
+       ========================================================== */
+    .bread {
+      background:
+        radial-gradient(ellipse 50% 60% at 80% 50%, rgba(242,140,22,.18), transparent 70%),
+        linear-gradient(160deg, var(--color-red-dark) 0%, var(--color-burgundy) 45%, var(--color-black) 100%);
+      color: var(--color-cream);
+      overflow: hidden;
+    }
+    .bread__grid { display: grid; gap: 40px; align-items: center; }
+    .bread .eyebrow { color: var(--color-yellow); }
+    .bread .title { color: var(--color-cream); }
+    .bread .title span { color: var(--color-orange); }
+    .bread__text { font-size: 17px; color: rgba(245,240,216,.85); margin: 16px 0 28px; max-width: 520px; }
+    .bread__points { display: grid; gap: 12px; margin-bottom: 32px; }
+    .bread__points li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background: rgba(245,240,216,.06);
+      border: 1px solid rgba(245,240,216,.1);
+      font-weight: 600;
+    }
+    .bread__points li span {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--color-yellow);
+      font-size: 20px;
+    }
+    .bread__media {
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 30px 60px rgba(17,16,14,.5);
+      outline: 6px solid rgba(245,240,216,.06);
+      outline-offset: 10px;
+    }
+    .bread__media .slot-fallback {
+      font-size: clamp(150px, 42vw, 260px);
+      line-height: 1;
+      filter: drop-shadow(0 24px 24px rgba(58,9,8,.45));
+    }
+    .bread__media .slot-img { transition: opacity 500ms ease, transform 1.2s ease-out; }
+    .bread__media:hover .slot-img { transform: scale(1.04); }
+    .bread__stamp {
+      position: absolute;
+      z-index: 2;
+      right: 16px;
+      bottom: 16px;
+      padding: 10px 16px;
+      border-radius: var(--radius-pill);
+      background: var(--color-burgundy);
+      color: var(--color-yellow);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ==========================================================
        RESPONSIVE — TABLET (≥ 640px)
        ========================================================== */
     @media (min-width: 640px) {
@@ -1247,6 +1316,8 @@
       .menu__grid .product-card { width: calc((100% - 72px) / 4); }
 
       .spotlight__grid { grid-template-columns: 1fr 1fr; gap: 72px; }
+      .bread__grid { grid-template-columns: 1fr 1fr; gap: 72px; }
+      .bread__media { order: 2; }
       .spotlight__food { font-size: 340px; }
 
       .testimonials__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
@@ -1416,7 +1487,7 @@
           </article>
 
           <article class="feature-card">
-            <span class="tag tag--top">💨 Defumado</span>
+            <span class="tag tag--fresh">💨 Defumado</span>
             <div class="feature-card__media bg-deep" data-img-slot>
               <img class="slot-img" src="img/pulled-pork.jpg" alt="Pulled Pork: carne desfiada defumada com coleslaw roxo no pão" loading="lazy">
               <span class="slot-fallback">🥪</span>
@@ -1430,16 +1501,16 @@
           </article>
 
           <article class="feature-card">
-            <span class="tag tag--fresh">🌿 Especial</span>
+            <span class="tag tag--top">🥓 Bacon</span>
             <div class="feature-card__media bg-fire" data-img-slot>
-              <img class="slot-img" src="img/choripan.jpg" alt="Choripán com chimichurri" loading="lazy">
-              <span class="slot-fallback">🌭</span>
+              <img class="slot-img" src="img/bacon-burger.webp" alt="Bacon Burger com smash duplo, cheddar escorrendo e bacon crocante" loading="lazy" style="object-position: center 45%">
+              <span class="slot-fallback">🍔</span>
             </div>
-            <h3 class="feature-card__name">Choripán</h3>
-            <p class="feature-card__desc">Linguiça artesanal na brasa, chimichurri fresco e pão crocante.</p>
+            <h3 class="feature-card__name">Bacon Burger</h3>
+            <p class="feature-card__desc">Burger suculento, bacon crocante, cheddar derretido e maionese da casa.</p>
             <div class="feature-card__foot">
-              <span class="feature-card__note">🔥 Na brasa</span>
-              <a class="btn btn--red js-wa" data-item="Choripán" href="#" target="_blank" rel="noopener">Quero pedir</a>
+              <span class="feature-card__note">🥓 Bacon crocante</span>
+              <a class="btn btn--red js-wa" data-item="Bacon Burger" href="#" target="_blank" rel="noopener">Quero pedir</a>
             </div>
           </article>
         </div>
@@ -1518,6 +1589,35 @@
             </a>
             <a class="btn btn--outline" href="#cardapio">Ver cardápio</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= PÃO ARTESANAL ========================= -->
+    <section class="section bread" id="pao">
+      <div class="container bread__grid">
+        <div class="bread__media bg-warm" data-img-slot>
+          <!-- Foto real: img/pao-artesanal.jpg. Sem ela, aparece o emoji -->
+          <img class="slot-img" src="img/pao-artesanal.jpg" alt="Pães de hambúrguer artesanais dourados, recém-saídos do forno na assadeira" loading="lazy">
+          <span class="slot-fallback" aria-hidden="true">🍞</span>
+          <span class="bread__stamp">Saiu do forno</span>
+        </div>
+
+        <div>
+          <span class="eyebrow">Feito aqui, todo dia</span>
+          <h2 class="title">Pão <span>artesanal</span></h2>
+          <p class="bread__text">
+            O pão é metade do lanche. Por isso a gente faz o nosso: massa com fermentação no tempo certo,
+            assado na casa, macio pra abraçar a carne e firme pra segurar o cheddar escorrendo.
+          </p>
+          <ul class="bread__points">
+            <li><span aria-hidden="true">⏱️</span> Fermentação no tempo certo</li>
+            <li><span aria-hidden="true">🔥</span> Assado na casa, todo dia</li>
+            <li><span aria-hidden="true">🧈</span> Macio por dentro, dourado por fora</li>
+          </ul>
+          <a href="#" class="btn btn--primary btn--lg js-wa" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-wa"/></svg> Quero provar
+          </a>
         </div>
       </div>
     </section>
@@ -1680,10 +1780,11 @@
 
       // Cardápio. Para mostrar preço, adicione  price: "R$ 34,90".
       // Para usar foto real, adicione  img: "img/arquivo.jpg"  (sem o arquivo, fica o emoji).
+      // Opcional: zoom: 1.5 e pos: "50% 40%" para enquadrar o lanche no círculo.
       var MENU = [
         { cat: "burgers",   name: "Smash Cheddar",      emoji: "🍔", bg: "bg-warm",  img: "img/smash-cheddar.jpg",   desc: "Dois smash prensados na chapa, cheddar derretido e pão artesanal" },
         { cat: "burgers",   name: "Burger Defumado",    emoji: "🍔", bg: "bg-deep",  img: "img/burger-defumado.jpg", desc: "Blend da casa defumado, queijo, cebola caramelizada e molho especial" },
-        { cat: "burgers",   name: "Bacon Burger",       emoji: "🥓", bg: "bg-fire",  desc: "Burger suculento, bacon crocante, cheddar e maionese da casa" },
+        { cat: "burgers",   name: "Bacon Burger",       emoji: "🥓", bg: "bg-fire",  img: "img/bacon-burger.webp", zoom: 1.7, pos: "50% 42%", desc: "Burger suculento, bacon crocante, cheddar e maionese da casa" },
         { cat: "burgers",   name: "X-Salada Artesanal", emoji: "🥬", bg: "bg-fresh", desc: "Burger, queijo, alface, tomate, cebola roxa e pão artesanal" },
         { cat: "especiais", name: "Pulled Pork",        emoji: "🥪", bg: "bg-deep",  img: "img/pulled-pork.jpg",     desc: "Porco desfiado defumado por horas, barbecue e pão artesanal" },
         { cat: "especiais", name: "Choripán",           emoji: "🌭", bg: "bg-fire",  img: "img/choripan.jpg",        desc: "Linguiça artesanal na brasa, chimichurri e pão crocante" },
@@ -1720,7 +1821,8 @@
         return (
           '<article class="product-card" data-cat="' + p.cat + '">' +
             '<div class="product-card__photo ' + p.bg + '" data-img-slot>' +
-              (p.img ? '<img class="slot-img" src="' + esc(p.img) + '" alt="' + esc(p.name) + '" loading="lazy">' : "") +
+              (p.img ? '<img class="slot-img" src="' + esc(p.img) + '" alt="' + esc(p.name) + '" loading="lazy"' +
+                (p.zoom || p.pos ? ' style="' + (p.pos ? "object-position:" + p.pos + ";" : "") + (p.zoom ? "transform:scale(" + p.zoom + ");transform-origin:" + (p.pos || "center") : "") + '"' : "") + '>' : "") +
               '<span class="slot-fallback" aria-hidden="true">' + p.emoji + '</span>' +
             '</div>' +
             '<span class="product-card__cat">' + CAT_LABEL[p.cat] + '</span>' +
