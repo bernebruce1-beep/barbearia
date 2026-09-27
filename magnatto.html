@@ -87,6 +87,8 @@ header.scrolled{background:rgba(11,11,11,.92);backdrop-filter:blur(10px);border-
 .about-grid{display:grid;gap:3rem}
 .slogan{font-family:"Bebas Neue",sans-serif;font-size:clamp(1.8rem,5vw,2.6rem);color:var(--cobre);border-left:3px solid var(--cobre);padding-left:1rem;margin-top:2rem;line-height:1.1}
 .cards3{display:grid;gap:1.2rem}
+@media(min-width:800px){.cards3{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.about-grid .cards3{grid-template-columns:1fr}}
 .about-photo{margin-top:2rem;max-width:340px;position:relative}
 .about-photo img{width:100%;border:1px solid var(--line)}
 .about-photo::before{content:"";position:absolute;inset:14px -14px -14px 14px;border:2px solid var(--cobre);z-index:-1}
@@ -162,16 +164,6 @@ header.scrolled{background:rgba(11,11,11,.92);backdrop-filter:blur(10px);border-
 .ph:hover span{color:#fff;transform:scale(1.08)}
 .ph:hover{outline:2px solid var(--cobre);outline-offset:-2px}
 @media(min-width:800px){.gallery{grid-template-columns:repeat(3,1fr)}}
-
-/* Depoimentos */
-.testi{display:grid;gap:1.2rem}
-.quote{background:var(--bg);border:1px solid var(--line);padding:2rem;position:relative}
-.quote::before{content:"“";position:absolute;top:-.6rem;right:1.2rem;font-family:"Bebas Neue";font-size:6rem;color:var(--cobre);opacity:.25;line-height:1}
-.quote p{margin:1rem 0 1.4rem;color:#cfcfcf;font-style:italic}
-.who{display:flex;align-items:center;gap:.8rem;font-weight:600}
-.av{width:42px;height:42px;border-radius:50%;background:var(--bg2);border:2px solid var(--cobre);display:grid;place-items:center;font-family:"Bebas Neue";color:var(--cobre)}
-@media(min-width:800px){.testi,.cards3{grid-template-columns:repeat(3,1fr)}}
-@media(min-width:900px){.about-grid .cards3{grid-template-columns:1fr}}
 
 /* Localização */
 .loc{display:grid;gap:2rem}
@@ -354,18 +346,6 @@ footer a:hover{color:var(--cobre)}
   </div>
 </section>
 
-<!-- DEPOIMENTOS -->
-<section id="depoimentos">
-  <div class="bigstar" style="left:50%;top:50%;transform:translate(-50%,-50%)"></div>
-  <div class="wrap">
-    <div class="head reveal">
-      <div class="eyebrow">Depoimentos</div>
-      <h2>Quem vem, volta</h2>
-    </div>
-    <div class="testi" id="testi"></div>
-  </div>
-</section>
-
 <!-- LOCALIZAÇÃO -->
 <section class="alt diag-top" id="localizacao">
   <div class="wrap loc">
@@ -456,13 +436,6 @@ const fotos = [
 document.getElementById("gal").innerHTML = Array.from({length: 9}, (_, i) => fotos[i]
   ? `<a class="ph reveal" href="https://www.instagram.com/magnattobarbearia/" target="_blank" rel="noopener"><img style="${i ? "" : "--pos:70% 30%"}" src="${fotos[i][0]}" alt="${fotos[i][1]}" loading="lazy"></a>`
   : `<a class="ph reveal" href="https://www.instagram.com/magnattobarbearia/" target="_blank" rel="noopener"><span>foto do Instagram</span></a>`).join("");
-
-document.getElementById("testi").innerHTML = ["C", "R", "M"].map((l, i) => `
-  <blockquote class="quote reveal">
-    <span class="stars" aria-label="5 estrelas">⭑⭑⭑⭑⭑</span>
-    <p>[DEPOIMENTO DO CLIENTE]</p>
-    <footer class="who"><span class="av">${l}</span> Cliente ${i + 1}</footer>
-  </blockquote>`).join("");
 
 document.getElementById("team").innerHTML = [["Jamili","jamili"], ["João","joao"], ["Mario","mario"], ["Wellington","wellington"]].map(([n, f]) => `
   <article class="pro reveal">
