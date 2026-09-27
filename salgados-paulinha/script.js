@@ -17,8 +17,8 @@ const PRODUTOS = [
     img:'fotos/empadao.webp', foto:'empadão de frango com catupiry inteiro, dourado e brilhante' },
   { cat:'doces', nome:'Trufas', img:'fotos/trufas.webp', desc:'Chocolate ao leite e branco, recheio cremoso e decoradas à mão. Pergunte os sabores do dia!', un:0, cento:null,
     foto:'bandeja de trufas de chocolate ao leite e chocolate branco decoradas com fios de chocolate e coco' },
-  { cat:'bebidas', nome:'Refrigerantes', desc:'Lata ou 2 litros, sempre geladinho para acompanhar os salgados.', un:0, cento:null,
-    foto:'refrigerantes gelados em lata e garrafa de 2 litros com gotinhas' },
+  { cat:'bebidas', nome:'Refrigerantes 2 litros', img:'fotos/refrigerantes.webp', desc:'Coca-Cola, Coca-Cola Zero, Guaraná Antarctica, Fanta Laranja e Sprite. Geladinhos!', un:0, cento:null,
+    foto:'garrafas de 2 litros de Sprite, Guaraná Antarctica, Coca-Cola, Coca-Cola Zero e Fanta' },
 ];
 const CATS = { fritos:'Fritos', empadao:'Empadão', doces:'Doces', bebidas:'Bebidas' };
 // =========================================
@@ -47,7 +47,7 @@ const cards = document.getElementById('cards');
 cards.innerHTML = PRODUTOS.map(p => `
   <article class="card" data-cat="${p.cat}">
     ${p.img
-      ? `<div class="card__foto">${p.tag ? `<span class="tag">${p.tag}</span>` : ''}<img src="${p.img}" alt="${p.foto}" loading="lazy" width="800" height="570"></div>`
+      ? `<div class="card__foto">${p.tag ? `<span class="tag">${p.tag}</span>` : ''}<img src="${p.img}" class="${p.cat === 'bebidas' ? 'contem' : ''}" alt="${p.foto}" loading="lazy" width="800" height="570"></div>`
       : `<div class="ph" role="img" aria-label="Foto: ${p.foto}">
       ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
       <span>📸 FOTO: ${p.foto}</span>

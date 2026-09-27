@@ -199,3 +199,5 @@ h2{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:.6rem}
   .difs__grid{grid-template-columns:1fr 1fr;gap:18px}
   .logo{font-size:1.2rem}
 }
+
+.card__foto img.contem{object-fit:contain;background:#fff;padding:8px}
