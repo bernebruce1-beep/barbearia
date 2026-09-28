@@ -21,7 +21,7 @@ Coloque as fotos em `fotos/` como JPG, com exatamente estes nomes, e rode `pytho
 | `post-totalpass.jpg` | Bloco TotalPass no plano | incluída |
 | `foto-professor.jpg` | Por que Uplay – 01 (Prof. Gi Ferreira) | incluída |
 | `post-estacionamento.jpg` | Por que Uplay – 02 (post "Nosso estacionamento mudou") | incluída; o fundo parece ilustração, troque por foto real do pátio quando tiver |
-| `foto-espaco-kids.jpg` | Por que Uplay – 03 e galeria | falta |
+| `foto-espaco-kids.jpg` | Por que Uplay – 03 | falta. Hoje o item mostra um painel preto com a faixa etária e as regras |
 | `foto-fachada.jpg` | Galeria (quando houver foto própria, não do Street View) | falta |
 | `foto-depoimento-1.jpg` … `-3.jpg` | Depoimentos (quadradas) | falta |
 | `og-uplay-sjp.jpg` | Prévia ao compartilhar o link (1200×630) | incluída; mostra o preço R$ 109,90, refaça se o preço mudar |

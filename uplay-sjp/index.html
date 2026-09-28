@@ -309,6 +309,14 @@ section[id]{ scroll-margin-top:64px; }
 .mods__cta .chev{ width:11px; height:13px; transition:transform .25s var(--ease); }
 .mods:hover .mods__cta .chev{ transform:translateX(5px); }
 
+.mods--dark{ background:var(--black); color:var(--paper); }
+.mods--dark .mods__top .chev{ color:var(--yellow); }
+.why__item .mods__big{ margin:0; max-width:none; font-family:var(--f-display); font-size:clamp(3.6rem,9vw,6rem); line-height:.85; color:var(--yellow); font-variant-numeric:tabular-nums; }
+.mods__big span{ display:block; font-size:.32em; color:var(--paper); margin-top:10px; letter-spacing:.02em; }
+.mods__rules{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line-dark); }
+.mods__rules li{ padding:10px 0; border-bottom:1px solid var(--line-dark); font-weight:700; }
+.mods__rules li:last-child{ border-bottom:0; }
+
 /* ---------- Estrutura (bento) ---------- */
 .gallery__head{ display:grid; gap:18px; margin-bottom:44px; }
 .gallery__head p{ color:var(--muted-on-dark); max-width:42ch; }
@@ -703,11 +711,17 @@ section[id]{ scroll-margin-top:64px; }
           <span class="why__n"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>03</span>
           <h3>Espaço Kids</h3>
           <p>Traga os pequenos. Enquanto você treina, eles ficam em um espaço pensado para eles.</p>
-          <p class="why__note">Para crianças de 4 a 11 anos. O espaço não tem monitor: menores de 4 anos ficam com um responsável, e as crianças não circulam pelas áreas de treino.</p>
+          <p class="why__note">Antes de trazer os pequenos, confira as regras do espaço.</p>
         </div>
-        <figure class="why__photo ph reveal" data-ph="foto-espaco-kids.jpg">
-          <img src="fotos/foto-espaco-kids.jpg" alt="Espaço kids da Uplay São José dos Pinhais" loading="lazy" onerror="this.remove()">
-        </figure>
+        <div class="why__photo mods mods--dark reveal">
+          <span class="mods__top"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Espaço Kids</span>
+          <p class="mods__big">4 a 11<span>anos</span></p>
+          <ul class="mods__rules">
+            <li>Espaço sem monitor</li>
+            <li>Menores de 4 anos ficam com um responsável</li>
+            <li>Crianças não circulam pelas áreas de treino</li>
+          </ul>
+        </div>
       </li>
       <li class="why__item">
         <div class="why__text reveal">
