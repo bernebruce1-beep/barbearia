@@ -298,6 +298,17 @@ section[id]{ scroll-margin-top:64px; }
   .why__photo{ aspect-ratio:5/4; }
 }
 
+
+/* Painel de modalidades (item 04) */
+.mods{ display:flex; flex-direction:column; justify-content:space-between; gap:20px; padding:24px; background:var(--yellow); color:var(--black); text-decoration:none; aspect-ratio:auto!important; min-height:320px; }
+.mods__top{ display:flex; align-items:center; gap:10px; font-weight:800; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; }
+.mods__top .chev{ width:10px; height:12px; }
+.mods__list{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:2px 14px; font-family:var(--f-display); text-transform:uppercase; font-size:clamp(1.7rem,4.2vw,2.9rem); line-height:1.02; }
+.mods__list li:not(:last-child)::after{ content:" /"; opacity:.35; }
+.mods__cta{ display:inline-flex; align-items:center; gap:10px; font-weight:800; border-top:2px solid var(--black); padding-top:14px; }
+.mods__cta .chev{ width:11px; height:13px; transition:transform .25s var(--ease); }
+.mods:hover .mods__cta .chev{ transform:translateX(5px); }
+
 /* ---------- Estrutura (bento) ---------- */
 .gallery__head{ display:grid; gap:18px; margin-bottom:44px; }
 .gallery__head p{ color:var(--muted-on-dark); max-width:42ch; }
@@ -704,9 +715,13 @@ section[id]{ scroll-margin-top:64px; }
           <h3>Aulas coletivas</h3>
           <p>Pra quem treina melhor em grupo e gosta de energia lá em cima.</p>
         </div>
-        <figure class="why__photo ph reveal" data-ph="foto-aula-coletiva.jpg">
-          <img src="fotos/foto-aula-coletiva.webp" srcset="fotos/foto-aula-coletiva-800.webp 800w, fotos/foto-aula-coletiva.webp 1600w" sizes="(min-width:860px) 50vw, 100vw" alt="Turma em aula coletiva na Uplay São José dos Pinhais" loading="lazy" onerror="this.remove()">
-        </figure>
+        <a class="why__photo mods reveal" href="#aulas" aria-label="Ver o quadro de aulas coletivas">
+          <span class="mods__top"><svg class="chev" aria-hidden="true"><use href="#chev"/></svg>Seg a sex · sala de coletivas</span>
+          <ul class="mods__list">
+            <li>Yoga</li><li>Pilates</li><li>Ritmos</li><li>Fit Dance</li><li>Step</li><li>Funcional</li><li>Muay Thai</li><li>Combat</li>
+          </ul>
+          <span class="mods__cta">Ver horários <svg class="chev" aria-hidden="true"><use href="#chev"/></svg></span>
+        </a>
       </li>
     </ol>
   </div>

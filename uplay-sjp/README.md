@@ -12,7 +12,7 @@ Coloque as fotos em `fotos/` como JPG, com exatamente estes nomes, e rode `pytho
 | `foto-musculacao.jpg` | Galeria – Máquinas | incluída (frame de vídeo, baixa resolução) |
 | `foto-salao.jpg` | Galeria (destaque) | incluída |
 | `foto-cardio.jpg` | Galeria | incluída (site uplaysjp.com.br) |
-| `foto-aula-coletiva.jpg` | Por que Uplay – 04 | incluída, mas em baixa resolução (sala vazia); troque por foto de aula |
+| `foto-aula-coletiva.jpg` | Por que Uplay – 04 | falta. Hoje o item mostra um painel amarelo com as modalidades; troque por foto de aula acontecendo quando houver |
 | `foto-supinos.jpg` | Galeria | incluída (site uplaysjp.com.br) |
 | `foto-musculacao-2.jpg` | Galeria | incluída (site uplaysjp.com.br) |
 | `foto-recepcao.jpg` | Galeria | incluída (site uplaysjp.com.br) |
