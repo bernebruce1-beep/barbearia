@@ -4,7 +4,7 @@ Arquivo único: `index.html` (HTML, CSS e JS puro). Abra direto no navegador ou 
 
 ## Fotos
 
-Coloque as fotos em `fotos/` com exatamente estes nomes. Enquanto um arquivo não existir, aparece um placeholder com o nome dele.
+Coloque as fotos em `fotos/` como JPG, com exatamente estes nomes, e rode `python3 otimizar-fotos.py`. O site carrega as versões WebP geradas (`NOME.webp` e `NOME-800.webp`, a menor vai para o celular). Enquanto uma foto não existir, aparece um placeholder com o nome dela.
 
 | Arquivo | Onde aparece | Status |
 |---|---|---|
@@ -22,9 +22,9 @@ Coloque as fotos em `fotos/` com exatamente estes nomes. Enquanto um arquivo nã
 | `foto-professor.jpg` | Por que Uplay – 01 (Prof. Gi Ferreira) | incluída |
 | `post-estacionamento.jpg` | Por que Uplay – 02 (post "Nosso estacionamento mudou") | incluída; o fundo parece ilustração, troque por foto real do pátio quando tiver |
 | `foto-espaco-kids.jpg` | Por que Uplay – 03 e galeria | falta |
-| `foto-fachada.jpg` | Prévia de link / futura galeria | falta |
+| `foto-fachada.jpg` | Galeria (quando houver foto própria, não do Street View) | falta |
 | `foto-depoimento-1.jpg` … `-3.jpg` | Depoimentos (quadradas) | falta |
-| `og-uplay-sjp.jpg` | Prévia ao compartilhar o link (1200×630) | falta |
+| `og-uplay-sjp.jpg` | Prévia ao compartilhar o link (1200×630) | incluída; mostra o preço R$ 109,90, refaça se o preço mudar |
 
 As fotos incluídas saíram de posts e stories do @uplay.sjp: legendas e marcas d'água foram cortadas ou removidas, e as imagens passaram por upscale 4x (EDSR).
 
