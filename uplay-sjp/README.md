@@ -8,16 +8,16 @@ Coloque as fotos em `fotos/` como JPG, com exatamente estes nomes, e rode `pytho
 
 | Arquivo | Onde aparece | Status |
 |---|---|---|
-| `foto-musculacao.jpg` | Hero (cortada pela seta) | incluída |
+| `foto-peso-livre.jpg` | Hero (cortada pela seta) | incluída (site uplaysjp.com.br) |
+| `foto-musculacao.jpg` | Galeria – Máquinas | incluída (frame de vídeo, baixa resolução) |
 | `foto-salao.jpg` | Galeria (destaque) | incluída |
-| `foto-peso-livre.jpg` | Galeria | incluída (site uplaysjp.com.br) |
-| `foto-cardio.jpg` | Galeria | incluída |
-| `foto-aula-coletiva.jpg` | Por que Uplay – 04 e galeria | incluída (sala vazia; troque por foto de aula quando tiver) |
+| `foto-cardio.jpg` | Galeria | incluída (site uplaysjp.com.br) |
+| `foto-aula-coletiva.jpg` | Por que Uplay – 04 | incluída, mas em baixa resolução (sala vazia); troque por foto de aula |
+| `foto-supinos.jpg` | Galeria | incluída (site uplaysjp.com.br) |
 | `foto-musculacao-2.jpg` | Galeria | incluída (site uplaysjp.com.br) |
 | `foto-recepcao.jpg` | Galeria | incluída (site uplaysjp.com.br) |
 | `foto-mezanino.jpg` | Galeria | incluída (site uplaysjp.com.br) |
 | `foto-mobilidade.jpg` | Galeria | incluída |
-| `foto-funcional.jpg` | Galeria | incluída |
 | `post-totalpass.jpg` | Bloco TotalPass no plano | incluída |
 | `foto-professor.jpg` | Por que Uplay – 01 (Prof. Gi Ferreira) | incluída |
 | `post-estacionamento.jpg` | Por que Uplay – 02 (post "Nosso estacionamento mudou") | incluída; o fundo parece ilustração, troque por foto real do pátio quando tiver |
