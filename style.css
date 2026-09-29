@@ -10,21 +10,21 @@
    ========================================================= */
 
 :root {
-    --bg: #080808;
-    --bg-soft: #0d0d0d;
-    --card: #111111;
-    --card-light: #161616;
+    --bg: #141210;
+    --bg-soft: #1b1814;
+    --card: #221e19;
+    --card-light: #292520;
 
-    --gold: #c9a45c;
-    --gold-light: #dfc27e;
-    --gold-dark: #92743b;
+    --gold: #d4ad63;
+    --gold-light: #e8c98a;
+    --gold-dark: #a07e40;
 
     --white: #f4f1e9;
-    --text: #b8b4ab;
-    --muted: #706d66;
+    --text: #cfc9bc;
+    --muted: #8a857a;
 
     --border: rgba(255,255,255,0.08);
-    --gold-border: rgba(201,164,92,0.25);
+    --gold-border: rgba(212,173,99,0.25);
 
     --container: 1180px;
     --radius: 4px;
@@ -84,7 +84,7 @@ img {
 
 ::selection {
     background: var(--gold);
-    color: #080808;
+    color: #141210;
 }
 
 /* =========================================================
@@ -96,7 +96,7 @@ img {
 }
 
 ::-webkit-scrollbar-track {
-    background: #050505;
+    background: #141210;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -197,7 +197,7 @@ img {
 .btn-primary {
     background: var(--gold);
     border: 1px solid var(--gold);
-    color: #080808;
+    color: #141210;
 }
 
 .btn-primary:hover {
@@ -230,7 +230,7 @@ img {
 
     z-index: 1000;
 
-    background: rgba(8,8,8,.96);
+    background: rgba(20,18,16,.96);
 
     border-bottom: 1px solid rgba(255,255,255,.07);
 }
@@ -365,7 +365,7 @@ img {
 
 .header-button:hover {
     background: var(--gold);
-    color: #080808;
+    color: #141210;
 }
 
 /* MENU MOBILE */
@@ -384,7 +384,7 @@ img {
 
     background: transparent;
 
-    border: 1px solid rgba(201,164,92,.3);
+    border: 1px solid rgba(212,173,99,.3);
 }
 
 .menu-toggle span {
@@ -412,7 +412,7 @@ img {
 
     overflow: hidden;
 
-    background: #080808;
+    background: #141210;
 }
 
 /* detalhe lateral discreto */
@@ -432,7 +432,7 @@ img {
         linear-gradient(
             90deg,
             transparent,
-            rgba(201,164,92,.035)
+            rgba(212,173,99,.035)
         );
 
     pointer-events: none;
@@ -449,7 +449,7 @@ img {
     width: 600px;
     height: 600px;
 
-    border: 1px solid rgba(201,164,92,.08);
+    border: 1px solid rgba(212,173,99,.08);
 
     border-radius: 50%;
 
@@ -463,9 +463,9 @@ img {
     background:
         linear-gradient(
             90deg,
-            rgba(8,8,8,.98) 0%,
-            rgba(8,8,8,.88) 50%,
-            rgba(8,8,8,.72) 100%
+            rgba(20,18,16,.98) 0%,
+            rgba(20,18,16,.88) 50%,
+            rgba(20,18,16,.72) 100%
         );
 
     pointer-events: none;
@@ -598,9 +598,9 @@ img {
     flex-direction: column;
     justify-content: flex-end;
 
-    background: #101010;
+    background: #221e19;
 
-    border: 1px solid rgba(201,164,92,.16);
+    border: 1px solid rgba(212,173,99,.16);
 
     transition:
         border-color .25s ease,
@@ -735,7 +735,7 @@ img {
    ========================================================= */
 
 .services-section {
-    background: #0b0b0b;
+    background: #1b1814;
 }
 
 .services-grid {
@@ -776,15 +776,15 @@ img {
     width: 130px;
     height: 130px;
 
-    border: 1px solid rgba(201,164,92,.07);
+    border: 1px solid rgba(212,173,99,.07);
 
     border-radius: 50%;
 }
 
 .service-card:hover {
-    border-color: rgba(201,164,92,.35);
+    border-color: rgba(212,173,99,.35);
 
-    background: #131313;
+    background: #292520;
 
     transform: translateY(-5px);
 }
@@ -813,7 +813,7 @@ img {
 
     color: var(--gold);
 
-    border: 1px solid rgba(201,164,92,.24);
+    border: 1px solid rgba(212,173,99,.24);
 
     font-size: 18px;
 
@@ -822,7 +822,7 @@ img {
 
 .service-card:hover .service-icon {
     background: var(--gold);
-    color: #080808;
+    color: #141210;
 }
 
 .service-card h3 {
@@ -875,7 +875,7 @@ img {
 }
 
 .service-card.featured {
-    border-color: rgba(201,164,92,.3);
+    border-color: rgba(212,173,99,.3);
 }
 
 .service-badge {
@@ -888,7 +888,7 @@ img {
 
     background: var(--gold);
 
-    color: #080808;
+    color: #141210;
 
     font-size: 7px;
     font-weight: 900;
@@ -903,7 +903,7 @@ img {
 .experience-section {
     padding: 120px 0;
 
-    background: #080808;
+    background: #141210;
 }
 
 .experience-container {
@@ -991,9 +991,9 @@ img {
 
     overflow: hidden;
 
-    background: #0d0d0d;
+    background: #1b1814;
 
-    border: 1px solid rgba(201,164,92,.2);
+    border: 1px solid rgba(212,173,99,.2);
 
     box-sizing: border-box;
 }
@@ -1024,7 +1024,7 @@ img {
    ========================================================= */
 
 .barber-section {
-    background: #0b0b0b;
+    background: #1b1814;
 }
 
 .section-heading.centered > p {
@@ -1051,7 +1051,7 @@ img {
     display: grid;
     place-items: center;
 
-    background: #0d0d0d;
+    background: #1b1814;
 }
 
 .photo-placeholder {
@@ -1065,7 +1065,7 @@ img {
 
     color: var(--gold);
 
-    border: 1px solid rgba(201,164,92,.25);
+    border: 1px solid rgba(212,173,99,.25);
 }
 
 .photo-placeholder::before {
@@ -1076,7 +1076,7 @@ img {
     width: 202px;
     height: 262px;
 
-    border: 1px solid rgba(201,164,92,.08);
+    border: 1px solid rgba(212,173,99,.08);
 }
 
 .photo-placeholder span {
@@ -1149,7 +1149,7 @@ img {
 .barber-tags span {
     padding: 7px 10px;
 
-    border: 1px solid rgba(201,164,92,.2);
+    border: 1px solid rgba(212,173,99,.2);
 
     color: #888;
 
@@ -1166,7 +1166,7 @@ img {
 .booking-section {
     padding: 120px 0;
 
-    background: #080808;
+    background: #141210;
 }
 
 .booking-header {
@@ -1198,9 +1198,9 @@ img {
 .booking-intro {
     padding: 55px;
 
-    background: #10100f;
+    background: #221e19;
 
-    border-right: 1px solid rgba(201,164,92,.13);
+    border-right: 1px solid rgba(212,173,99,.13);
 }
 
 .booking-logo {
@@ -1303,7 +1303,7 @@ img {
 
     padding: 0 15px;
 
-    background: #0b0b0b;
+    background: #1b1814;
 
     border: 1px solid rgba(255,255,255,.09);
 
@@ -1320,7 +1320,7 @@ img {
 
 .form-group input:focus,
 .form-group select:focus {
-    background: #0e0e0e;
+    background: #221e19;
 
     border-color: var(--gold);
 }
@@ -1356,7 +1356,7 @@ img {
 
     padding: 14px;
 
-    background: #0c0c0c;
+    background: #1b1814;
 
     border: 1px solid rgba(255,255,255,.08);
 
@@ -1371,7 +1371,7 @@ img {
 }
 
 .service-option:hover {
-    border-color: rgba(201,164,92,.4);
+    border-color: rgba(212,173,99,.4);
 
     background: #111;
 }
@@ -1389,7 +1389,7 @@ img {
 
     padding: 0 !important;
 
-    background: #090909;
+    background: #141210;
 
     border: 1px solid #555;
 
@@ -1416,7 +1416,7 @@ img {
 
     transform: translate(-50%, -53%);
 
-    color: #080808;
+    color: #141210;
 
     font-size: 12px;
     font-weight: 900;
@@ -1480,7 +1480,7 @@ img {
 /* CARD SELECIONADO */
 
 .service-option:has(input[type="checkbox"]:checked) {
-    background: #15130e;
+    background: #231f17;
 
     border-color: var(--gold);
 
@@ -1503,7 +1503,7 @@ img {
 
     background: #111;
 
-    border: 1px solid rgba(201,164,92,.22);
+    border: 1px solid rgba(212,173,99,.22);
 
     border-left: 3px solid var(--gold);
 
@@ -1543,7 +1543,7 @@ img {
 
     padding: 14px;
 
-    background: #0b0b0b;
+    background: #1b1814;
 
     color: #555;
 
@@ -1555,7 +1555,7 @@ img {
 .horario-btn {
     min-height: 45px;
 
-    background: #0b0b0b;
+    background: #1b1814;
 
     border: 1px solid rgba(255,255,255,.09);
 
@@ -1573,7 +1573,7 @@ img {
 }
 
 .horario-btn:hover:not(:disabled) {
-    background: #14120d;
+    background: #231f17;
 
     border-color: var(--gold);
 
@@ -1585,7 +1585,7 @@ img {
 
     border-color: var(--gold);
 
-    color: #080808;
+    color: #141210;
 
     font-weight: 800;
 }
@@ -1652,7 +1652,7 @@ img {
 
     text-align: center;
 
-    background: #0b0b0b;
+    background: #1b1814;
 
     border-top: 1px solid rgba(255,255,255,.04);
 }
@@ -1686,7 +1686,7 @@ img {
 .footer {
     padding: 28px 0;
 
-    background: #050505;
+    background: #141210;
 
     border-top: 1px solid rgba(255,255,255,.06);
 }
@@ -1827,7 +1827,7 @@ img {
     .booking-intro {
         border-right: none;
 
-        border-bottom: 1px solid rgba(201,164,92,.13);
+        border-bottom: 1px solid rgba(212,173,99,.13);
     }
 }
 
@@ -1872,9 +1872,9 @@ img {
 
         overflow: hidden;
 
-        background: #090909;
+        background: #141210;
 
-        border-bottom: 1px solid rgba(201,164,92,.15);
+        border-bottom: 1px solid rgba(212,173,99,.15);
 
         transition: max-height .3s ease;
     }
