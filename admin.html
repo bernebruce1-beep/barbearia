@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#0f1115">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="GNOMO'Z Admin">
+
+    <link rel="manifest" href="admin.webmanifest">
+    <link rel="icon" href="admin-icon-192.png">
+    <link rel="apple-touch-icon" href="admin-apple-icon.png">
 
     <title>Painel Administrativo</title>
 
@@ -25,6 +33,10 @@
 
             <button class="btn-atualizar" onclick="carregarTudo()">
                 🔄 Atualizar
+            </button>
+
+            <button class="btn-sair" id="btnInstalar" hidden>
+                📲 Instalar app
             </button>
 
             <button class="btn-sair" onclick="sair()">

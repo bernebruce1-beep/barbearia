@@ -555,4 +555,32 @@ async function desbloquearHorario(id) {
 }
 
 
+// Permite instalar o painel como aplicativo no celular.
+
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("admin-sw.js").catch(() => {});
+}
+
+
+// Android/Chrome: mostra o botão "Instalar app" quando dá para instalar.
+
+let pedidoInstalacao = null;
+
+window.addEventListener("beforeinstallprompt", event => {
+    event.preventDefault();
+    pedidoInstalacao = event;
+    document.getElementById("btnInstalar").hidden = false;
+});
+
+document.getElementById("btnInstalar").addEventListener("click", async () => {
+    if (!pedidoInstalacao) return;
+
+    pedidoInstalacao.prompt();
+    await pedidoInstalacao.userChoice;
+
+    pedidoInstalacao = null;
+    document.getElementById("btnInstalar").hidden = true;
+});
+
+
 iniciarAdmin();
