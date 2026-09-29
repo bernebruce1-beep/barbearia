@@ -74,7 +74,7 @@
                 <span>📅</span>
                 <div>
                     <strong id="totalAgendamentos">0</strong>
-                    <small>Agendamentos</small>
+                    <small>Clientes hoje</small>
                 </div>
             </div>
 
@@ -82,7 +82,7 @@
                 <span>✅</span>
                 <div>
                     <strong id="totalConfirmados">0</strong>
-                    <small>Confirmados</small>
+                    <small>Próximos agendamentos</small>
                 </div>
             </div>
 
@@ -105,51 +105,33 @@
         </section>
 
 
-        <!-- AGENDAMENTOS -->
+        <!-- AGENDA -->
 
         <section class="painel">
 
             <div class="titulo-painel">
 
                 <div>
-                    <h2>📅 Agendamentos</h2>
-                    <p>Todos os agendamentos realizados</p>
+                    <h2>📅 Agenda</h2>
+                    <p>Toque em "Lembrar" para mandar o lembrete no WhatsApp do cliente</p>
                 </div>
 
                 <input
                     type="date"
                     id="filtroData"
-                    onchange="renderizarAgendamentos()"
+                    aria-label="Ver um dia específico"
                 >
 
             </div>
 
-            <div class="tabela-container">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-                            <th>Cliente</th>
-                            <th>Telefone</th>
-                            <th>Serviço</th>
-                            <th>Barbeiro</th>
-                            <th>Data</th>
-                            <th>Horário</th>
-                            <th>Status</th>
-                            <th>Ação</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="listaAgendamentos">
-
-                    </tbody>
-
-                </table>
-
+            <div class="abas" role="tablist">
+                <button type="button" class="aba ativa" data-aba="hoje">Hoje</button>
+                <button type="button" class="aba" data-aba="amanha">Amanhã</button>
+                <button type="button" class="aba" data-aba="proximos">Próximos</button>
+                <button type="button" class="aba" data-aba="todos">Todos</button>
             </div>
+
+            <div id="listaAgendamentos" class="agenda"></div>
 
         </section>
 
@@ -161,8 +143,8 @@
             <div class="titulo-painel">
 
                 <div>
-                    <h2>🚫 Bloquear horário</h2>
-                    <p>Impeça clientes de agendarem determinado horário</p>
+                    <h2>🚫 Bloquear agenda</h2>
+                    <p>Folga, compromisso ou dia sem trabalhar</p>
                 </div>
 
             </div>
@@ -195,7 +177,7 @@
 
                 <div class="campo">
 
-                    <label>Horário</label>
+                    <label>Horário <small>(só para bloquear um horário)</small></label>
 
                     <select id="bloqueioHorario">
 
@@ -234,53 +216,41 @@
             </div>
 
 
-            <button
-                class="btn-principal"
-                onclick="bloquearHorario()"
-            >
-                🚫 Bloquear horário
-            </button>
+            <div class="botoes-bloqueio">
+
+                <button
+                    class="btn-principal"
+                    onclick="bloquearDia()"
+                >
+                    📅 Bloquear o dia inteiro
+                </button>
+
+                <button
+                    class="btn-secundario"
+                    onclick="bloquearHorario()"
+                >
+                    🚫 Bloquear só o horário escolhido
+                </button>
+
+            </div>
 
         </section>
 
 
-        <!-- HORÁRIOS BLOQUEADOS -->
+        <!-- BLOQUEIOS -->
 
         <section class="painel">
 
             <div class="titulo-painel">
 
                 <div>
-                    <h2>🔒 Horários bloqueados</h2>
-                    <p>Horários que não podem receber agendamentos</p>
+                    <h2>🔒 Dias e horários bloqueados</h2>
+                    <p>Clientes não conseguem agendar nesses horários</p>
                 </div>
 
             </div>
 
-
-            <div class="tabela-container">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-                            <th>Barbeiro</th>
-                            <th>Data</th>
-                            <th>Horário</th>
-                            <th>Motivo</th>
-                            <th>Ação</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="listaBloqueios">
-
-                    </tbody>
-
-                </table>
-
-            </div>
+            <div id="listaBloqueios" class="agenda"></div>
 
         </section>
 

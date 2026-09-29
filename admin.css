@@ -409,3 +409,202 @@ tr:hover td {
 .login p {
     color: #9da3ae;
 }
+
+
+/* ABAS DA AGENDA */
+
+.abas {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.aba {
+    padding: 10px 18px;
+    border: 1px solid #343943;
+    border-radius: 999px;
+    background: transparent;
+    color: #aeb4bf;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.aba.ativa {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #111111;
+}
+
+
+/* AGENDA EM CARTÕES */
+
+.agenda {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.dia {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dia-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 15px;
+    color: #ffffff;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #292d35;
+}
+
+.dia-titulo span {
+    color: #858c98;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.agendamento,
+.bloqueio {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    background: #101217;
+    border: 1px solid #292d35;
+    border-radius: 10px;
+}
+
+.bloqueio {
+    grid-template-columns: 1fr auto;
+}
+
+.agendamento.cancelado {
+    opacity: .5;
+}
+
+.agendamento-hora {
+    min-width: 64px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: #1f242c;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.agendamento-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.agendamento-info strong {
+    font-size: 16px;
+}
+
+.agendamento-info span {
+    color: #c9ced6;
+    font-size: 14px;
+}
+
+.agendamento-info small {
+    color: #858c98;
+    font-size: 13px;
+}
+
+.agendamento-acoes {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.btn-lembrar {
+    padding: 9px 14px;
+    border-radius: 6px;
+    background: #1f7a45;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn-lembrar:hover {
+    opacity: .85;
+}
+
+.agendamento-acoes .btn-cancelar,
+.agendamento-acoes .btn-desbloquear {
+    padding: 9px 12px;
+    font-size: 13px;
+}
+
+.botoes-bloqueio {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-secundario {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #343943;
+    padding: 13px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.campo label small {
+    color: #6b717c;
+}
+
+@media (max-width: 600px) {
+    .agendamento {
+        grid-template-columns: auto 1fr;
+    }
+
+    .agendamento-acoes {
+        grid-column: 1 / -1;
+        justify-content: stretch;
+    }
+
+    .agendamento-acoes > * {
+        flex: 1;
+        text-align: center;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .resumo {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px;
+    }
+
+    .card-resumo {
+        padding: 14px;
+        gap: 10px;
+    }
+
+    .card-resumo > span {
+        font-size: 22px;
+    }
+}

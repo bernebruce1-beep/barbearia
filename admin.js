@@ -94,8 +94,71 @@ function carregarTudo() {
 
 
 // ============================================================
-// AGENDAMENTOS
+// AGENDA
 // ============================================================
+
+// Mesmos horários do site (terça a sexta).
+
+const HORARIOS = [
+    "09:30", "10:00", "10:30", "11:00", "11:30",
+    "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30"
+];
+
+const NOMES_DIAS = [
+    "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"
+];
+
+let abaAtual = "hoje";
+
+function dataISO(data) {
+    return `${data.getFullYear()}-${String(data.getMonth() + 1).padStart(2, "0")}-${String(data.getDate()).padStart(2, "0")}`;
+}
+
+function hojeISO() {
+    return dataISO(new Date());
+}
+
+function amanhaISO() {
+    const data = new Date();
+    data.setDate(data.getDate() + 1);
+    return dataISO(data);
+}
+
+function tituloDia(iso) {
+    const dia = NOMES_DIAS[new Date(`${iso}T12:00:00`).getDay()];
+
+    if (iso === hojeISO()) return `Hoje · ${dia}, ${formatarData(iso)}`;
+    if (iso === amanhaISO()) return `Amanhã · ${dia}, ${formatarData(iso)}`;
+
+    return `${dia}, ${formatarData(iso)}`;
+}
+
+function linkLembrete(item) {
+
+    let numero = String(item.telefone || "").replace(/\D/g, "");
+
+    if (numero.length === 10 || numero.length === 11) {
+        numero = "55" + numero;
+    }
+
+    const primeiroNome = String(item.nome_cliente || "").trim().split(" ")[0];
+    const hora = String(item.horario || "").substring(0, 5);
+
+    const quando = item.data_agendamento === hojeISO()
+        ? `hoje às ${hora}`
+        : `${tituloDia(item.data_agendamento).replace(/^(Hoje|Amanhã) · /, "").toLowerCase()} às ${hora}`;
+
+    const mensagem =
+`Olá, ${primeiroNome}! 💈
+
+Passando para lembrar do seu horário ${quando} na *Barbearia do GNOMO'Z*.
+
+✂️ ${item.servico_nome || "Atendimento"}
+
+Te esperamos! Se precisar remarcar, é só responder esta mensagem.`;
+
+    return `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+}
 
 async function carregarAgendamentos() {
     const resultado = await supabaseClient.rpc("admin_list_agendamentos");
@@ -108,11 +171,14 @@ async function carregarAgendamentos() {
 
     agendamentos = resultado.data || [];
 
+    const hoje = hojeISO();
+    const ativos = agendamentos.filter(item => item.status !== "cancelado");
+
     document.getElementById("totalAgendamentos").textContent =
-        agendamentos.length;
+        ativos.filter(item => item.data_agendamento === hoje).length;
 
     document.getElementById("totalConfirmados").textContent =
-        agendamentos.filter(item => item.status !== "cancelado").length;
+        ativos.filter(item => item.data_agendamento >= hoje).length;
 
     document.getElementById("totalCancelados").textContent =
         agendamentos.filter(item => item.status === "cancelado").length;
@@ -121,40 +187,106 @@ async function carregarAgendamentos() {
 }
 
 function renderizarAgendamentos() {
-    const tabela = document.getElementById("listaAgendamentos");
+    const container = document.getElementById("listaAgendamentos");
     const filtro = document.getElementById("filtroData").value;
+    const hoje = hojeISO();
 
-    const lista = filtro
-        ? agendamentos.filter(item => item.data_agendamento === filtro)
-        : agendamentos;
+    let lista;
+
+    if (filtro) {
+        lista = agendamentos.filter(item => item.data_agendamento === filtro);
+    } else if (abaAtual === "hoje") {
+        lista = agendamentos.filter(item => item.data_agendamento === hoje);
+    } else if (abaAtual === "amanha") {
+        lista = agendamentos.filter(item => item.data_agendamento === amanhaISO());
+    } else if (abaAtual === "proximos") {
+        lista = agendamentos.filter(item => item.data_agendamento >= hoje && item.status !== "cancelado");
+    } else {
+        lista = agendamentos.slice().reverse();
+    }
 
     if (lista.length === 0) {
-        tabela.innerHTML =
-            "<tr><td colspan='8'>Nenhum agendamento encontrado.</td></tr>";
+        container.innerHTML = `<p class="vazio">Nenhum cliente agendado ${filtro ? "nesse dia" : abaAtual === "hoje" ? "para hoje" : abaAtual === "amanha" ? "para amanhã" : ""}.</p>`;
         return;
     }
 
-    tabela.innerHTML = lista.map(function(item) {
-        const cancelado = item.status === "cancelado";
+    // Agrupa por dia.
 
-        const acao = cancelado
-            ? "—"
-            : `<button class="btn-cancelar" onclick="cancelarAgendamento(${Number(item.id)})">❌ Cancelar</button>`;
+    const dias = [];
+
+    lista.forEach(item => {
+        let grupo = dias.find(dia => dia.data === item.data_agendamento);
+
+        if (!grupo) {
+            grupo = { data: item.data_agendamento, itens: [] };
+            dias.push(grupo);
+        }
+
+        grupo.itens.push(item);
+    });
+
+    container.innerHTML = dias.map(dia => {
+
+        const ativos = dia.itens.filter(item => item.status !== "cancelado").length;
 
         return `
-            <tr>
-                <td>${escaparHTML(item.nome_cliente || "-")}</td>
-                <td>${escaparHTML(item.telefone || "-")}</td>
-                <td>${escaparHTML(item.servico_nome || "-")}</td>
-                <td>${escaparHTML(item.barbeiro_nome || "-")}</td>
-                <td>${escaparHTML(formatarData(item.data_agendamento))}</td>
-                <td>${escaparHTML(String(item.horario || "-").substring(0, 5))}</td>
-                <td><span class="status status-${cancelado ? "cancelado" : "confirmado"}">${escaparHTML(item.status || "-")}</span></td>
-                <td>${acao}</td>
-            </tr>
+            <div class="dia">
+                <h3 class="dia-titulo">
+                    ${escaparHTML(tituloDia(dia.data))}
+                    <span>${ativos} ${ativos === 1 ? "cliente" : "clientes"}</span>
+                </h3>
+
+                ${dia.itens.map(item => {
+
+                    const cancelado = item.status === "cancelado";
+
+                    return `
+                        <div class="agendamento ${cancelado ? "cancelado" : ""}">
+
+                            <div class="agendamento-hora">
+                                ${escaparHTML(String(item.horario || "").substring(0, 5))}
+                            </div>
+
+                            <div class="agendamento-info">
+                                <strong>${escaparHTML(item.nome_cliente || "-")}</strong>
+                                <span>${escaparHTML(item.servico_nome || "-")}</span>
+                                <small>${escaparHTML(item.telefone || "")}${cancelado ? " · <b>Cancelado</b>" : ""}</small>
+                            </div>
+
+                            <div class="agendamento-acoes">
+                                ${cancelado ? "" : `
+                                    <a class="btn-lembrar" href="${linkLembrete(item)}" target="_blank" rel="noopener noreferrer">📲 Lembrar</a>
+                                    <button class="btn-cancelar" onclick="cancelarAgendamento(${Number(item.id)})">Cancelar</button>
+                                `}
+                            </div>
+
+                        </div>
+                    `;
+
+                }).join("")}
+            </div>
         `;
+
     }).join("");
 }
+
+document.querySelectorAll(".aba").forEach(aba => {
+    aba.addEventListener("click", () => {
+        abaAtual = aba.dataset.aba;
+
+        document.querySelectorAll(".aba").forEach(outra =>
+            outra.classList.toggle("ativa", outra === aba)
+        );
+
+        document.getElementById("filtroData").value = "";
+        renderizarAgendamentos();
+    });
+});
+
+document.getElementById("filtroData").addEventListener("change", () => {
+    document.querySelectorAll(".aba").forEach(aba => aba.classList.remove("ativa"));
+    renderizarAgendamentos();
+});
 
 async function cancelarAgendamento(id) {
     if (!confirm("Tem certeza que deseja cancelar este agendamento?")) {
@@ -199,14 +331,14 @@ async function carregarBarbeiros() {
     document.getElementById("listaBarbeiros").innerHTML = barbeiros.map(function(item) {
         return `
             <div>
-                <strong>${escaparHTML(item.nome)}</strong>
+                <strong style="text-transform: capitalize">${escaparHTML(item.nome)}</strong>
                 <span>${escaparHTML(item.especialidade || "")}</span>
             </div>
         `;
     }).join("");
 
     document.getElementById("bloqueioBarbeiro").innerHTML = barbeiros.map(function(item) {
-        return `<option value="${Number(item.id)}">${escaparHTML(item.nome)}</option>`;
+        return `<option value="${Number(item.id)}">${escaparHTML(item.nome.charAt(0).toUpperCase() + item.nome.slice(1))}</option>`;
     }).join("");
 }
 
@@ -225,7 +357,7 @@ async function carregarServicos() {
     document.getElementById("listaServicos").innerHTML = (resultado.data || []).map(function(item) {
         return `
             <div>
-                <strong>${escaparHTML(item.nome)}</strong>
+                <strong style="text-transform: capitalize">${escaparHTML(item.nome)}</strong>
                 <span>R$ ${Number(item.preco).toFixed(2).replace(".", ",")}</span>
             </div>
         `;
@@ -246,32 +378,128 @@ async function carregarBloqueios() {
         return;
     }
 
-    const bloqueios = resultado.data || [];
-    const tabela = document.getElementById("listaBloqueios");
+    const hoje = hojeISO();
+
+    const bloqueios = (resultado.data || [])
+        .filter(item => item.data_bloqueio >= hoje);
+
+    const container = document.getElementById("listaBloqueios");
 
     document.getElementById("totalBloqueios").textContent = bloqueios.length;
 
     if (bloqueios.length === 0) {
-        tabela.innerHTML =
-            "<tr><td colspan='5'>Nenhum horário bloqueado.</td></tr>";
+        container.innerHTML = `<p class="vazio">Nenhum bloqueio daqui pra frente.</p>`;
         return;
     }
 
-    tabela.innerHTML = bloqueios.map(function(item) {
+    // Agrupa por dia e barbeiro.
+
+    const grupos = [];
+
+    bloqueios.forEach(item => {
+        const chave = `${item.data_bloqueio}|${item.barbeiro_id}`;
+        let grupo = grupos.find(g => g.chave === chave);
+
+        if (!grupo) {
+            grupo = { chave, data: item.data_bloqueio, barbeiroId: item.barbeiro_id, barbeiro: item.barbeiro_nome, itens: [] };
+            grupos.push(grupo);
+        }
+
+        grupo.itens.push(item);
+    });
+
+    container.innerHTML = grupos.map(grupo => {
+
+        const horas = grupo.itens.map(item => String(item.horario).substring(0, 5));
+        const diaInteiro = HORARIOS.every(hora => horas.includes(hora));
+
         return `
-            <tr>
-                <td>${escaparHTML(item.barbeiro_nome || "-")}</td>
-                <td>${escaparHTML(formatarData(item.data_bloqueio))}</td>
-                <td>${escaparHTML(String(item.horario || "-").substring(0, 5))}</td>
-                <td>${escaparHTML(item.motivo || "-")}</td>
-                <td>
-                    <button class="btn-desbloquear" onclick="desbloquearHorario(${Number(item.id)})">
-                        🔓 Desbloquear
-                    </button>
-                </td>
-            </tr>
+            <div class="bloqueio">
+                <div class="agendamento-info">
+                    <strong>${escaparHTML(tituloDia(grupo.data))}</strong>
+                    <span>${diaInteiro ? "🚫 Dia inteiro bloqueado" : "Horários: " + escaparHTML(horas.join(", "))}</span>
+                    <small>${escaparHTML(grupo.itens[0].motivo || "")}</small>
+                </div>
+
+                <div class="agendamento-acoes">
+                    ${diaInteiro || grupo.itens.length > 1
+                        ? `<button class="btn-desbloquear" onclick="desbloquearDia(${Number(grupo.barbeiroId)}, '${grupo.data}')">🔓 Liberar o dia</button>`
+                        : `<button class="btn-desbloquear" onclick="desbloquearHorario(${Number(grupo.itens[0].id)})">🔓 Liberar</button>`}
+                </div>
+            </div>
         `;
+
     }).join("");
+}
+
+async function bloquearDia() {
+    const barbeiro = document.getElementById("bloqueioBarbeiro").value;
+    const data = document.getElementById("bloqueioData").value;
+    const motivo = document.getElementById("bloqueioMotivo").value;
+
+    if (!barbeiro || !data) {
+        mostrarToast("Escolha o barbeiro e a data.");
+        return;
+    }
+
+    if (!confirm(`Bloquear o dia ${formatarData(data)} inteiro?`)) {
+        return;
+    }
+
+    const resultado = await supabaseClient.rpc(
+        "admin_bloquear_dia",
+        {
+            p_barbeiro_id: Number(barbeiro),
+            p_data: data,
+            p_horarios: HORARIOS,
+            p_motivo: motivo || "Folga"
+        }
+    );
+
+    if (resultado.error) {
+        console.error("ERRO AO BLOQUEAR DIA:", resultado.error);
+        mostrarToast("Erro ao bloquear o dia.");
+        return;
+    }
+
+    const info = (resultado.data || [])[0] || {};
+
+    document.getElementById("bloqueioMotivo").value = "";
+
+    carregarBloqueios();
+
+    if (info.agendamentos_no_dia > 0) {
+        alert(
+            `Dia bloqueado. Atenção: já existem ${info.agendamentos_no_dia} cliente(s) agendado(s) nesse dia. ` +
+            `Veja na agenda e avise ou cancele.`
+        );
+        document.getElementById("filtroData").value = data;
+        document.querySelectorAll(".aba").forEach(aba => aba.classList.remove("ativa"));
+        renderizarAgendamentos();
+        document.getElementById("listaAgendamentos").scrollIntoView({ behavior: "smooth" });
+    } else {
+        mostrarToast("Dia bloqueado! Ninguém consegue agendar.");
+    }
+}
+
+async function desbloquearDia(barbeiroId, data) {
+    if (!confirm(`Liberar o dia ${formatarData(data)} para agendamentos?`)) {
+        return;
+    }
+
+    const resultado = await supabaseClient.rpc(
+        "admin_desbloquear_dia",
+        { p_barbeiro_id: barbeiroId, p_data: data }
+    );
+
+    if (resultado.error) {
+        console.error("ERRO AO LIBERAR DIA:", resultado.error);
+        mostrarToast("Erro ao liberar o dia.");
+        return;
+    }
+
+    mostrarToast("Dia liberado!");
+    carregarBloqueios();
 }
 
 async function bloquearHorario() {
@@ -322,7 +550,7 @@ async function desbloquearHorario(id) {
         return;
     }
 
-    mostrarToast("Horário desbloqueado!");
+    mostrarToast("Horário liberado!");
     carregarBloqueios();
 }
 
