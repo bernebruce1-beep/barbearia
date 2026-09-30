@@ -27,6 +27,10 @@ function mostrarTela(logado) {
     document.getElementById("telaLogin").hidden = logado;
     document.getElementById("telaPainel").hidden = !logado;
     document.getElementById("topoAcoes").hidden = !logado;
+
+    if (logado && typeof atualizarBotaoAvisos === "function") {
+        atualizarBotaoAvisos();
+    }
 }
 
 document.getElementById("loginForm").addEventListener("submit", async function(event) {
@@ -702,26 +706,8 @@ function avisarNovos(novos) {
 
     mostrarToast(`🔔 Novo agendamento: ${texto}`);
 
-    if ("Notification" in window && Notification.permission === "granted") {
-
-        const opcoes = {
-            body: novos.length === 1
-                ? `${quando}\n${primeiro.servico_nome || ""}`
-                : novos.map(item => `${item.nome_cliente} · ${String(item.horario).substring(0, 5)}`).join("\n"),
-            icon: "admin-icon-192.png",
-            badge: "admin-icon-192.png",
-            tag: "novo-agendamento",
-            renotify: true
-        };
-
-        const titulo = novos.length === 1
-            ? `✂️ ${primeiro.nome_cliente} agendou!`
-            : `✂️ ${novos.length} novos agendamentos`;
-
-        navigator.serviceWorker?.ready
-            .then(registro => registro.showNotification(titulo, opcoes))
-            .catch(() => new Notification(titulo, opcoes));
-    }
+    // A notificação do celular vem do servidor (push),
+    // então aqui fica só o som e o aviso na tela.
 }
 
 function tocarSom() {
@@ -762,28 +748,78 @@ setInterval(() => {
 
 
 // Botão para ativar as notificações (o navegador exige um toque).
+// Cadastra este aparelho no Supabase para receber notificação
+// mesmo com o painel fechado (push).
 
 const botaoAvisos = document.getElementById("btnAvisos");
 
-function atualizarBotaoAvisos() {
-    botaoAvisos.hidden =
-        !("Notification" in window) || Notification.permission !== "default";
+const suportaPush =
+    "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
+
+function base64ParaBytes(base64) {
+    const padding = "=".repeat((4 - base64.length % 4) % 4);
+    const texto = atob((base64 + padding).replace(/-/g, "+").replace(/_/g, "/"));
+    return Uint8Array.from(texto, letra => letra.charCodeAt(0));
 }
 
-botaoAvisos.addEventListener("click", async () => {
+async function atualizarBotaoAvisos() {
+
+    if (!suportaPush || document.getElementById("telaPainel").hidden) {
+        botaoAvisos.hidden = true;
+        return;
+    }
+
+    const registro = await navigator.serviceWorker.ready;
+    const inscricao = await registro.pushManager.getSubscription();
+
+    botaoAvisos.hidden = Boolean(inscricao) && Notification.permission === "granted";
+}
+
+async function ativarAvisos() {
+
     const permissao = await Notification.requestPermission();
 
-    atualizarBotaoAvisos();
-
-    if (permissao === "granted") {
-        tocarSom();
-        mostrarToast("🔔 Avisos ativados!");
-    } else {
+    if (permissao !== "granted") {
         mostrarToast("Avisos bloqueados. Libere nas configurações do navegador.");
+        return;
     }
-});
 
-atualizarBotaoAvisos();
+    try {
+        const { data: chavePublica, error } =
+            await supabaseClient.rpc("admin_push_chave_publica");
 
+        if (error || !chavePublica) throw error || new Error("Sem chave");
+
+        const registro = await navigator.serviceWorker.ready;
+
+        const inscricao =
+            await registro.pushManager.getSubscription() ||
+            await registro.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: base64ParaBytes(chavePublica)
+            });
+
+        const dados = inscricao.toJSON();
+
+        const resultado = await supabaseClient.rpc("admin_push_inscrever", {
+            p_endpoint: dados.endpoint,
+            p_p256dh: dados.keys.p256dh,
+            p_auth: dados.keys.auth
+        });
+
+        if (resultado.error) throw resultado.error;
+
+        tocarSom();
+        mostrarToast("🔔 Avisos ativados neste aparelho!");
+
+    } catch (erro) {
+        console.error("ERRO AO ATIVAR AVISOS:", erro);
+        mostrarToast("Não foi possível ativar os avisos neste aparelho.");
+    }
+
+    atualizarBotaoAvisos();
+}
+
+botaoAvisos.addEventListener("click", ativarAvisos);
 
 iniciarAdmin();
