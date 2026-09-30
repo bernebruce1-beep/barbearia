@@ -171,6 +171,8 @@ async function carregarAgendamentos() {
 
     agendamentos = resultado.data || [];
 
+    verificarNovosAgendamentos();
+
     const hoje = hojeISO();
     const ativos = agendamentos.filter(item => item.status !== "cancelado");
 
@@ -414,6 +416,9 @@ async function criarAgendamento() {
         return;
     }
 
+    // Agendado pelo próprio painel: não precisa avisar.
+    idsConhecidos?.add(Number(resultado.data));
+
     mostrarToast("Cliente agendado!");
 
     document.getElementById("novoNome").value = "";
@@ -649,6 +654,136 @@ document.getElementById("btnInstalar").addEventListener("click", async () => {
     pedidoInstalacao = null;
     document.getElementById("btnInstalar").hidden = true;
 });
+
+
+// ============================================================
+// AVISO DE NOVO AGENDAMENTO
+// ============================================================
+
+// O painel confere a agenda a cada 30 segundos. Quando aparece
+// um agendamento que não existia, toca um som, mostra um aviso
+// e, se permitido, manda uma notificação no celular/computador.
+
+let idsConhecidos = null;
+let novosNaoVistos = 0;
+const tituloOriginal = document.title;
+
+function verificarNovosAgendamentos() {
+
+    const ativos = agendamentos.filter(item => item.status !== "cancelado");
+
+    if (idsConhecidos === null) {
+        idsConhecidos = new Set(agendamentos.map(item => Number(item.id)));
+        return;
+    }
+
+    const novos = ativos.filter(item => !idsConhecidos.has(Number(item.id)));
+
+    agendamentos.forEach(item => idsConhecidos.add(Number(item.id)));
+
+    if (novos.length > 0) {
+        avisarNovos(novos);
+    }
+}
+
+function avisarNovos(novos) {
+
+    tocarSom();
+
+    novosNaoVistos += novos.length;
+    document.title = `(${novosNaoVistos}) Novo agendamento!`;
+
+    const primeiro = novos[0];
+    const quando = `${tituloDia(primeiro.data_agendamento)} às ${String(primeiro.horario).substring(0, 5)}`;
+
+    const texto = novos.length === 1
+        ? `${primeiro.nome_cliente} · ${quando}`
+        : `${novos.length} novos agendamentos`;
+
+    mostrarToast(`🔔 Novo agendamento: ${texto}`);
+
+    if ("Notification" in window && Notification.permission === "granted") {
+
+        const opcoes = {
+            body: novos.length === 1
+                ? `${quando}\n${primeiro.servico_nome || ""}`
+                : novos.map(item => `${item.nome_cliente} · ${String(item.horario).substring(0, 5)}`).join("\n"),
+            icon: "admin-icon-192.png",
+            badge: "admin-icon-192.png",
+            tag: "novo-agendamento",
+            renotify: true
+        };
+
+        const titulo = novos.length === 1
+            ? `✂️ ${primeiro.nome_cliente} agendou!`
+            : `✂️ ${novos.length} novos agendamentos`;
+
+        navigator.serviceWorker?.ready
+            .then(registro => registro.showNotification(titulo, opcoes))
+            .catch(() => new Notification(titulo, opcoes));
+    }
+}
+
+function tocarSom() {
+    try {
+        const audio = new (window.AudioContext || window.webkitAudioContext)();
+
+        [880, 1320].forEach((frequencia, i) => {
+            const oscilador = audio.createOscillator();
+            const volume = audio.createGain();
+
+            oscilador.frequency.value = frequencia;
+            volume.gain.setValueAtTime(0.25, audio.currentTime + i * 0.18);
+            volume.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + i * 0.18 + 0.35);
+
+            oscilador.connect(volume).connect(audio.destination);
+            oscilador.start(audio.currentTime + i * 0.18);
+            oscilador.stop(audio.currentTime + i * 0.18 + 0.4);
+        });
+    } catch (erro) {
+        // Sem som disponível: só o aviso visual.
+    }
+}
+
+// Zera o contador quando o painel volta para a tela.
+
+document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+        novosNaoVistos = 0;
+        document.title = tituloOriginal;
+    }
+});
+
+setInterval(() => {
+    if (!document.getElementById("telaPainel").hidden) {
+        carregarAgendamentos();
+    }
+}, 30000);
+
+
+// Botão para ativar as notificações (o navegador exige um toque).
+
+const botaoAvisos = document.getElementById("btnAvisos");
+
+function atualizarBotaoAvisos() {
+    botaoAvisos.hidden =
+        !("Notification" in window) || Notification.permission !== "default";
+}
+
+botaoAvisos.addEventListener("click", async () => {
+    const permissao = await Notification.requestPermission();
+
+    atualizarBotaoAvisos();
+
+    if (permissao === "granted") {
+        tocarSom();
+        mostrarToast("🔔 Avisos ativados!");
+    } else {
+        mostrarToast("Avisos bloqueados. Libere nas configurações do navegador.");
+    }
+});
+
+atualizarBotaoAvisos();
 
 
 iniciarAdmin();
