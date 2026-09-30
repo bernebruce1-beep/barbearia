@@ -900,8 +900,86 @@ function configurarDataMinima() {
 
     dataInput.addEventListener(
         "change",
-        carregarHorarios
+        () => {
+            marcarDiaRapido();
+            carregarHorarios();
+        }
     );
+
+
+    montarDiasRapidos();
+
+}
+
+
+// ============================================================
+// BOTÕES DE DIA
+// ============================================================
+
+// Mostra os próximos dias de atendimento como botões,
+// que são mais fáceis de tocar que o calendário no celular.
+
+function montarDiasRapidos() {
+
+    const container =
+        document.getElementById("diasRapidos");
+
+    if (!container) return;
+
+
+    const siglas = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+
+    const hoje = new Date();
+
+    container.innerHTML = "";
+
+
+    for (let i = 0, achados = 0; achados < 8 && i < 30; i++) {
+
+        const dia = new Date(hoje);
+        dia.setDate(hoje.getDate() + i);
+
+        if (DIAS_FECHADOS.includes(dia.getDay())) continue;
+
+        achados++;
+
+        const iso =
+            `${dia.getFullYear()}-${String(dia.getMonth() + 1).padStart(2, "0")}-${String(dia.getDate()).padStart(2, "0")}`;
+
+        const botao = document.createElement("button");
+
+        botao.type = "button";
+        botao.className = "dia-rapido";
+        botao.dataset.data = iso;
+
+        botao.innerHTML = `
+            <small>${i === 0 ? "Hoje" : i === 1 ? "Amanhã" : siglas[dia.getDay()]}</small>
+            <strong>${String(dia.getDate()).padStart(2, "0")}</strong>
+            <span>${dia.toLocaleDateString("pt-BR", { month: "short" }).replace(".", "")}</span>
+        `;
+
+        botao.addEventListener("click", () => {
+            dataInput.value = iso;
+            dataInput.dispatchEvent(new Event("change"));
+        });
+
+        container.appendChild(botao);
+
+    }
+
+}
+
+
+function marcarDiaRapido() {
+
+    document
+        .querySelectorAll(".dia-rapido")
+        .forEach(botao =>
+            botao.classList.toggle(
+                "selecionado",
+                botao.dataset.data === dataInput.value
+            )
+        );
 
 }
 
@@ -1590,6 +1668,8 @@ async function enviarAgendamento(
         bookingForm.reset();
 
         preencherCliente();
+
+        marcarDiaRapido();
 
 
         servicosSelecionados =

@@ -354,7 +354,18 @@ async function carregarServicos() {
         return;
     }
 
-    document.getElementById("listaServicos").innerHTML = (resultado.data || []).map(function(item) {
+    const servicosAtivos = (resultado.data || [])
+        .filter(item => !/outro servi[cç]o|gr[aá]tis/i.test(item.nome || ""));
+
+    document.getElementById("novoServicos").innerHTML = servicosAtivos.map(item => `
+        <label class="novo-servico">
+            <input type="checkbox" value="${Number(item.id)}">
+            <span>${escaparHTML(item.nome)}</span>
+            <small>${Number(item.duracao) || 30} min</small>
+        </label>
+    `).join("");
+
+    document.getElementById("listaServicos").innerHTML = servicosAtivos.map(function(item) {
         return `
             <div>
                 <strong style="text-transform: capitalize">${escaparHTML(item.nome)}</strong>
@@ -362,6 +373,63 @@ async function carregarServicos() {
             </div>
         `;
     }).join("");
+}
+
+
+// ============================================================
+// NOVO AGENDAMENTO (PELO PAINEL)
+// ============================================================
+
+async function criarAgendamento() {
+    const nome = document.getElementById("novoNome").value.trim();
+    const telefone = document.getElementById("novoTelefone").value.trim();
+    const data = document.getElementById("novoData").value;
+    const horario = document.getElementById("novoHorario").value;
+    const barbeiro = document.getElementById("bloqueioBarbeiro").value;
+
+    const servicoIds = Array.from(
+        document.querySelectorAll("#novoServicos input:checked")
+    ).map(input => Number(input.value));
+
+    if (!nome || !data || !horario || servicoIds.length === 0) {
+        mostrarToast("Preencha nome, data, horário e pelo menos um serviço.");
+        return;
+    }
+
+    const resultado = await supabaseClient.rpc(
+        "admin_criar_agendamento",
+        {
+            p_nome_cliente: nome,
+            p_telefone: telefone,
+            p_barbeiro_id: Number(barbeiro),
+            p_servico_ids: servicoIds,
+            p_data: data,
+            p_horario: horario
+        }
+    );
+
+    if (resultado.error) {
+        console.error("ERRO AO AGENDAR:", resultado.error);
+        mostrarToast(resultado.error.message || "Erro ao agendar.");
+        return;
+    }
+
+    mostrarToast("Cliente agendado!");
+
+    document.getElementById("novoNome").value = "";
+    document.getElementById("novoTelefone").value = "";
+    document.getElementById("novoHorario").value = "";
+    document.querySelectorAll("#novoServicos input").forEach(input => input.checked = false);
+
+    // Mostra o dia do agendamento na agenda.
+
+    document.getElementById("filtroData").value = data;
+    document.querySelectorAll(".aba").forEach(aba => aba.classList.remove("ativa"));
+
+    await carregarAgendamentos();
+
+    document.getElementById("listaAgendamentos")
+        .scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 

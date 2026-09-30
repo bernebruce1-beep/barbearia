@@ -148,6 +148,57 @@
         </section>
 
 
+        <!-- NOVO AGENDAMENTO -->
+
+        <section class="painel" id="painelNovo">
+
+            <div class="titulo-painel">
+
+                <div>
+                    <h2>➕ Novo agendamento</h2>
+                    <p>Para cliente que ligou ou pediu no WhatsApp. Pode ser em qualquer dia e horário.</p>
+                </div>
+
+            </div>
+
+            <div class="form-grid">
+
+                <div class="campo">
+                    <label for="novoNome">Nome do cliente</label>
+                    <input type="text" id="novoNome" placeholder="Ex: João">
+                </div>
+
+                <div class="campo">
+                    <label for="novoTelefone">WhatsApp <small>(opcional)</small></label>
+                    <input type="tel" id="novoTelefone" placeholder="(12) 99999-9999">
+                </div>
+
+                <div class="campo">
+                    <label for="novoData">Data</label>
+                    <input type="date" id="novoData">
+                </div>
+
+                <div class="campo">
+                    <label for="novoHorario">Horário</label>
+                    <input type="time" id="novoHorario" step="300">
+                </div>
+
+            </div>
+
+            <div class="campo">
+                <label>Serviços</label>
+                <div id="novoServicos" class="novo-servicos"></div>
+            </div>
+
+            <div class="botoes-bloqueio" style="margin-top: 18px;">
+                <button class="btn-principal" onclick="criarAgendamento()">
+                    ✅ Agendar
+                </button>
+            </div>
+
+        </section>
+
+
         <!-- BLOQUEAR HORÁRIO -->
 
         <section class="painel">

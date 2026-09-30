@@ -2739,3 +2739,87 @@ img {
     font-style: normal;
     font-weight: 700;
 }
+
+
+/* ===== BOTÕES DE DIA ===== */
+
+.dias-rapidos {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scroll-snap-type: x mandatory;
+}
+
+.dia-rapido {
+    flex: 0 0 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 10px 6px;
+    background: #0c0c0c;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 3px;
+    color: #e9e6df;
+    cursor: pointer;
+    scroll-snap-align: start;
+    transition: border-color .2s ease, background .2s ease;
+}
+
+.dia-rapido small {
+    color: #888;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.dia-rapido strong {
+    font-size: 22px;
+    line-height: 1.1;
+}
+
+.dia-rapido span {
+    color: #888;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.dia-rapido:hover {
+    border-color: rgba(201,164,92,.5);
+}
+
+.dia-rapido.selecionado {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #0b0b0b;
+}
+
+.dia-rapido.selecionado small,
+.dia-rapido.selecionado span {
+    color: #0b0b0b;
+}
+
+.outra-data {
+    margin-top: 10px;
+}
+
+.outra-data summary {
+    color: #888;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-bottom: 8px;
+}
+
+/* Impede a fileira de dias de alargar o formulário. */
+
+.booking-wrapper > *,
+.booking-form,
+.booking-form .form-group {
+    min-width: 0;
+}
+
+.dias-rapidos {
+    max-width: 100%;
+}
