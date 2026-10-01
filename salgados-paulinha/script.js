@@ -12,8 +12,8 @@ const PRODUTOS = [
     foto:'bolinha de queijo aberta com queijo esticando em fio' },
   { cat:'fritos', nome:'Quibe', img:'fotos/quibes-risoles.webp', desc:'Trigo e carne bem temperados, com hortelã fresquinha.', un:0.75, cento:75,
     foto:'quibes dourados com rodela de limão e folhas de hortelã' },
-  { cat:'fritos', nome:'Enroladinho de queijo e presunto', img:'fotos/enroladinho.webp', desc:'Massa macia enrolada com presunto e queijo derretido.', un:0.75, cento:75,
-    foto:'enroladinho empanado de presunto e queijo, cortado mostrando o queijo derretido' },
+  { cat:'fritos', nome:'Enroladinho de queijo e presunto', img:'fotos/enroladinho.webp', desc:'Massa caseira assada, recheada com presunto e queijo derretido e finalizada com orégano.', un:0.75, cento:75,
+    foto:'enroladinhos assados de presunto e queijo com orégano, dourados na bandeja' },
   { cat:'empadao', nome:'Empadão de frango com catupiry', desc:'Tamanho família, massa amanteigada que desmancha e frango cremoso com catupiry.', un:0, cento:null, tag:'Sob encomenda',
     img:'fotos/empadao.webp', foto:'empadão de frango com catupiry inteiro, dourado e brilhante' },
   { cat:'doces', nome:'Trufas', img:'fotos/trufas.webp', desc:'Chocolate ao leite e branco, recheio cremoso e decoradas à mão. Pergunte os sabores do dia!', un:1.5, cento:null,
@@ -21,7 +21,7 @@ const PRODUTOS = [
   { cat:'bebidas', nome:'Refrigerantes 2 litros', img:'fotos/refrigerantes.webp', desc:'Coca-Cola, Coca-Cola Zero, Guaraná Antarctica, Fanta Laranja e Sprite. Geladinhos!', un:0, cento:null,
     foto:'garrafas de 2 litros de Sprite, Guaraná Antarctica, Coca-Cola, Coca-Cola Zero e Fanta' },
 ];
-const CATS = { fritos:'Fritos', empadao:'Empadão', doces:'Doces', bebidas:'Bebidas' };
+const CATS = { fritos:'Salgados', empadao:'Empadão', doces:'Doces', bebidas:'Bebidas' };
 // =========================================
 
 const brl = v => v.toLocaleString('pt-BR', { style:'currency', currency:'BRL' });
