@@ -4,15 +4,15 @@ const TAXA_ENTREGA = 4;
 
 // Preços: "un" = preço por unidade (0 = "Consulte") | "cento" = preço do cento (null = não vende no cento)
 const PRODUTOS = [
-  { cat:'fritos', nome:'Coxinha de frango', img:'fotos/bolinhas.webp', desc:'Frango desfiado com catupiry, massa macia e casquinha crocante.', un:0.75, cento:75, tag:'Campeã',
+  { cat:'fritos', nome:'Coxinha de frango', img:'fotos/bolinhas.webp', desc:'Frango desfiado com catupiry, massa macia e casquinha crocante.', un:0.8, cento:80, tag:'Campeã',
     foto:'coxinha dourada partida ao meio, recheio de frango cremoso escorrendo' },
-  { cat:'fritos', nome:'Risole de carne', img:'fotos/quibes-risoles.webp', desc:'Carne moída temperadinha, empanado sequinho.', un:0.75, cento:75,
+  { cat:'fritos', nome:'Risole de carne', img:'fotos/quibes-risoles.webp', desc:'Carne moída temperadinha, empanado sequinho.', un:0.8, cento:80,
     foto:'risoles em formato de meia-lua empilhados num prato branco' },
-  { cat:'fritos', nome:'Bolinha de queijo', img:'fotos/bolinhas.webp', desc:'Puxa-puxa de muçarela derretida em cada mordida.', un:0.75, cento:75,
+  { cat:'fritos', nome:'Bolinha de queijo', img:'fotos/bolinhas.webp', desc:'Puxa-puxa de muçarela derretida em cada mordida.', un:0.8, cento:80,
     foto:'bolinha de queijo aberta com queijo esticando em fio' },
-  { cat:'fritos', nome:'Quibe', img:'fotos/quibes-risoles.webp', desc:'Trigo e carne bem temperados, com hortelã fresquinha.', un:0.75, cento:75,
+  { cat:'fritos', nome:'Quibe', img:'fotos/quibes-risoles.webp', desc:'Trigo e carne bem temperados, com hortelã fresquinha.', un:0.8, cento:80,
     foto:'quibes dourados com rodela de limão e folhas de hortelã' },
-  { cat:'fritos', nome:'Enroladinho de queijo e presunto', img:'fotos/enroladinho.webp', desc:'Massa caseira assada, recheada com presunto e queijo derretido e finalizada com orégano.', un:0.75, cento:75,
+  { cat:'fritos', nome:'Enroladinho de queijo e presunto', img:'fotos/enroladinho.webp', desc:'Massa caseira assada, recheada com presunto e queijo derretido e finalizada com orégano.', un:0.8, cento:80,
     foto:'enroladinhos assados de presunto e queijo com orégano, dourados na bandeja' },
   { cat:'empadao', nome:'Empadão de frango com catupiry', desc:'Tamanho família, massa amanteigada que desmancha e frango cremoso com catupiry.', un:0, cento:null, tag:'Sob encomenda',
     img:'fotos/empadao.webp', foto:'empadão de frango com catupiry inteiro, dourado e brilhante' },
