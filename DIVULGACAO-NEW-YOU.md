@@ -63,6 +63,8 @@ Fez a **depilação total** (a laser ou com cera)? Ganhe uma **massagem grátis*
 
 Chegou a hora de se priorizar. Agende seu horário e venha viver a **experiência New You**: um espaço feito para renovar sua autoestima, cuidar de você e celebrar a sua melhor versão. 📅
 
+📍 **Onde estamos:** referência Escola Vicente de Paula Almeida
+
 **New You Estética — Beleza, cuidado e bem-estar.**
 
 ---
@@ -81,6 +83,7 @@ Barbearia, estúdio de tatuagem e estética em um só lugar, com uma equipe apai
 
 Beleza, cuidado e bem-estar. Renove sua autoestima e viva seu melhor.
 
+📍 Referência: Escola Vicente de Paula Almeida
 📲 Agende pelo direct ou WhatsApp!
 
 #NewYouEstetica #Barbearia #Tatuagem #Estetica #BelezaECuidado #BemEstar #Autoestima
@@ -95,6 +98,7 @@ Beleza, cuidado e bem-estar. Renove sua autoestima e viva seu melhor.
 
 Aproveite para se cuidar por completo! Consulte as condições e garanta seu horário.
 
+📍 Referência: Escola Vicente de Paula Almeida
 📲 Agende já: link na bio.
 
 #NewYouEstetica #Promocao #Tatuagem #Depilacao #Massagem #Sobrancelha
@@ -105,4 +109,5 @@ Aproveite para se cuidar por completo! Consulte as condições e garanta seu hor
 2. Barbearia, tatuagem e estética em um só lugar.
 3. Conheça nossa equipe: 9 profissionais prontos para cuidar de você.
 4. Promoções do mês: tatuagem + sobrancelha, Combo New You e depilação + massagem.
-5. Renove sua autoestima e viva seu melhor. Toque no link e agende! 📅
+5. 📍 Referência: Escola Vicente de Paula Almeida.
+6. Renove sua autoestima e viva seu melhor. Toque no link e agende! 📅
