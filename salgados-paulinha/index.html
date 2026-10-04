@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Salgados da Paulinha | Salgados fresquinhos e encomendas para festas</title>
+<meta name="description" content="Salgados feitos com carinho, fresquinhos todo dia. Peça pelo WhatsApp: coxinha, risole, bolinha de queijo, quibe, enroladinho, empadão com catupiry e trufas e kits para festas.">
+<meta name="theme-color" content="#17100B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topo" id="topo">
+  <div class="container topo__inner">
+    <a href="#inicio" class="logo" aria-label="Salgados da Paulinha, voltar ao início"><img src="logo/logo-horizontal.svg" alt="Salgados da Paulinha" width="230" height="58"></a>
+    <nav class="menu" id="menu" aria-label="Menu principal">
+      <a href="#sobre">Sobre</a>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#festas">Festas</a>
+      <a href="#calculadora">Monte seu pedido</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="btn btn--wpp btn--sm topo__cta" data-wpp="Oi Paulinha! Quero fazer um pedido 😋" href="#">Pedir agora</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+<!-- 1. HERO -->
+<section class="hero" id="inicio">
+  <div class="container hero__grid">
+    <div class="hero__texto reveal">
+      <span class="selo">🧡 Feito em casa, em Arapeí</span>
+      <h1>Salgados da <span class="script">Paulinha</span></h1>
+      <p class="hero__sub">Feitos com carinho, fresquinhos todo dia. Massa sequinha, recheio caprichado e aquele gostinho de salgado de vó.</p>
+      <div class="hero__botoes">
+        <a class="btn btn--wpp btn--lg" data-wpp="Oi Paulinha! Quero pedir uns salgados fresquinhos 😋" href="#">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wpp"/></svg> Pedir no WhatsApp</a>
+        <a class="btn btn--outline btn--lg" href="#festas">🎉 Encomendar para festa</a>
+      </div>
+      <ul class="hero__provas">
+        <li><strong>💰 R$ 0,80</strong> cada salgado</li>
+        <li><strong>🔥 Feito no dia</strong></li>
+        <li><strong>🛵 Entrega</strong> em toda Arapeí</li>
+      </ul>
+    </div>
+    <div class="hero__foto reveal">
+      <img class="hero__img" src="fotos/mix-salgados.webp" alt="Caixa cheia de salgados fritos sequinhos: coxinhas, bolinhas de queijo, risoles e quibes" width="953" height="1000" fetchpriority="high">
+      <div class="hero__badge">Saindo<br>quentinho!</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. SOBRE -->
+<section class="secao sobre" id="sobre">
+  <div class="container sobre__grid">
+    <img class="sobre__img reveal" src="fotos/empadao.webp" alt="Empadão de frango com catupiry feito pela Paulinha, dourado e brilhante" width="800" height="608" loading="lazy">
+    <div class="reveal">
+      <span class="kicker">Prazer, eu sou a Paulinha</span>
+      <h2>Cada salgado sai da minha cozinha como se fosse para a minha família</h2>
+      <p>Aqui em Arapeí, tudo é feito à mão, com ingredientes escolhidos com cuidado e muito capricho em cada recheio.</p>
+      <p>Massa sequinha, recheio caprichado e tudo preparado no dia do seu pedido. Seja para o lanche da tarde ou para a sua festa, pode contar comigo.</p>
+      <p class="assinatura">Com carinho, <span class="script">Paulinha</span> 🧡</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. CARDÁPIO -->
+<section class="secao cardapio" id="cardapio">
+  <div class="container">
+    <div class="secao__topo reveal">
+      <span class="kicker">Cardápio</span>
+      <h2>Escolha o seu (ou vários 😉)</h2>
+      <p>Todos os salgados custam R$ 0,80 a unidade (R$ 80 o cento). Toque em "Pedir" e a mensagem já vai prontinha.</p>
+    </div>
+    <div class="abas" role="tablist" id="abas">
+      <button class="aba ativa" data-cat="todos" role="tab">Todos</button>
+      <button class="aba" data-cat="fritos" role="tab">Salgados</button>
+      <button class="aba" data-cat="empadao" role="tab">Empadão</button>
+      <button class="aba" data-cat="doces" role="tab">Doces</button>
+      <button class="aba" data-cat="bebidas" role="tab">Bebidas</button>
+    </div>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<!-- 4. FESTAS -->
+<section class="secao festas" id="festas">
+  <div class="container">
+    <div class="secao__topo reveal">
+      <span class="kicker">Encomendas para festas</span>
+      <h2>Sua festa com salgado quentinho e sem preocupação</h2>
+      <p>Mini salgados sortidos por <strong>R$ 80,00 o cento</strong>, ou <strong>2 centos por R$ 150</strong>! Você escolhe os sabores, eu cuido do resto.</p>
+    </div>
+    <div class="kits">
+      <article class="kit reveal">
+        <h3>Kit 100</h3>
+        <p class="kit__desc">Para um lanche em família ou uma reunião pequena</p>
+        <p class="kit__preco">R$ 80<small>,00</small></p>
+        <ul><li>Misture os sabores como quiser</li><li>Coxinha, risole, bolinha, quibe e enroladinho</li></ul>
+        <a class="btn btn--outline" data-wpp="Oi Paulinha! Quero encomendar o Kit 100 mini salgados para festa 🎉 Para o dia: " href="#">Quero o Kit 100</a>
+      </article>
+      <article class="kit kit--destaque reveal">
+        <span class="kit__tag">Promoção</span>
+        <h3>Kit 200</h3>
+        <p class="kit__desc">O mais pedido para aniversário e chá de bebê</p>
+        <p class="kit__preco"><s class="kit__de">R$ 160</s> R$ 150<small>,00</small></p>
+        <ul><li>Misture os sabores como quiser</li><li>Você economiza R$ 10</li><li>Adicione refrigerante e trufas</li></ul>
+        <a class="btn btn--wpp" data-wpp="Oi Paulinha! Quero encomendar o Kit 200 mini salgados para festa 🎉 Para o dia: " href="#">Quero o Kit 200</a>
+      </article>
+      <article class="kit reveal">
+        <h3>Kit 500</h3>
+        <p class="kit__desc">Para festão, casamento ou evento da empresa</p>
+        <p class="kit__preco"><s class="kit__de">R$ 400</s> R$ 380<small>,00</small></p>
+        <ul><li>Misture os sabores como quiser</li><li>Você economiza R$ 20</li><li>Entrega por apenas R$ 4,00</li></ul>
+        <a class="btn btn--outline" data-wpp="Oi Paulinha! Quero encomendar o Kit 500 mini salgados para festa 🎉 Para o dia: " href="#">Quero o Kit 500</a>
+      </article>
+    </div>
+    <figure class="festas__foto reveal">
+      <img src="fotos/salgados-closeup.webp" alt="Mini salgados sortidos para festa: quibes, risoles, coxinhas e bolinhas" width="937" height="1000" loading="lazy">
+      <figcaption>Assim chega o seu cento: sortido, sequinho e fresquinho 😋</figcaption>
+    </figure>
+    <div class="festas__info reveal">
+      <div>🕒 <strong>Antecedência mínima:</strong> 1 dia (faça seu pedido na véspera)</div>
+      <div>🥟 <strong>Preço:</strong> R$ 0,80 a unidade, pode misturar os sabores</div>
+      <div>🧊 <strong>Congelados:</strong> sim! R$ 75 o cento, prontos para fritar em casa</div>
+      <div>💳 <strong>Pagamento:</strong> Pix, cartão ou dinheiro. Nas encomendas, você paga metade ao pedir e metade ao receber</div>
+    </div>
+    <div class="centro reveal">
+      <a class="btn btn--wpp btn--lg" data-wpp="Oi Paulinha! Quero fazer uma encomenda para festa 🎉&#10;Data: &#10;Quantidade: &#10;Sabores: &#10;Entrega ou retirada: " href="#">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wpp"/></svg> Encomendar pelo WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="secao calc" id="calculadora">
+  <div class="container">
+    <div class="secao__topo reveal">
+      <span class="kicker">Monte seu pedido</span>
+      <h2>Escolha as quantidades e veja o total na hora</h2>
+      <p>Depois é só tocar em enviar: o pedido vai completinho para o meu WhatsApp.</p>
+    </div>
+    <div class="calc__grid">
+      <div class="calc__lista reveal" id="calcLista"></div>
+      <aside class="calc__resumo reveal" aria-live="polite">
+        <h3>Seu pedido</h3>
+        <p class="calc__dica">Salgados a R$ 0,80 cada (R$ 80 o cento). Os botões somam de 5 em 5, e você pode digitar qualquer quantidade.</p>
+        <ul id="calcItens" class="calc__itens"><li class="vazio">Nenhum item ainda. Bora escolher? 😋</li></ul>
+        <div class="calc__total"><span>Total</span><strong id="calcTotal">R$ 0,00</strong></div>
+        <label class="campo">Nome<input id="calcNome" type="text" placeholder="Seu nome" autocomplete="name"></label>
+        <label class="campo">Entrega ou retirada?
+          <select id="calcEntrega"><option>Retirada</option><option>Entrega (+ R$ 4,00)</option></select></label>
+        <label class="campo">Para quando?<input id="calcData" type="text" placeholder="Ex: sábado, 15h"></label>
+        <a class="btn btn--wpp btn--lg btn--full" id="calcEnviar" href="#" target="_blank" rel="noopener" aria-disabled="true">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wpp"/></svg> Enviar pedido</a>
+        <button class="link" id="calcLimpar" type="button">Limpar pedido</button>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 5. DIFERENCIAIS -->
+<section class="secao difs">
+  <div class="container difs__grid">
+    <div class="dif reveal"><span>🤲</span><h3>Massa artesanal</h3><p>Feita à mão, com receita de família. Sequinha por fora, macia por dentro.</p></div>
+    <div class="dif reveal"><span>🍗</span><h3>Recheio caprichado</h3><p>Nada de salgado oco. Aqui cada mordida tem recheio de verdade.</p></div>
+    <div class="dif reveal"><span>☀️</span><h3>Feito no dia</h3><p>Preparado no dia do seu pedido. Você recebe fresquinho, nunca requentado.</p></div>
+    <div class="dif reveal"><span>🛵</span><h3>Entrega ou retirada</h3><p>Entrego em toda Arapeí por R$ 4,00, ou você retira aqui no Lagoa.</p></div>
+  </div>
+</section>
+
+<!-- 6. COMO PEDIR -->
+<section class="secao passos">
+  <div class="container">
+    <div class="secao__topo reveal">
+      <span class="kicker">Simples assim</span>
+      <h2>Como fazer seu pedido</h2>
+    </div>
+    <ol class="passos__lista">
+      <li class="passo reveal"><span class="passo__n">1</span><h3>Escolha</h3><p>Toque em "Pedir" no <a href="#cardapio">cardápio</a> ou monte um pedido maior na <a href="#calculadora">calculadora</a>, que soma tudo para você.</p></li>
+      <li class="passo reveal"><span class="passo__n">2</span><h3>Envie no WhatsApp</h3><p>A mensagem já vai prontinha. A Paulinha confirma o pedido e o horário.</p></li>
+      <li class="passo reveal"><span class="passo__n">3</span><h3>Receba quentinho</h3><p>Entrega em toda Arapeí por R$ 4,00, ou retire no Lagoa. Encomendas: peça na véspera.</p></li>
+    </ol>
+    <div class="centro reveal">
+      <a class="btn btn--wpp btn--lg" data-wpp="Oi Paulinha! Quero fazer um pedido 😋" href="#">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wpp"/></svg> Fazer meu pedido agora</a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. CONTATO -->
+<section class="secao contato" id="contato">
+  <div class="container contato__grid">
+    <div class="reveal">
+      <span class="kicker">Venha buscar ou peça em casa</span>
+      <h2>Horário, endereço e entrega</h2>
+      <table class="horarios">
+        <tr><td>Todos os dias</td><td>O dia todo 😊</td></tr>
+        <tr><td>Encomendas</td><td>Com 1 dia de antecedência</td></tr>
+      </table>
+      <p>📍 <strong>CDHU, nº 198</strong>, Lagoa, Arapeí - SP</p>
+      <p>🛵 <strong>Entregamos em:</strong> toda Arapeí! Taxa de entrega: <strong>R$ 4,00</strong>.</p>
+      <a class="btn btn--wpp" data-wpp="Oi Paulinha! Quero pedir com entrega 🛵 Meu endereço é: " href="#">Pedir com entrega</a>
+    </div>
+    <div class="mapa reveal">
+      <iframe title="Mapa com a localização dos Salgados da Paulinha" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=CDHU%20198%2C%20Lagoa%2C%20Arape%C3%AD%20-%20SP&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- 8. RODAPÉ -->
+<footer class="rodape">
+  <div class="container rodape__grid">
+    <div>
+      <img class="rodape__logo" src="logo/logo-selo.svg" alt="Salgados da Paulinha" width="120" height="120" loading="lazy">
+      <p>Feitos com carinho, fresquinhos todo dia.</p>
+    </div>
+    <div>
+      <p><a data-wpp="Oi Paulinha! 😊" href="#">💬 WhatsApp: (12) 99631-7709</a></p>
+            <p>📍 CDHU, nº 198, Lagoa, Arapeí - SP</p>
+    </div>
+  </div>
+  <p class="rodape__copy">© <span id="ano"></span> Salgados da Paulinha. Feito com 🧡 e muito recheio.</p>
+</footer>
+
+<a class="wpp-flutuante" data-wpp="Oi Paulinha! Quero fazer um pedido 😋" href="#" aria-label="Pedir pelo WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wpp"/></svg>
+</a>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-wpp" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.23-9.43 9.44-9.43a9.4 9.4 0 0 1 9.43 9.44c0 5.2-4.23 9.42-9.45 9.42m8.03-17.46A11.3 11.3 0 0 0 12.05.72C5.8.72.7 5.8.7 12.06c0 2 .52 3.95 1.52 5.67L.6 23.64l6.05-1.59a11.3 11.3 0 0 0 5.4 1.38h.01c6.25 0 11.34-5.09 11.35-11.34 0-3.03-1.18-5.88-3.33-8.03"/></symbol>
+</svg>
+
+<script src="script.js" defer></script>
+</body>
+</html>

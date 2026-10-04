@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160"><defs><radialGradient id="ourof" cx="40%" cy="40%" r="70%"><stop offset="0" stop-color="#FFD27A"/><stop offset=".55" stop-color="#F0952A"/><stop offset="1" stop-color="#B8601A"/></radialGradient>
+<radialGradient id="brilhof" cx="32%" cy="28%" r="30%"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs><circle cx="80" cy="80" r="78" fill="#2A1D14"/><g transform="translate(80,92) scale(0.78)">
+  <g stroke="#F8E6C8" stroke-width="4" fill="none" stroke-linecap="round" opacity=".75">
+    <path d="M-16,-80 c-8,-8 8,-14 0,-24"/><path d="M0,-86 c-8,-8 8,-14 0,-24"/><path d="M16,-80 c-8,-8 8,-14 0,-24"/></g>
+  <path d="M0,-70 C10,-50 52,-12 52,22 C52,52 28,68 0,68 C-28,68 -52,52 -52,22 C-52,-12 -10,-50 0,-70 Z" fill="url(#ourof)"/>
+  <path d="M0,-70 C10,-50 52,-12 52,22 C52,52 28,68 0,68 C-28,68 -52,52 -52,22 C-52,-12 -10,-50 0,-70 Z" fill="url(#brilhof)"/>
+  <g fill="#9C5A14" opacity=".55"><circle cx="-30" cy="10" r="3"/><circle cx="-14" cy="30" r="2.5"/><circle cx="8" cy="18" r="3"/><circle cx="26" cy="36" r="2.5"/><circle cx="-22" cy="46" r="2.5"/><circle cx="18" cy="52" r="2"/><circle cx="-4" cy="-8" r="2.5"/><circle cx="30" cy="6" r="2"/><circle cx="-36" cy="30" r="2"/><circle cx="2" cy="44" r="3"/><circle cx="-10" cy="-30" r="2"/><circle cx="12" cy="-20" r="2"/></g>
+</g></svg>
