@@ -33,7 +33,7 @@ Lidiane domina cortes, cores e tratamentos que realçam a beleza natural de cada
 **Erick — Depilação e massagem 💆**
 Erick alia técnica e sensibilidade para oferecer uma depilação cuidadosa e massagens que aliviam tensões. Com ele, cuidado e relaxamento andam juntos.
 
-**João — Caixa e vendas 🤝**
+**João Henrique — Caixa e vendas 🤝**
 Simpático e prestativo, João é quem recebe você com um sorriso e ajuda a encontrar os melhores serviços e produtos. Seu atendimento atencioso faz toda a diferença na experiência New You.
 
 **Maria Alice — Assistente de marketing 📱**
