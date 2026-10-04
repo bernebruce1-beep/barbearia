@@ -14,7 +14,7 @@ const PRODUTOS = [
     foto:'quibes dourados com rodela de limão e folhas de hortelã' },
   { cat:'fritos', nome:'Enroladinho de queijo e presunto', img:'fotos/enroladinho.webp', desc:'Massa caseira assada, recheada com presunto e queijo derretido e finalizada com orégano.', un:0.8, cento:80,
     foto:'enroladinhos assados de presunto e queijo com orégano, dourados na bandeja' },
-  { cat:'fritos', nome:'Pastel', img:'fotos/pastel.webp', desc:'Massa fininha cheia de bolhinhas crocantes e recheio que puxa fio. Pergunte os sabores! (imagem ilustrativa)', un:0, cento:null, tag:'Novidade',
+  { cat:'fritos', nome:'Pastel', img:'fotos/pastel.webp', img2:'fotos/pastel-frango.webp', animado:true, desc:'Massa fininha cheia de bolhinhas crocantes. Queijo que puxa fio ou frango com catupiry! (imagens ilustrativas)', un:0, cento:null, tag:'Novidade',
     foto:'pastel frito dourado partido ao meio com queijo derretido puxando fio, sobre tábua de madeira' },
   { cat:'fritos', nome:'Salgados congelados (cento)', img:'fotos/mix-salgados.webp', desc:'100 salgados prontos para fritar em casa. Escolha os sabores e frite na hora que quiser!', un:75, cento:null, rotulo:'/cento', tag:'Congelado',
     foto:'caixa com salgados sortidos: coxinhas, bolinhas de queijo, risoles e quibes' },
@@ -54,7 +54,7 @@ const cards = document.getElementById('cards');
 cards.innerHTML = PRODUTOS.map(p => `
   <article class="card" data-cat="${p.cat}">
     ${p.img
-      ? `<div class="card__foto">${p.tag ? `<span class="tag">${p.tag}</span>` : ''}<img src="${p.img}" class="${p.cat === 'bebidas' ? 'contem' : ''}" alt="${p.foto}" loading="lazy" width="800" height="570"></div>`
+      ? `<div class="card__foto${p.animado ? ' card__foto--animado' : ''}">${p.img2 ? `<img src="${p.img2}" class="foto2" alt="" aria-hidden="true" loading="lazy" width="800" height="570">` : ''}${p.animado ? '<span class="fumaca" aria-hidden="true"><i></i><i></i><i></i></span>' : ''}${p.tag ? `<span class="tag">${p.tag}</span>` : ''}<img src="${p.img}" class="${p.cat === 'bebidas' ? 'contem' : ''}" alt="${p.foto}" loading="lazy" width="800" height="570"></div>`
       : `<div class="ph" role="img" aria-label="Foto: ${p.foto}">
       ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
       <span>📸 FOTO: ${p.foto}</span>
