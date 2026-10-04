@@ -14,6 +14,8 @@ const PRODUTOS = [
     foto:'quibes dourados com rodela de limão e folhas de hortelã' },
   { cat:'fritos', nome:'Enroladinho de queijo e presunto', img:'fotos/enroladinho.webp', desc:'Massa caseira assada, recheada com presunto e queijo derretido e finalizada com orégano.', un:0.8, cento:80,
     foto:'enroladinhos assados de presunto e queijo com orégano, dourados na bandeja' },
+  { cat:'fritos', nome:'Pastel', img:'fotos/pastel.webp', desc:'Massa fininha cheia de bolhinhas crocantes e recheio que puxa fio. Pergunte os sabores! (imagem ilustrativa)', un:0, cento:null, tag:'Novidade',
+    foto:'pastel frito dourado partido ao meio com queijo derretido puxando fio, sobre tábua de madeira' },
   { cat:'fritos', nome:'Salgados congelados (cento)', img:'fotos/mix-salgados.webp', desc:'100 salgados prontos para fritar em casa. Escolha os sabores e frite na hora que quiser!', un:75, cento:null, rotulo:'/cento', tag:'Congelado',
     foto:'caixa com salgados sortidos: coxinhas, bolinhas de queijo, risoles e quibes' },
   { cat:'empadao', nome:'Empadão de frango com catupiry (grande)', desc:'Massa amanteigada que desmancha e frango cremoso com catupiry. Ideal para a família toda.', un:70, cento:null, tag:'Sob encomenda',
