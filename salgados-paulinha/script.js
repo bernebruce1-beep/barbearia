@@ -108,9 +108,14 @@ function itensPedido() {
 }
 
 const comEntrega = () => document.getElementById('calcEntrega').value.startsWith('Entrega');
+// Promoção: a cada 200 salgados (R$ 0,80), R$ 10 de desconto (2 centos por R$ 150)
+function descontoPromo() {
+  const qtdSalgados = PRODUTOS.reduce((s, p, i) => s + (p.cat === 'fritos' && !p.rotulo ? qtds[i] : 0), 0);
+  return Math.floor(qtdSalgados / 200) * 10;
+}
 function totalPedido(itens) {
   const soma = itens.reduce((s, x) => s + x.sub, 0);
-  return soma + (itens.length && comEntrega() ? TAXA_ENTREGA : 0);
+  return soma - descontoPromo() + (itens.length && comEntrega() ? TAXA_ENTREGA : 0);
 }
 
 function atualizarResumo() {
@@ -119,6 +124,7 @@ function atualizarResumo() {
   const ul = document.getElementById('calcItens');
   ul.innerHTML = itens.length
     ? itens.map(x => `<li><span>${x.q}x ${x.nome}</span><span>${brl(x.sub)}</span></li>`).join('')
+      + (descontoPromo() ? `<li><span>🎉 Promo 2 centos por R$ 150</span><span>− ${brl(descontoPromo())}</span></li>` : '')
       + (comEntrega() ? `<li><span>Taxa de entrega</span><span>${brl(TAXA_ENTREGA)}</span></li>` : '')
     : '<li class="vazio">Nenhum item ainda. Bora escolher? 😋</li>';
   document.getElementById('calcTotal').textContent = brl(total);
@@ -150,6 +156,7 @@ function mensagemPedido() {
     return [
     `Oi Paulinha! ${nome ? `Aqui é ${nome}. ` : ''}Quero fazer este pedido:`, '',
     ...itens.map(x => `• ${x.q}x ${x.nome} — ${brl(x.sub)}`), '',
+    ...(descontoPromo() ? [`Promo 2 centos por R$ 150: − ${brl(descontoPromo())}`] : []),
     `*Total: ${brl(total)}*`,
     `${entrega}${data ? ` para ${data}` : ''}`, '',
     'Pode confirmar pra mim? 😋',
