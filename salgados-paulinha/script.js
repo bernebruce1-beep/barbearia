@@ -14,6 +14,8 @@ const PRODUTOS = [
     foto:'quibes dourados com rodela de limão e folhas de hortelã' },
   { cat:'fritos', nome:'Enroladinho de queijo e presunto', img:'fotos/enroladinho.webp', desc:'Massa caseira assada, recheada com presunto e queijo derretido e finalizada com orégano.', un:0.8, cento:80,
     foto:'enroladinhos assados de presunto e queijo com orégano, dourados na bandeja' },
+  { cat:'fritos', nome:'Salgados congelados (cento)', img:'fotos/mix-salgados.webp', desc:'100 salgados prontos para fritar em casa. Escolha os sabores e frite na hora que quiser!', un:75, cento:null, rotulo:'/cento', tag:'Congelado',
+    foto:'caixa com salgados sortidos: coxinhas, bolinhas de queijo, risoles e quibes' },
   { cat:'empadao', nome:'Empadão de frango com catupiry (grande)', desc:'Massa amanteigada que desmancha e frango cremoso com catupiry. Ideal para a família toda.', un:70, cento:null, tag:'Sob encomenda',
     img:'fotos/empadao.webp', foto:'empadão de frango com catupiry inteiro, dourado e brilhante' },
   { cat:'empadao', nome:'Empadão de frango com catupiry (médio)', desc:'O mesmo empadão caprichado, num tamanho menor para poucas pessoas.', un:40, cento:null, tag:'Sob encomenda',
@@ -61,7 +63,7 @@ cards.innerHTML = PRODUTOS.map(p => `
       <h3>${p.nome}</h3>
       <p>${p.desc}</p>
       <div class="card__rodape">
-        <span class="preco">${p.un ? `${brl(p.un)} <small>/un</small>` : '<small>Consulte</small>'}</span>
+        <span class="preco">${p.un ? `${brl(p.un)} <small>${p.rotulo || '/un'}</small>` : '<small>Consulte</small>'}</span>
         <a class="btn btn--wpp btn--sm" target="_blank" rel="noopener"
            href="${wppLink(`Oi Paulinha! Quero pedir ${p.nome} 😋`)}">Pedir</a>
       </div>
@@ -85,8 +87,8 @@ function renderLista() {
   let html = '', ultima = '';
   disponiveis().forEach(p => {
     if (p.cat !== ultima) { html += `<div class="calc__cat">${CATS[p.cat]}</div>`; ultima = p.cat; }
-    const preco = modo() === 'un' ? `${brl(p.un)} /un` : `${brl(p.cento)} o cento`;
-    const passo = p.cat === "fritos" ? 5 : 1;
+    const preco = modo() === 'un' ? `${brl(p.un)} ${p.rotulo || '/un'}` : `${brl(p.cento)} o cento`;
+    const passo = p.cat === "fritos" && !p.rotulo ? 5 : 1;
     html += `<div class="linha">
       <div><div class="linha__nome">${p.nome}</div><div class="linha__preco">${preco}</div></div>
       <div class="qtd" data-i="${p.i}" data-passo="${passo}">
