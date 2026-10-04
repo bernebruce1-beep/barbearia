@@ -50,7 +50,7 @@ Com traço delicado e muita sensibilidade artística, Maria Clara cria tatuagens
 Fez sua tatuagem a partir de **R$ 500**? Ganhe um **design de sobrancelha grátis**!
 
 **2. Combo New You**
-Escolha **3 serviços** e ganhe uma **condição especial**. Monte seu combo e cuide de você por completo!
+Escolha **3 serviços** e ganhe **15% de desconto** no total. Monte seu combo e cuide de você por completo!
 
 **3. Depilação total + Massagem**
 Fez a **depilação total** (a laser ou com cera)? Ganhe uma **massagem grátis** para relaxar!
@@ -94,7 +94,7 @@ Beleza, cuidado e bem-estar. Renove sua autoestima e viva seu melhor.
 🔥 **Promoções New You** 🔥
 
 🎨 Tatuagem a partir de R$ 500 = **sobrancelha grátis**
-✨ Combo New You: 3 serviços com **condição especial**
+✨ Combo New You: 3 serviços com **15% de desconto**
 💆 Depilação total (laser ou cera) = **massagem grátis**
 
 Aproveite para se cuidar por completo! Consulte as condições e garanta seu horário.
@@ -112,3 +112,51 @@ Aproveite para se cuidar por completo! Consulte as condições e garanta seu hor
 4. Promoções do mês: tatuagem + sobrancelha, Combo New You e depilação + massagem.
 5. 📍 Referência: Escola Vicente de Paula Almeida.
 6. Renove sua autoestima e viva seu melhor. Toque no link e agende! 📅
+
+---
+
+## Plano de negócio (trabalho de empreendedorismo)
+
+**Missão:** oferecer beleza, cuidado e bem-estar em um só lugar, renovando a autoestima de cada cliente com atendimento acolhedor e profissional.
+
+**Visão:** ser a referência da região em cuidado completo, lembrada como o lugar onde o cliente se sente bem e sai renovado.
+
+**Valores:** respeito e acolhimento; higiene e segurança; qualidade em cada detalhe; trabalho em equipe; criatividade.
+
+**Público-alvo:** jovens e adultos de 16 a 40 anos, homens e mulheres da região, que querem cuidar do visual com praticidade, estilo e preço justo.
+
+**Diferencial:** barbearia, tatuagem e estética no mesmo lugar e no mesmo dia, com combos e promoções que ligam um serviço ao outro.
+
+**Concorrência:** barbearias e salões de bairro, estúdios de tatuagem e esmalterias. Eles competem em um serviço; a New You compete na experiência completa.
+
+### Tabela de preços (valores simulados)
+
+| Serviço | Preço |
+|---|---|
+| Corte masculino | R$ 35 |
+| Barba | R$ 25 |
+| Corte + barba | R$ 55 |
+| Pigmentação | R$ 20 |
+| Corte feminino | R$ 60 |
+| Escova | R$ 45 |
+| Hidratação | R$ 50 |
+| Coloração | a partir de R$ 120 |
+| Unhas em gel | R$ 120 |
+| Manutenção do gel | R$ 80 |
+| Design de sobrancelha | R$ 35 |
+| Sobrancelha com henna | R$ 45 |
+| Bronzeamento | R$ 100 |
+| Depilação total (cera) | R$ 150 |
+| Depilação a laser (sessão) | a partir de R$ 200 |
+| Massagem relaxante (50 min) | R$ 90 |
+| Tatuagem pequena | a partir de R$ 150 |
+| Tatuagem média | a partir de R$ 350 |
+| Tatuagem grande | sob orçamento |
+| Retoque de tatuagem (até 30 dias) | grátis |
+
+### Análise FOFA
+
+- **Forças:** vários serviços em um só lugar; equipe jovem e multitalentosa; promoções que unem serviços; forte presença nas redes sociais.
+- **Fraquezas:** marca nova, ainda pouco conhecida; investimento inicial alto em equipamentos; agenda depende de poucos profissionais.
+- **Oportunidades:** mercado de beleza em crescimento no Brasil; público jovem ativo no Instagram e TikTok; parcerias com escolas e comércios do bairro.
+- **Ameaças:** muitos salões e barbearias na região; profissionais autônomos com preços baixos; crises econômicas reduzem gastos com estética.
