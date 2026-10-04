@@ -210,3 +210,8 @@ h2{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:.6rem}
 .logo img{height:50px;width:auto}
 .rodape__logo{width:120px;height:120px;margin-bottom:8px}
 @media (max-width:560px){.logo img{height:42px}}
+.passos__lista{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:none}
+.passo{background:var(--superficie);border-radius:var(--raio);padding:24px;position:relative}
+.passo__n{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--laranja);color:#17100B;font-weight:800;font-size:1.3rem;margin-bottom:10px}
+.passo h3{margin-bottom:.3rem}.passo p{color:var(--marrom-2);font-size:.95rem}
+@media (max-width:760px){.passos__lista{grid-template-columns:1fr}}
