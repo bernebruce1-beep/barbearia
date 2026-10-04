@@ -4,9 +4,9 @@ const TAXA_ENTREGA = 4;
 
 // Preços: "un" = preço por unidade (0 = "Consulte") | "cento" = preço do cento (null = não vende no cento)
 const PRODUTOS = [
-  { cat:'fritos', nome:'Coxinha de frango', img:'fotos/bolinhas.webp', desc:'Frango desfiado com catupiry, massa macia e casquinha crocante.', un:0.8, cento:80, tag:'Campeã',
+  { cat:'fritos', nome:'Coxinha de frango', img:'fotos/coxinhas.webp', desc:'Frango desfiado com catupiry, massa macia e casquinha crocante.', un:0.8, cento:80, tag:'Campeã',
     foto:'coxinha dourada partida ao meio, recheio de frango cremoso escorrendo' },
-  { cat:'fritos', nome:'Risole de carne', img:'fotos/quibes-risoles.webp', desc:'Carne moída temperadinha, empanado sequinho.', un:0.8, cento:80,
+  { cat:'fritos', nome:'Risole de carne', img:'fotos/risoles.webp', desc:'Carne moída temperadinha, empanado sequinho.', un:0.8, cento:80,
     foto:'risoles em formato de meia-lua empilhados num prato branco' },
   { cat:'fritos', nome:'Bolinha de queijo', img:'fotos/bolinhas.webp', desc:'Puxa-puxa de muçarela derretida em cada mordida.', un:0.8, cento:80,
     foto:'bolinha de queijo aberta com queijo esticando em fio' },
