@@ -207,3 +207,6 @@ h2{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:.6rem}
 
 .calc__dica{font-size:.88rem;opacity:.85;margin-bottom:12px}
 .kit__de{font-size:1rem;color:var(--marrom-2);font-weight:600;margin-right:4px}
+.logo img{height:50px;width:auto}
+.rodape__logo{width:120px;height:120px;margin-bottom:8px}
+@media (max-width:560px){.logo img{height:42px}}
