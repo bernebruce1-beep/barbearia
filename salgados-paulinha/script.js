@@ -22,9 +22,9 @@ const PRODUTOS = [
     img:'fotos/empadao.webp', foto:'empadão de frango com catupiry inteiro, dourado e brilhante' },
   { cat:'doces', nome:'Trufas', img:'fotos/trufas.webp', desc:'Chocolate ao leite e branco, decoradas à mão, em todos os sabores. É só pedir o seu favorito!', un:1.5, cento:null,
     foto:'bandeja de trufas de chocolate ao leite e chocolate branco decoradas com fios de chocolate e coco' },
-  { cat:'bebidas', nome:'Coca-Cola 2 litros', img:'fotos/refrigerantes.webp', desc:'Coca-Cola original ou Zero, geladinha.', un:14, cento:null,
+  { cat:'bebidas', nome:'Coca-Cola 2 litros', img:'fotos/coca-cola.webp', desc:'Coca-Cola original ou Zero, geladinha.', un:14, cento:null,
     foto:'garrafas de 2 litros de Sprite, Guaraná Antarctica, Coca-Cola, Coca-Cola Zero e Fanta' },
-  { cat:'bebidas', nome:'Refrigerante 2 litros', img:'fotos/refrigerantes.webp', desc:'Guaraná Antarctica, Fanta Laranja ou Sprite, geladinho.', un:12, cento:null,
+  { cat:'bebidas', nome:'Refrigerante 2 litros', img:'fotos/refrigerantes-sabores.webp', desc:'Guaraná Antarctica, Fanta Laranja ou Sprite, geladinho.', un:12, cento:null,
     foto:'garrafas de 2 litros de Sprite, Guaraná Antarctica, Coca-Cola, Coca-Cola Zero e Fanta' },
 ];
 const CATS = { fritos:'Salgados', empadao:'Empadão', doces:'Doces', bebidas:'Bebidas' };
