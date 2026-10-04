@@ -64,7 +64,7 @@ Fez a **depilação total** (a laser ou com cera)? Ganhe uma **massagem grátis*
 Chegou a hora de se priorizar. Agende seu horário e venha viver a **experiência New You**: um espaço feito para renovar sua autoestima, cuidar de você e celebrar a sua melhor versão. 📅
 
 📍 **Onde estamos:** referência Escola Vicente de Paula Almeida
-📲 **WhatsApp:** (12) 99631-7709
+📲 **WhatsApp:** (12) 99650-2636
 
 **New You Estética — Beleza, cuidado e bem-estar.**
 
@@ -85,7 +85,7 @@ Barbearia, estúdio de tatuagem e estética em um só lugar, com uma equipe apai
 Beleza, cuidado e bem-estar. Renove sua autoestima e viva seu melhor.
 
 📍 Referência: Escola Vicente de Paula Almeida
-📲 Agende pelo WhatsApp: (12) 99631-7709
+📲 Agende pelo WhatsApp: (12) 99650-2636
 
 #NewYouEstetica #Barbearia #Tatuagem #Estetica #BelezaECuidado #BemEstar #Autoestima
 
@@ -100,7 +100,7 @@ Beleza, cuidado e bem-estar. Renove sua autoestima e viva seu melhor.
 Aproveite para se cuidar por completo! Consulte as condições e garanta seu horário.
 
 📍 Referência: Escola Vicente de Paula Almeida
-📲 Agende já pelo WhatsApp: (12) 99631-7709
+📲 Agende já pelo WhatsApp: (12) 99650-2636
 
 #NewYouEstetica #Promocao #Tatuagem #Depilacao #Massagem #Sobrancelha
 
