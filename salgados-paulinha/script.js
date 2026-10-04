@@ -18,7 +18,7 @@ const PRODUTOS = [
     img:'fotos/empadao.webp', foto:'empadão de frango com catupiry inteiro, dourado e brilhante' },
   { cat:'empadao', nome:'Empadão de frango com catupiry (médio)', desc:'O mesmo empadão caprichado, num tamanho menor para poucas pessoas.', un:40, cento:null, tag:'Sob encomenda',
     img:'fotos/empadao.webp', foto:'empadão de frango com catupiry inteiro, dourado e brilhante' },
-  { cat:'doces', nome:'Trufas', img:'fotos/trufas.webp', desc:'Chocolate ao leite e branco, recheio cremoso e decoradas à mão. Pergunte os sabores do dia!', un:1.5, cento:null,
+  { cat:'doces', nome:'Trufas', img:'fotos/trufas.webp', desc:'Chocolate ao leite e branco, decoradas à mão, em todos os sabores. É só pedir o seu favorito!', un:1.5, cento:null,
     foto:'bandeja de trufas de chocolate ao leite e chocolate branco decoradas com fios de chocolate e coco' },
   { cat:'bebidas', nome:'Coca-Cola 2 litros', img:'fotos/refrigerantes.webp', desc:'Coca-Cola original ou Zero, geladinha.', un:14, cento:null,
     foto:'garrafas de 2 litros de Sprite, Guaraná Antarctica, Coca-Cola, Coca-Cola Zero e Fanta' },
