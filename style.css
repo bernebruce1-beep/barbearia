@@ -2823,3 +2823,13 @@ img {
 .dias-rapidos {
     max-width: 100%;
 }
+
+
+/* Seção do barbeiro sem a moldura da foto: só o texto, centralizado. */
+
+.barber-card {
+    grid-template-columns: 1fr !important;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
