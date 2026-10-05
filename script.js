@@ -988,28 +988,6 @@ function marcarDiaRapido() {
 // HORÁRIOS
 // ============================================================
 
-// Terça a sexta: 09:30–12:00 e 14:00–18:00
-// (o último horário de cada turno termina no fechamento).
-
-const HORARIOS_DISPONIVEIS = [
-
-    "09:30",
-    "10:00",
-    "10:30",
-    "11:00",
-    "11:30",
-    "14:00",
-    "14:30",
-    "15:00",
-    "15:30",
-    "16:00",
-    "16:30",
-    "17:00",
-    "17:30"
-
-];
-
-
 // 0 = domingo, 1 = segunda, 6 = sábado
 
 const DIAS_FECHADOS = [0, 1, 6];
@@ -1102,7 +1080,7 @@ async function carregarHorarios() {
             error
         } =
             await supabaseClient.rpc(
-                "get_booked_slots",
+                "get_horarios_ocupados",
                 {
                     p_data:
                         data,
@@ -1132,27 +1110,20 @@ async function carregarHorarios() {
         }
 
 
-        const horariosOcupados =
-            new Set(
-                (
-                    ocupados || []
-                ).map(
-                    item =>
-                        String(
-                            item.horario
-                        ).substring(
-                            0,
-                            5
-                        )
-                )
-            );
+        // Intervalos ocupados em minutos do dia: { inicio, fim }.
+
+        const intervalos =
+            (ocupados || []).map(item => ({
+                inicio: paraMinutos(item.inicio),
+                fim: paraMinutos(item.fim)
+            }));
 
 
         ultimosOcupados =
-            horariosOcupados;
+            intervalos;
 
         renderizarHorarios(
-            horariosOcupados
+            intervalos
         );
 
 
@@ -1171,6 +1142,23 @@ async function carregarHorarios() {
 // ============================================================
 // RENDERIZAR HORÁRIOS
 // ============================================================
+
+// Turnos de atendimento em minutos do dia (09:30–12:00 e 14:00–18:00).
+
+const TURNOS = [
+    [9 * 60 + 30, 12 * 60],
+    [14 * 60, 18 * 60]
+];
+
+function paraMinutos(texto) {
+    const [hora, minuto] = String(texto).split(":").map(Number);
+    return hora * 60 + minuto;
+}
+
+function paraHorario(minutos) {
+    return `${String(Math.floor(minutos / 60)).padStart(2, "0")}:${String(minutos % 60).padStart(2, "0")}`;
+}
+
 
 function renderizarHorarios(
     ocupados
@@ -1205,123 +1193,126 @@ function renderizarHorarios(
         agora.getHours() * 60 + agora.getMinutes();
 
 
-    HORARIOS_DISPONIVEIS.forEach(
-        horario => {
+    const duracao =
+        calcularDuracao() || 30;
 
-            const [hora, minuto] =
-                horario.split(":").map(Number);
 
-            const passou =
-                ehHoje &&
-                hora * 60 + minuto <= minutosAgora;
+    // Horários oferecidos: os de sempre (de 30 em 30) e também
+    // o fim de cada atendimento, para não sobrar buraco na agenda.
+    // Ex.: corte + barba às 09:30 termina 10:15 → 10:15 fica livre.
 
-            // O atendimento precisa caber inteiro:
-            // todos os blocos de 30 min livres e
-            // antes do fim do turno.
+    const candidatos = [];
 
-            const inicio =
-                hora * 60 + minuto;
+    TURNOS.forEach(([abre, fecha]) => {
 
-            const blocos =
-                Math.max(1, Math.ceil(calcularDuracao() / 30));
+        for (let m = abre; m < fecha; m += 30) {
+            candidatos.push({ minutos: m, fixo: true, abre, fecha });
+        }
 
-            const indice =
-                HORARIOS_DISPONIVEIS.indexOf(horario);
+        ocupados.forEach(intervalo => {
+            if (intervalo.fim > abre && intervalo.fim < fecha && intervalo.fim % 30 !== 0) {
+                candidatos.push({ minutos: intervalo.fim, fixo: false, abre, fecha });
+            }
+        });
 
-            let cabe = true;
+    });
 
-            for (let b = 0; b < blocos; b++) {
+    candidatos.sort((a, b) => a.minutos - b.minutos);
 
-                const proximo =
-                    HORARIOS_DISPONIVEIS[indice + b];
 
-                if (!proximo) { cabe = false; break; }
+    const vistos = new Set();
 
-                const [h2, m2] =
-                    proximo.split(":").map(Number);
+    candidatos.forEach(candidato => {
 
-                if (
-                    h2 * 60 + m2 !== inicio + b * 30 ||
-                    ocupados.has(proximo)
-                ) {
-                    cabe = false;
-                    break;
+        if (vistos.has(candidato.minutos)) return;
+        vistos.add(candidato.minutos);
+
+        const inicio = candidato.minutos;
+        const fim = inicio + duracao;
+        const horario = paraHorario(inicio);
+
+        const passou =
+            ehHoje &&
+            inicio <= minutosAgora;
+
+        const dentroDeOcupado =
+            ocupados.some(o => o.inicio <= inicio && inicio < o.fim);
+
+        const cabe =
+            fim <= candidato.fecha &&
+            !ocupados.some(o => inicio < o.fim && fim > o.inicio);
+
+        const livre =
+            !passou && cabe;
+
+
+        // Horário extra (ex.: 10:15) só aparece quando está livre.
+
+        if (!candidato.fixo && !livre) return;
+
+
+        const button =
+            document.createElement(
+                "button"
+            );
+
+        button.type =
+            "button";
+
+        button.className =
+            "horario-btn";
+
+        button.textContent =
+            passou
+                ? "Encerrado"
+                : dentroDeOcupado
+                    ? "Ocupado"
+                    : horario;
+
+
+        if (!livre && !passou && !dentroDeOcupado) {
+
+            button.classList.add("nao-cabe");
+
+            button.title =
+                "Não há tempo para os serviços escolhidos neste horário";
+
+        }
+
+
+        if (!livre) {
+
+            button.disabled =
+                true;
+
+            button.classList.add(
+                "ocupado"
+            );
+
+        } else {
+
+            disponiveis++;
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    selecionarHorario(
+                        horario,
+                        button
+                    );
+
                 }
-
-            }
-
-            const ocupado =
-                passou ||
-                !cabe;
-
-
-            const button =
-                document.createElement(
-                    "button"
-                );
-
-
-            button.type =
-                "button";
-
-
-            button.className =
-                "horario-btn";
-
-
-            button.textContent =
-                passou
-                    ? "Encerrado"
-                    : ocupados.has(horario)
-                        ? "Ocupado"
-                        : horario;
-
-
-            if (ocupado && !passou && !ocupados.has(horario)) {
-
-                button.classList.add("nao-cabe");
-
-                button.title =
-                    "Não há tempo para os serviços escolhidos neste horário";
-
-            }
-
-
-            if (ocupado) {
-
-                button.disabled =
-                    true;
-
-                button.classList.add(
-                    "ocupado"
-                );
-
-            } else {
-
-                disponiveis++;
-
-
-                button.addEventListener(
-                    "click",
-                    () => {
-
-                        selecionarHorario(
-                            horario,
-                            button
-                        );
-
-                    }
-                );
-
-            }
-
-
-            horariosContainer.appendChild(
-                button
             );
 
         }
-    );
+
+
+        horariosContainer.appendChild(
+            button
+        );
+
+    });
 
 
     const aindaLivre =
