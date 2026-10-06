@@ -261,7 +261,9 @@ function renderizarAgendamentos() {
 
                             <div class="agendamento-acoes">
                                 ${cancelado ? "" : `
-                                    <a class="btn-lembrar" href="${linkLembrete(item)}" target="_blank" rel="noopener noreferrer">📲 Lembrar</a>
+                                    ${String(item.telefone || "").replace(/\D/g, "").length >= 10
+                                        ? `<a class="btn-lembrar" href="${linkLembrete(item)}" target="_blank" rel="noopener noreferrer">📲 Lembrar</a>`
+                                        : ""}
                                     <button class="btn-cancelar" onclick="cancelarAgendamento(${Number(item.id)})">Cancelar</button>
                                 `}
                             </div>

@@ -646,3 +646,17 @@ tr:hover td {
     height: 18px;
     accent-color: #ffffff;
 }
+
+
+/* Botões do topo quebram linha em vez de vazar da tela. */
+
+.topo-acoes {
+    flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+    .topo-acoes > button {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+}

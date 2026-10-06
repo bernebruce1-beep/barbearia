@@ -2833,3 +2833,17 @@ img {
     margin-left: auto;
     margin-right: auto;
 }
+
+
+/* Celulares bem estreitos (320px): o card do barbeiro não vaza. */
+
+.barber-info {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 360px) {
+    .barber-info {
+        padding: 32px 18px;
+    }
+}
