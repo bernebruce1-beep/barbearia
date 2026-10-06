@@ -368,3 +368,42 @@ async function desbloquearHorario(id) {
 
     carregarBloqueios();
 }
+function escaparHtml(texto) {
+    return String(texto).replace(/[&<>"']/g, function(c) {
+        return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c];
+    });
+}
+
+async function carregarClientes() {
+    const tabela = document.getElementById("listaClientes");
+    const resultado = await supabaseClient.rpc("admin_list_clientes");
+
+    if (resultado.error) {
+        console.error("ERRO CLIENTES:", resultado.error);
+        tabela.innerHTML = "<tr><td colspan='4'>Erro ao carregar clientes.</td></tr>";
+        return;
+    }
+
+    const clientes = resultado.data || [];
+
+    if (clientes.length === 0) {
+        tabela.innerHTML = "<tr><td colspan='4'>Nenhum cliente cadastrado.</td></tr>";
+        return;
+    }
+
+    tabela.innerHTML = clientes.map(function(cliente) {
+        const telefone = String(cliente.telefone).replace(/\D/g, "");
+        const whatsapp = telefone.startsWith("55") ? telefone : "55" + telefone;
+
+        return `
+            <tr>
+                <td>${escaparHtml(cliente.nome)}</td>
+                <td><a href="https://wa.me/${whatsapp}" target="_blank" rel="noopener noreferrer">${escaparHtml(telefone)}</a></td>
+                <td>${cliente.aceita_promocoes ? "Sim" : "Não"}</td>
+                <td>${new Date(cliente.criado_em).toLocaleDateString("pt-BR")}</td>
+            </tr>
+        `;
+    }).join("");
+}
+
+carregarClientes();

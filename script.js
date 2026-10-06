@@ -1701,3 +1701,49 @@ const horarioFim = new Date(
 );
 
 console.log(horarioFim);
+
+// CADASTRO DE CLIENTES
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("formCadastroCliente");
+    if (!form) return;
+
+    const msg = document.getElementById("clienteMsg");
+
+    form.addEventListener("submit", async function(evento) {
+        evento.preventDefault();
+
+        const nome = document.getElementById("clienteNome").value.trim();
+        const telefone = document.getElementById("clienteTelefone").value.replace(/\D/g, "");
+        const aceita = document.getElementById("clienteAceita").checked;
+
+        if (telefone.length < 10) {
+            msg.textContent = "Digite um WhatsApp válido com DDD.";
+            return;
+        }
+
+        if (!supabaseClient) {
+            msg.textContent = "Não foi possível conectar. Tente novamente.";
+            return;
+        }
+
+        const botao = form.querySelector("button");
+        botao.disabled = true;
+
+        const resultado = await supabaseClient.rpc("cadastrar_cliente", {
+            p_nome: nome,
+            p_telefone: telefone,
+            p_aceita_promocoes: aceita
+        });
+
+        botao.disabled = false;
+
+        if (resultado.error) {
+            console.error("ERRO CADASTRO:", resultado.error);
+            msg.textContent = "Erro ao cadastrar. Tente novamente.";
+            return;
+        }
+
+        form.reset();
+        msg.textContent = "Cadastro feito! Obrigado, " + nome + ".";
+    });
+});
