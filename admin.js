@@ -90,6 +90,7 @@ function mostrarToast(mensagem) {
 }
 
 function carregarTudo() {
+    carregarVisitas();
     carregarAgendamentos();
     carregarBloqueios();
     carregarBarbeiros();
@@ -381,6 +382,66 @@ async function carregarServicos() {
             </div>
         `;
     }).join("");
+}
+
+
+// ============================================================
+// VISITAS DO SITE
+// ============================================================
+
+async function carregarVisitas() {
+    const { data, error } = await supabaseClient.rpc("admin_estatisticas_visitas");
+
+    if (error || !data) {
+        console.error("ERRO VISITAS:", error);
+        return;
+    }
+
+    document.getElementById("visHoje").textContent = data.hoje;
+    document.getElementById("visSemana").textContent = data.semana;
+    document.getElementById("visMes").textContent = data.mes;
+    document.getElementById("visTotal").textContent = data.total;
+
+
+    // Gráfico de barras: visitas por dia (últimos 14 dias).
+
+    const dias = data.dias || [];
+    const maior = Math.max(1, ...dias.map(d => d.visitas));
+
+    document.getElementById("visGrafico").innerHTML = dias.map(d => {
+        const [, mes, dia] = d.dia.split("-");
+        const semana = NOMES_DIAS[new Date(`${d.dia}T12:00:00`).getDay()].slice(0, 3);
+        const altura = d.visitas ? Math.max(4, Math.round(d.visitas / maior * 100)) : 0;
+        const rotulo = `${semana} ${dia}/${mes}: ${d.visitas} ${d.visitas === 1 ? "visita" : "visitas"}`;
+
+        return `
+            <div class="vis-coluna" tabindex="0" aria-label="${rotulo}">
+                <span class="vis-dica">${rotulo}</span>
+                <div class="vis-barra" style="height: ${altura}%"></div>
+                <small>${dia}</small>
+            </div>
+        `;
+    }).join("");
+
+
+    // Conversão e origem das visitas.
+
+    const conversao = data.mes > 0
+        ? Math.round(data.agendamentos_mes / data.mes * 100)
+        : null;
+
+    document.getElementById("visResumo").textContent =
+        `Nos últimos 30 dias: ${data.agendamentos_mes} agendamentos pelo site` +
+        (conversao !== null ? ` (${conversao} a cada 100 visitantes)` : "") +
+        (data.celular_pct !== null ? ` · ${data.celular_pct}% pelo celular` : "") +
+        ".";
+
+    const origens = data.origens || [];
+
+    document.getElementById("visOrigens").innerHTML = origens.length
+        ? "<li><b>De onde vieram (30 dias):</b></li>" +
+          origens.map(o => `<li>${escaparHTML(o.nome)}: <b>${o.visitas}</b></li>`).join("")
+        : "";
 }
 
 

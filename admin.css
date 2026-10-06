@@ -660,3 +660,117 @@ tr:hover td {
         font-size: 13px;
     }
 }
+
+
+/* VISITAS DO SITE */
+
+.visitas-numeros {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.visitas-numeros > div {
+    padding: 14px 16px;
+    background: #101217;
+    border: 1px solid #292d35;
+    border-radius: 10px;
+}
+
+.visitas-numeros strong {
+    display: block;
+    font-size: 26px;
+}
+
+.visitas-numeros small {
+    color: #9da3ae;
+    font-size: 13px;
+}
+
+.visitas-grafico {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    gap: 2px;
+    align-items: end;
+    height: 150px;
+    padding-top: 20px;
+    border-bottom: 1px solid #343943;
+}
+
+.vis-coluna {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    outline: none;
+}
+
+.vis-barra {
+    width: 70%;
+    max-width: 22px;
+    background: #e8e8e8;
+    border-radius: 4px 4px 0 0;
+}
+
+.vis-coluna small {
+    position: absolute;
+    bottom: -20px;
+    color: #858c98;
+    font-size: 11px;
+}
+
+.vis-dica {
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 8px;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #111111;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .15s;
+    z-index: 2;
+}
+
+.vis-coluna:hover .vis-dica,
+.vis-coluna:focus .vis-dica {
+    opacity: 1;
+}
+
+.vis-coluna:hover .vis-barra,
+.vis-coluna:focus .vis-barra {
+    background: #ffffff;
+}
+
+.vis-coluna:first-child .vis-dica { left: 0; transform: none; }
+.vis-coluna:last-child .vis-dica { left: auto; right: 0; transform: none; }
+
+.visitas-detalhes {
+    margin-top: 32px;
+    color: #c9ced6;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.visitas-detalhes ul {
+    list-style: none;
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    color: #9da3ae;
+}
+
+@media (max-width: 600px) {
+    .visitas-numeros {
+        grid-template-columns: 1fr 1fr;
+    }
+}

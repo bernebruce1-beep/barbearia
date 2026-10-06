@@ -151,6 +151,8 @@ async function iniciarSite() {
     }
 
 
+    registrarVisita();
+
     configurarMenu();
 
     configurarGaleria();
@@ -2021,6 +2023,83 @@ _Agendado pelo site_ ✅`;
             mensagem
         )
     }`;
+
+}
+
+
+// ============================================================
+// CONTADOR DE VISITAS
+// ============================================================
+
+// Conta uma visita por pessoa por dia. O "visitante" é só um
+// código aleatório guardado neste navegador: sem nome, IP ou
+// qualquer dado pessoal.
+
+function registrarVisita() {
+
+    let visitante = null;
+
+    try {
+        visitante = localStorage.getItem("gnomoz_visitante");
+
+        if (!visitante) {
+            visitante = crypto.randomUUID
+                ? crypto.randomUUID()
+                : String(Math.random()).slice(2) + Date.now();
+            localStorage.setItem("gnomoz_visitante", visitante);
+        }
+    } catch (erro) {
+        visitante = String(Math.random()).slice(2) + Date.now();
+    }
+
+
+    supabaseClient
+        .rpc("registrar_visita", {
+            p_visitante: visitante,
+            p_origem: descobrirOrigem(),
+            p_celular: window.matchMedia("(max-width: 800px)").matches
+        })
+        .then(({ error }) => {
+            if (error) console.warn("Visita não registrada:", error.message);
+        });
+
+}
+
+
+// De onde a pessoa veio: ?origem=qrcode no link, ou o site anterior.
+
+function descobrirOrigem() {
+
+    const parametros = new URLSearchParams(location.search);
+
+    const marcada =
+        parametros.get("origem") || parametros.get("utm_source");
+
+    if (marcada) {
+        const nomes = { qrcode: "QR code", qr: "QR code", instagram: "Instagram", whatsapp: "WhatsApp", google: "Google", facebook: "Facebook" };
+        return nomes[marcada.toLowerCase()] || marcada.slice(0, 40);
+    }
+
+    if (!document.referrer) return "";
+
+    let host = "";
+
+    try {
+        host = new URL(document.referrer).hostname.replace(/^www\./, "");
+    } catch (erro) {
+        return "";
+    }
+
+    if (host === location.hostname) return "";
+
+    if (/instagram/.test(host)) return "Instagram";
+    if (/facebook|fb\./.test(host)) return "Facebook";
+    if (/whatsapp|wa\.me/.test(host)) return "WhatsApp";
+    if (/google/.test(host)) return "Google";
+    if (/bing|yahoo|duckduckgo/.test(host)) return "Outras buscas";
+    if (/tiktok/.test(host)) return "TikTok";
+
+    return host.slice(0, 40);
 
 }
 

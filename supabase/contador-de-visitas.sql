@@ -1,0 +1,3 @@
+-- (Já aplicado no Supabase.) Tabela public.visitas (1 linha por
+-- visitante por dia, sem dados pessoais), registrar_visita (site, anon)
+-- e admin_estatisticas_visitas (painel, só logado).
